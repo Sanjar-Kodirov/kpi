@@ -7,18 +7,11 @@ export enum CHECK_USER_STATUSES {
 }
 
 export enum E_USER_ROLES {
-  BUSINESS_OWNER = "ROLE_BUSINESS_OWNER",
-  ROLE_OWNER = "ROLE_OWNER",
-  ROLE_CHEF = "ROLE_CHEF",
-  ROLE_BRANCH_ADMIN = "ROLE_BRANCH_ADMIN",
-  ROLE_CASHIER = "ROLE_CASHIER",
-  ROLE_WAITER = "ROLE_WAITER",
-  ROLE_WAREHOUSE_MANAGER = "ROLE_WAREHOUSE_MANAGER",
-  ROLE_BARMEN = "ROLE_BARMEN",
-  ROLE_ACCOUNTANT = "ROLE_ACCOUNTANT",
-  ROLE_SUPER_ADMIN = "ROLE_SUPER_ADMIN",
   ROLE_APAY_INTEGRATION = "ROLE_APAY_INTEGRATION",
   ROLE_ADMIN = "ROLE_ADMIN",
+  ROLE_SUPER_ADMIN = "ROLE_SUPER_ADMIN",
+  BUSINESS_OWNER = "BUSINESS_OWNER",
+  ROLE_OWNER = "ROLE_OWNER",
 }
 
 export interface CurrentUserModel {
@@ -65,76 +58,24 @@ export interface ICurrentUser extends CurrentUserModel {
   isCashier?: boolean;
 }
 
-export interface ICheckUserResponse {
-  userExist: boolean;
-  userStatus?: {
-    name: string;
-    code: CHECK_USER_STATUSES;
-  };
-}
-
-export interface IVerifyUserPayload {
-  phone: string;
-  activationKey: string;
-}
-
-export interface IVerifyUserResponse {
-  phone: string;
-  activationKey: string;
-}
-
-export interface IVerifyUserResponse {
-  type: string;
-  title: string;
-  status: number;
-  instance: string;
-  message: string;
-  path: string;
-}
-
-export interface IRegisterUserPayload {
-  phone: string;
-  password: string;
-  passwordConfirmation: string;
-  secretKey: string | undefined;
-  language: string;
-}
-
 export interface ILoginPayloadType {
-  phone: string;
-  password: string;
-  rememberMe?: boolean;
+  auth_code: string;
 }
 
 export interface ILoginResponseType {
-  refresh_token: string;
-  access_token: string;
+  success: true;
+  token: string;
+  user: IUser;
+  message: string;
 }
 
-// reset password
-export interface IResetPasswordInitPayload {
-  phone: string;
-}
-
-export interface IResetPasswordCheckPayload {
-  activationKey: string;
-  phone: string;
-}
-
-export interface IResetPasswordCheckResponse {
-  secretKey: string;
-}
-
-export interface IResetPasswordFinishPayload {
-  password: string;
-  passwordConfirmation: string;
-  phone: string;
-  secretKey: string;
-}
-
-export interface IChangePasswordModel {
-  currentPassword: string;
-  newPassword: string;
+export interface IUser {
+  id: string;
+  full_name: string;
+  phone_number: string;
+  role: string;
+  membership_type: string;
+  region_name: string;
 }
 
 export interface IRemoveImageModel {
@@ -143,11 +84,4 @@ export interface IRemoveImageModel {
 
 export interface IUploadImageModel {
   data: FormData;
-}
-
-export interface IConfirmPasswordPayload {
-  password: string;
-  passwordConfirmation: string;
-  activationKey: string;
-  secretKey: string;
 }

@@ -9,6 +9,7 @@ export interface ErrorResponseModel {
   errorFields?: any;
   path: string;
   status: number;
+  message: string;
   timestamp: string;
   title?: string;
   url?: string;

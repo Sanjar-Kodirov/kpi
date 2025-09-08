@@ -36,14 +36,14 @@ export const HeaderUI: FC = () => {
           </div>
         )}
 
-        {(currentUser.role.code === E_USER_ROLES.BUSINESS_OWNER || currentUser.role.code === E_USER_ROLES.ROLE_OWNER) &&
+        {/* {(currentUser.role.code === E_USER_ROLES.BUSINESS_OWNER || currentUser.role.code === E_USER_ROLES.ROLE_OWNER) &&
         isAppTypeCabinet ? (
           <GeneralBranchSelect />
         ) : isAppTypeAdmin ? null : (
           <div className={classes.branchNameWrapper}>
             <div className={classes.branchName}>{currentUser.branch?.name}</div>
           </div>
-        )}
+        )} */}
 
         {/* <CurrentUserDropdown /> */}
       </div>

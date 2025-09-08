@@ -6,7 +6,6 @@ import { SignIn } from "#src/app/screens/auth/pages/signIn";
 import { MainScreen } from "#src/app/screens/main";
 import { MainScreenWrapper } from "#src/app/screens/main/mainScreenWrapper";
 import { createBrowserRouter } from "react-router-dom";
-import { ResetPassword } from "#src/app/screens/auth/pages/reset-password";
 import { useAdminMenuList } from "#src/app/root-admin/menuList";
 import { CompanyDetails } from "#src/app/sections/admin/monitoring/companyDetails";
 import { CompanyDetailsInfo } from "#src/app/sections/admin/monitoring/companyDetails/companyInfo";
@@ -27,10 +26,6 @@ export const adminRoutes = createBrowserRouter([
           {
             path: ROUTES.USER_SIGN_IN,
             element: <SignIn />,
-          },
-          {
-            path: ROUTES.USER_RESET_PASSWORD,
-            element: <ResetPassword />,
           },
         ],
       },

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PinInput from "react-pin-input";
-import { Statistic, Alert, Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Statistic, Alert } from "antd";
 
 import { useStyles } from "./styles";
 import { $colors } from "#styles/variables";
@@ -21,7 +20,7 @@ export const SmsCodeField = (props) => {
     onResendClick,
     $resendKey,
     inputStyle = {},
-    smsSentText = "СМС было отправлено на указанный номер.",
+    smsSentText = false,
   } = props;
 
   const classes = useStyles(props);
@@ -60,8 +59,6 @@ export const SmsCodeField = (props) => {
     }
   };
 
-  const antLoadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-
   return (
     <>
       <div
@@ -85,35 +82,27 @@ export const SmsCodeField = (props) => {
           onComplete={onComplete}
         />
       </div>
-      <Alert
-        className={classes.alert}
-        message={
-          <>
-            <div>{smsSentText}</div>
-            {deadline.time !== null && (
-              <Countdown
-                className={classes.pinCodeTime}
-                title="Срок действия кода"
-                value={deadline.time}
-                format="mm:ss"
-                onFinish={onTimerFinish}
-              />
-            )}
-            {!countDownActive && onResendClick && (
-              <div className={classes.resendBtn} onClick={onResendHandler}>
-                Отправить СМС еще раз
-                {$resendKey && $resendKey.loading && (
-                  <span className={classes.resendBtnLoading}>
-                    <Spin indicator={antLoadingIcon} />
-                  </span>
-                )}
-              </div>
-            )}
-          </>
-        }
-        type="info"
-        showIcon
-      />
+      {smsSentText && (
+        <Alert
+          className={classes.alert}
+          message={
+            <>
+              <div>{smsSentText}</div>
+              {deadline.time !== null && (
+                <Countdown
+                  className={classes.pinCodeTime}
+                  title="Срок действия кода"
+                  value={deadline.time}
+                  format="mm:ss"
+                  onFinish={onTimerFinish}
+                />
+              )}
+            </>
+          }
+          type="info"
+          showIcon
+        />
+      )}
     </>
   );
 };

@@ -7,7 +7,6 @@ import { SignIn } from "#src/app/screens/auth/pages/signIn";
 import { MainScreen } from "#src/app/screens/main";
 import { MainScreenWrapper } from "#src/app/screens/main/mainScreenWrapper";
 import { createBrowserRouter } from "react-router-dom";
-import { ResetPassword } from "#src/app/screens/auth/pages/reset-password";
 import { useCabinetMenuList } from "#src/app/root-cabinet/menuList";
 import { WithHttpInterceptor } from "#components/withHttpInterceptor";
 import { WithPermission } from "#src/hocs/withPermission";
@@ -24,14 +23,6 @@ export const cabinetRoutes = createBrowserRouter([
           {
             path: ROUTES.USER_SIGN_IN,
             element: <SignIn />,
-          },
-          // {
-          //   path: ROUTES.USER_SIGN_UP,
-          //   element: <Registration />,
-          // },
-          {
-            path: ROUTES.USER_RESET_PASSWORD,
-            element: <ResetPassword />,
           },
         ],
       },

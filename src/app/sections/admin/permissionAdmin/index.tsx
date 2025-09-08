@@ -18,24 +18,24 @@ export const PermissionAdmin: React.FC<TProps> = (props) => {
   const currentUserState = $currentUser.store();
   const { data: currentUser } = currentUserState;
 
-  const isAdmin = currentUser?.role === E_USER_ROLES.ROLE_ADMIN;
+  // const isAdmin = currentUser?.role === E_USER_ROLES.ROLE_ADMIN;
 
-  const viewEndPoints = useMemo(() => {
-    return true
-      ? [
-          {
-            key: "ENDPOINTS",
-            label: "Эндпоинты",
-            children: <AdminEndpoints permissionType={permissionType} />,
-          },
-        ]
-      : [];
-  }, [isAdmin, permissionType]);
+  // const viewEndPoints = useMemo(() => {
+  //   return true
+  //     ? [
+  //         {
+  //           key: "ENDPOINTS",
+  //           label: "Эндпоинты",
+  //           children: <AdminEndpoints permissionType={permissionType} />,
+  //         },
+  //       ]
+  //     : [];
+  // }, [isAdmin, permissionType]);
 
   return (
     <ContentUI>
       <ContentUI.Header className={classes.header} title={permissionType === "ADMIN" ? "Админ" : "Кабинет"} />
-      <TabsUI
+      {/* <TabsUI
         defaultActiveKey="ENDPOINTS"
         className={classes.tabs}
         items={[
@@ -46,7 +46,7 @@ export const PermissionAdmin: React.FC<TProps> = (props) => {
             children: <AdminPermissions permissionType={permissionType} />,
           },
         ]}
-      />
+      /> */}
     </ContentUI>
   );
 };

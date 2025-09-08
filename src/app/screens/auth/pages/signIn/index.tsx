@@ -1,20 +1,16 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import {
   ACCESS_TOKEN_KEY_FOR_COOKIE,
-  isAppTypeAdmin,
   REFRESH_TOKEN_KEY_FOR_COOKIE,
   requiredRules,
   ROUTES,
+  SMS_CODE_SIZE,
 } from "#constants/index";
 import { namespaces } from "#src/localization/i18n.constants";
-import { $currentUser, $logIn } from "#stores/account";
-import { ErrorResponseModel } from "#types/api";
+import { $currentUser, $loginWithCode } from "#stores/account";
 import { ButtonUI } from "#ui/button";
-import { CheckboxUI } from "#ui/checkbox";
-import { InputUI } from "#ui/input";
 import { notificationWarning } from "#ui/notifications";
-import { getDigitsNums } from "#utils/formatters";
 import { Form } from "antd";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -23,16 +19,11 @@ import { initialValuesSignIn } from "../../constants";
 
 import { ContentUI } from "#ui/content";
 import { FormUI } from "#ui/form";
-import { useStyles } from "./styles";
 import { RegisterLayout } from "../reset-password/registerLayout";
+import { SmsCodeField } from "#components/smsCodeField";
 
 type TValues = {
-  eSign: {
-    data: string;
-  };
-  username: string;
-  password: string;
-  rememberMe?: boolean;
+  smsCode: string;
 };
 
 export const SignIn: FC = () => {
@@ -40,12 +31,10 @@ export const SignIn: FC = () => {
   const location = useLocation();
   const { t } = useTranslation();
 
-  const logInState = $logIn.store();
+  const logInState = $loginWithCode.store();
   const currentUserState = $currentUser.store();
 
   const { data: currentUser } = currentUserState;
-
-  const classes = useStyles();
 
   const [form] = Form.useForm();
 
@@ -54,17 +43,6 @@ export const SignIn: FC = () => {
       notificationWarning(t("auth.youTryingEnterCashier", { ns: namespaces.auth }), "");
     }
   }, [currentUser]);
-
-  const onFinish = (values: TValues) => {
-    const username = isAppTypeAdmin ? values.username : getDigitsNums(values.username);
-
-    const data = { phone: username, password: values.password, rememberMe: values.rememberMe };
-    $logIn.request(data);
-  };
-
-  const handleForgetPassword = () => {
-    navigate(ROUTES.USER_RESET_PASSWORD);
-  };
 
   useEffect(() => {
     sessionStorage.removeItem(ACCESS_TOKEN_KEY_FOR_COOKIE);
@@ -80,26 +58,20 @@ export const SignIn: FC = () => {
       } else {
         navigate("/");
       }
-      $logIn.reset();
+      $loginWithCode.reset();
     }
   }, [logInState.success, location.search]);
 
-  const showError = (error: ErrorResponseModel) => {
-    if (!error) return null;
-
-    if (error.status === 401) {
-      return <ContentUI.Error error={"Введен неверный логин или пароль"} />;
-    } else if (error) {
-      return <ContentUI.Error error={"Сбой в работе сервера, попробуйте еще раз позже"} />;
-    }
+  const onFinish = (values: TValues) => {
+    $loginWithCode.request({ auth_code: values.smsCode });
   };
 
   return (
     <RegisterLayout>
       <RegisterLayout.Inner>
-        <RegisterLayout.Title>{t("auth.authorization", { ns: namespaces.auth })}</RegisterLayout.Title>
+        <RegisterLayout.Title>Kodni Kiriting</RegisterLayout.Title>
 
-        {logInState.error && showError(logInState.error)}
+        <ContentUI.Error error={logInState.error?.message} />
 
         <FormUI
           name="basic"
@@ -110,35 +82,15 @@ export const SignIn: FC = () => {
           form={form}
           autoComplete="on"
         >
-          <Form.Item label={isAppTypeAdmin ? "Логин" : t("fields.phoneNumber")} name="username" rules={requiredRules}>
-            {isAppTypeAdmin ? <InputUI variant="auth" /> : <InputUI.Phone variant="auth" />}
+          <Form.Item name="smsCode" rules={requiredRules}>
+            <SmsCodeField codeSize={SMS_CODE_SIZE} error={form.getFieldError("smsCode").length} />
           </Form.Item>
-          <Form.Item label={t("fields.password")} name="password" rules={requiredRules}>
-            <InputUI.Password placeholder={t("placeholders.enterPassword")} variant="auth" />
-          </Form.Item>
-
-          <div className={classes.rememberMe}>
-            <Form.Item name="rememberMe" valuePropName="checked">
-              <CheckboxUI className={classes.checkbox}>{t("auth.rememberMe", { ns: namespaces.auth })}</CheckboxUI>
-            </Form.Item>
-            <span onClick={handleForgetPassword} className={classes.forgotPassword}>
-              {t("auth.forgotPassword", { ns: namespaces.auth })}
-            </span>
-          </div>
-
           <RegisterLayout.BottomButtons>
             <ButtonUI loading={logInState.loading} htmlType="submit" type="auth">
               {t("auth.logIn", { ns: namespaces.auth })}
             </ButtonUI>
           </RegisterLayout.BottomButtons>
         </FormUI>
-
-        {/* <div className={classes.infoCont}>
-          <span>{t("auth.dontHaveAnAccount", { ns: namespaces.auth })}</span>
-          <Link state={{ currentStep: 0 }} to={ROUTES.USER_SIGN_UP}>
-            {t("auth.registerNow", { ns: namespaces.auth })}
-          </Link>
-        </div> */}
       </RegisterLayout.Inner>
     </RegisterLayout>
   );
