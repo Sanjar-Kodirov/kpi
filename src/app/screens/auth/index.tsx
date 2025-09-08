@@ -1,0 +1,35 @@
+import React, { FC } from "react";
+
+import { APP_VERSION } from "#constants/index";
+import { namespaces } from "#src/localization/i18n.constants";
+import { useTranslation } from "react-i18next";
+
+import { HeaderAuthUI } from "./components/header";
+import { useStyles } from "./styles";
+import { Outlet } from "react-router-dom";
+
+export const UserAuthScreen: FC = () => {
+  const classes = useStyles();
+  const { t } = useTranslation();
+
+  return (
+    <div className={`${classes.wrapper} u-fancy-scrollbar`}>
+      <HeaderAuthUI />
+      <div className={classes.content}>
+        <Outlet />
+        {/*<Switch>*/}
+        {/*  <Route path={ROUTES.USER_SIGN_IN} component={SignIn} />*/}
+        {/*  <Route path={ROUTES.USER_RESET_PASSWORD} component={ResetPassword} />*/}
+        {/*  <Route path={ROUTES.USER_SIGN_UP} component={Registration} />*/}
+        {/*  /!* <Route path='*' component={NotFound}/> *!/*/}
+        {/*</Switch>*/}
+      </div>
+      <div className={classes.compInfo}>
+        <div>{`© 2019-${new Date().getFullYear()} OOO "Center for Digital Technology and Innovation"`}</div>
+        <div>
+          {t("auth.compInfo", { ns: namespaces.auth })} {t("fields.version")} {APP_VERSION}
+        </div>
+      </div>
+    </div>
+  );
+};

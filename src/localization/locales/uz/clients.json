@@ -1,0 +1,8 @@
+{
+  "fields": {
+    "clients": "Mijozlar",
+    "addClient": "Mijoz qo'shish",
+    "ageCategory": "Yosh toifasi",
+    "editClient": "Mijozni tahrirlash"
+  }
+}

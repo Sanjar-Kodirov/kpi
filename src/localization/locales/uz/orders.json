@@ -1,0 +1,12 @@
+{
+  "fields": {
+    "orderDishes": "Buyurtmadagi taomlar",
+    "dishesNew": "Buyurtmadagi yangi taomlar",
+    "dishesComment": "Taomga izoh",
+    "dateAndTimeOfCreation": "Buyurtma yaratilgan sana",
+    "closedDate": "Buyurtma tugatilgan sana"
+  },
+  "placeholder": {
+    "dishesComment": "Izoh kiriting"
+  }
+}

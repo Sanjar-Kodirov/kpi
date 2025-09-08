@@ -1,0 +1,30 @@
+{
+  "receiptsList": {
+    "status": "Тип операции",
+    "terminalSN": "ККМ",
+    "downloadExcelFile": "Скачать EXCEL файл",
+    "position": "Позиция"
+  },
+  "notifications": {
+    "confirmDeleteReceipt": "Вы точно хотите удалить чек?",
+    "receiptDeleted": "Чек удален"
+  },
+  "zReport": {
+    "endDateTime": "Дата/время",
+    "shiftOpeningDate": "Дата открытия смены",
+    "shiftClosingDate": "Дата закрытия смены",
+    "reportStateKkmWithout": "Отчет о состоянии счетчиков ККМ без гашения №",
+    "reportStateKkm": "Отчет о состоянии счетчиков ККМ с гашением №",
+    "vatSales": "НДС продажи",
+    "return": "Возвраты",
+    "vatRefund": "НДС возврата",
+    "numberChecks": "Количество чеков"
+  },
+  "zReportTemplate": {
+    "registrationDate": "Дата регистрации"
+  },
+  "reportsCategories": {
+    "zReports": "Z - Отчеты",
+    "registrationReport": "Отчет о регистрации"
+  }
+}

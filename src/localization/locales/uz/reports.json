@@ -1,0 +1,29 @@
+{
+  "products": {
+    "maxSum": "Maksimal summa",
+    "minSum": "Minimal summa",
+    "openCategories": "Toifalarni ochish",
+    "productWithoutVat": "QQSsiz tovarlar",
+    "downloadReport": "Hisobotni yuklab olish"
+  },
+  "product": {
+    "statistics": {
+      "totalAmount": "Umumiy summa",
+      "qtyReceipt": "Cheklar soni",
+      "totalVat": "Jami QQS",
+      "totalDiscount": "Jami chegirmalar",
+      "qtyItem": "dona"
+    }
+  },
+  "fields": {
+    "haveANiceDay": "Sizga ajoyib kun tilaymiz!"
+  },
+  "cashiers": {
+    "averageReceiptCost": "Oʻrtacha chek"
+  },
+  "buttons": {
+    "print": "To'lov hisobini chop etish",
+    "sendToPrint": "To'lov hisobini yuborish",
+    "preCheck": "To'lov hisobini ko'rish"
+  }
+}

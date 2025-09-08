@@ -1,0 +1,63 @@
+{
+  "billing": {
+    "invoicePayment": "Счет на оплату",
+    "tariff": "Тариф",
+    "service": "Услуга",
+    "activationDate": "Дата активации",
+    "nextPayment": "Следующий платеж",
+    "typeService": "Тип услуги",
+    "original": "Оригинал",
+    "downloaded": "Загруженный",
+    "xFileStatus": "Статус x-file"
+  },
+  "agreementsList": {
+    "tariff": "Тариф",
+    "endDate": "Дата окончания",
+    "fieldEmpty": "Поле не заполнено",
+    "downloadDocument": "Загрузить документ",
+    "document": "Документ",
+    "selectFile": "Выбрать файл"
+  },
+  "allServicesList": {
+    "title": "Пакеты тарифов для вас",
+    "titleServices": "Услуги",
+    "textQtyInvoices": "Доп. пакет фактур",
+    "textQtySms": "Доп. пакет СМС",
+    "batchInvoices": "Пакет фактур",
+    "smsPackage": "Пакет СМС",
+    "for": "за",
+    "branches": "филиалов",
+    "typeBuying": "Тип покупки",
+    "typeRate": "Тип тарифа",
+    "trialPeriod": "Пробный период",
+    "serviceCost": "Стоимость услуги",
+    "name": "Наименование",
+    "useTrialPeriod": "Использовать пробный период",
+    "acceptPublicOffer": "Принимаю условия Публичной оферты",
+    "connectedServices": "Подключенные услуги",
+    "order": "Заказ",
+    "details": "Детали",
+    "publicOffer": "Публичная оферта",
+    "invoice": "Счет фактуры"
+  },
+  "transactionsList": {
+    "debitOrCredit": "Дебет/Кредит"
+  },
+  "payment": {
+    "cardData": "Данные карты",
+    "confirmPassword": "Подтверждение пароля",
+    "cardNumber": "Номер карты",
+    "validityPeriod": "Срок действия",
+    "transferAmount": "Сумма перевода"
+  },
+  "notifications": {
+    "thisOrganizationHasInsufficientData": "Недостаточно данных об организации",
+    "serviceConnected": "Услуга подключена",
+    "accepted": "Оферта принята",
+    "youReallyWantToActivateTheService": "Вы точно хотите активировать услугу?",
+    "doYouReallyWantToUnsubscribe?": "Вы точно хотите отменить подписку?",
+    "statusChanged": "Статус изменен",
+    "documentDownloadedSuccessfully": "Документ успешно загружен",
+    "validationError": "Ошибка валидации"
+  }
+}

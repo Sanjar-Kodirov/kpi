@@ -1,0 +1,24 @@
+{
+  "profile": {
+    "profile": "Profil",
+    "security": "Xavfsizlik",
+    "changePassword": "Parolni oʻzgartirish"
+  },
+  "profileInfo": {
+    "password": "parol",
+    "telegramBot": "Telegram-bot",
+    "telegramLogin": "Telegramdagi telefon raqami"
+  },
+  "notifications": {
+    "successfullyChanged": "Samarali oʻzgartirildi"
+  },
+  "modal": {
+    "changeTelegramAccount": "Telegram-akkauntni oʻzgartirish",
+    "phoneNumber": "Telefon raqami *",
+    "currentPassword": "Amaldagi parol",
+    "newPassword": "Yangi parol",
+    "reEnterNewPassword": "Yangi parolni qaytaring",
+    "enterCurrentPassword": "Amaldagi parolni kiriting",
+    "enterNewPassword": "Yangi parolni kiriting"
+  }
+}

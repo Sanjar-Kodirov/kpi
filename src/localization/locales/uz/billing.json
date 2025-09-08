@@ -1,0 +1,63 @@
+{
+  "billing": {
+    "invoicePayment": "Toʻlovga hisob",
+    "tariff": "Tarif",
+    "service": "Xizmat",
+    "activationDate": "Faollashtirilgan sana",
+    "nextPayment": "Keyingi toʻlov",
+    "typeService": "Xizmat turi",
+    "original": "Asl nusxa",
+    "downloaded": "Yuklangan",
+    "xFileStatus": "Status x-file"
+  },
+  "agreementsList": {
+    "tariff": "Tarif",
+    "endDate": "Tugash sanasi",
+    "fieldEmpty": "Maydon toʻldirilmagan",
+    "downloadDocument": "Hujjatni yuklash",
+    "document": "Hujjat",
+    "selectFile": "Faylni tanlash"
+  },
+  "allServicesList": {
+    "title": "Siz uchun Tariflar paketi",
+    "titleServices": "Xizmatlar",
+    "textQtyInvoices": "Qoʻsh. fakturalar paketi",
+    "textQtySms": "Qoʻsh. SMS paket",
+    "batchInvoices": "Fakturalar paketi",
+    "smsPackage": "SMS paket",
+    "for": " ",
+    "branches": "ta filial uchun",
+    "typeBuying": "Xarid turi",
+    "typeRate": "Tarif turi",
+    "trialPeriod": "Sinov muddati",
+    "serviceCost": "Xizmat narxi",
+    "name": "Nomi",
+    "useTrialPeriod": "Sinov muddatidan foydalanish",
+    "acceptPublicOffer": "Ommaviy oferta shartlarini qabul qilaman",
+    "connectedServices": "Ulangan xizmatlar",
+    "order": "Buyurtma",
+    "details": "Detallar",
+    "publicOffer": "Ommaviy oferta",
+    "invoice": "Hisob-fakturalar"
+  },
+  "transactionsList": {
+    "debitOrCredit": "Debet/Kredit"
+  },
+  "payment": {
+    "cardData": "Karta maʼlumotlari",
+    "confirmPassword": "Parolni tasdiqlash",
+    "cardNumber": "Karta raqami",
+    "validityPeriod": "Amal qilish muddati",
+    "transferAmount": "oʻtkazma miqdori"
+  },
+  "notifications": {
+    "thisOrganizationHasInsufficientData": "Tashkilot haqida maʼlumot yetarli emas",
+    "serviceConnected": "Xizmat ulandi",
+    "accepted": "Oferta qabul qilindi",
+    "youReallyWantToActivateTheService": "Haqiqatan ham xizmatni faollishtirmoqchimisiz?",
+    "doYouReallyWantToUnsubscribe?": "Haqiqatan ham obunani bekor qilmoqchimisiz?",
+    "statusChanged": "Status oʻzgartirildi",
+    "documentDownloadedSuccessfully": "Hujjat samarali yuklandi",
+    "validationError": "Validatsiya xatosi"
+  }
+}

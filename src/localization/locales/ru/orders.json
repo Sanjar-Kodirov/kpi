@@ -1,0 +1,12 @@
+{
+  "fields": {
+    "orderDishes": "Блюда в заказе",
+    "dishesNew": "Новые блюда",
+    "dishesComment": "Комментарий к блюду",
+    "dateAndTimeOfCreation": "Дата и время создания",
+    "closedDate": "Дата и время закрытия"
+  },
+  "placeholders": {
+    "dishesComment": "Введите комментарий"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "register": {
+    "statistics": {
+      "quantityProducts": "Количество товаров",
+      "totalCostPrice": "Общая себестоимость",
+      "totalSellingPrice": "Общая цена продажи",
+      "totalQtyProducts": "Общее количество товаров",
+      "totalSumIncome": "Общая сумма прихода"
+    },
+    "product": {
+      "qtyProduct": "Кол-во товара",
+      "markingCount": "Кол-во КМ",
+      "scan": "Сканирование",
+      "empty": "Пусто"
+    },
+    "costPrice": "Себестоимость",
+    "totalCostPrice": "Общая себестоимость",
+    "totalSalesPrice": "Общая цена продажи",
+    "profit": "Потенциальная прибыль",
+    "margin": "Маржа, %",
+    "correcting": "Корректировка",
+    "reason": "Причина",
+    "selectUnit": "Выберите ед. измерения",
+    "inStock": "В наличии",
+    "notAvailable": "Нет в наличии"
+  },
+  "byHistory": {
+    "balanceStart": "Количество, начало дня",
+    "balanceEnd": "Количество, конец дня",
+    "income": "Приход",
+    "transferIn": "Трансфер в",
+    "transferOut": "Трансфер из",
+    "day": "День"
+  },
+  "income": {
+    "inventory": "Оприходовать",
+    "number": "Номер",
+    "index": "П/Н",
+    "priceNoNds": "Стоимость поставки без НДС за 1 ед",
+    "sumNoNds": "Стоимость поставки без НДС",
+    "ndsSum": "Общая Сумма НДС",
+    "markupPercent": "Процент наценки",
+    "markupSum": "Сумма наценки",
+    "product": "Продукт",
+    "selectUnit": "Выберите ед. измерения",
+    "codesMark": "Коды маркировки",
+    "fixMarkings": "Исправить маркировки",
+    "duplicatedProduct": "Этот товар дублируется"
+  },
+  "incomeDetails": {
+    "createdOrder": "Заказ создан",
+    "invoiceNumber": "Номер счета-фактуры",
+    "commentary": "Комментарий",
+    "codes": "Коды"
+  },
+  "stockAdjustments": {},
+  "transfersList": {
+    "index": "№ Заказа",
+    "fromBranchName": "Из Филиала",
+    "toBranchName": "В Филиал",
+    "transferDate": "Дата поставки",
+    "move": "Переместить",
+    "requestRelocation": "Заявка на перемещение",
+    "product": "Товар",
+    "retrieved": "Получен",
+    "remaining": "Осталось",
+    "askedQty": "Общее количество",
+    "moving": "Перемещение",
+    "requestMoving": "Заявка на перемещение",
+    "applicationDate": "Дата заявки"
+  },
+  "transferDetails": {
+    "orderDate": "Дата заказа",
+    "dateExpectedDelivery": "Дата ожидаемой поставки",
+    "changeStatus": "Вы точно хотите изменить статус?",
+    "from": "из"
+  },
+  "modals": {
+    "openCategory": "Открыть категории",
+    "productCategories": "Категории товаров",
+    "applyFiltering": "Применить фильтр",
+    "correctionAdded": "Корректировка добавлена",
+    "correctionProduct": "Корректировка товара",
+    "addMoreProducts": "Добавить товар",
+    "scamCodes": "Сканирование кодов",
+    "finishScan": "Завершить сканирование",
+    "addProduct": "Добавить товар",
+    "catalog": "Каталог",
+    "selectProduct": "Выбрать товар"
+  },
+  "notifications": {
+    "attention": "Внимание!",
+    "codeAggregationAdded": "Код агрегации уже добавлен",
+    "waitCodeCheckFinish": "Дождитесь окончания проверки кода",
+    "inventoried": "оприходован",
+    "moveSuccessfullyCancelled": "Перемещение успешно отменено",
+    "moveSuccessfullyConfirmed": "Перемещение успешно подтверждено",
+    "itemSuccessfullyMoved": "Товар успешно перемещен",
+    "requestRelocationAccepted": "Заявка на перемещение принята",
+    "markingsFixed": "Маркировки исправлены"
+  }
+}

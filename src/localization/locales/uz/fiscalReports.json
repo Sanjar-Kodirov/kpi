@@ -1,0 +1,30 @@
+{
+  "receiptsList": {
+    "status": "Amaliyot turi",
+    "terminalSN": "NKM",
+    "downloadExcelFile": "EXCEL faylni yuklab olish",
+    "position": "Pozitsiya"
+  },
+  "notifications": {
+    "confirmDeleteReceipt": "Haqiqatan ham chekni oʻchirmoqchimisiz?",
+    "receiptDeleted": "Chek oʻchirildi"
+  },
+  "zReport": {
+    "endDateTime": "Sana/vaqt",
+    "shiftOpeningDate": "Smena ochilishi sanasi",
+    "shiftClosingDate": "Smena yopilishi sanasi",
+    "reportStateKkmWithout": "NKM hisoblagichlarining holati haqida hisobot soʻndirilmagan holda №",
+    "reportStateKkm": "NKM hisoblagichlarining holati haqida hisobot soʻndirilgan holda №",
+    "vatSales": "Sotuv QQSi",
+    "return": "Qaytarishlar",
+    "vatRefund": "Qaytarish QQSi",
+    "numberChecks": "Cheklar soni"
+  },
+  "zReportTemplate": {
+    "registrationDate": "Roʻyxatdan oʻtish sanasi"
+  },
+  "reportsCategories": {
+    "zReports": "Z - Hisobotlar",
+    "registrationReport": "Roʻyxatdan oʻtish haqidagi hisobot"
+  }
+}

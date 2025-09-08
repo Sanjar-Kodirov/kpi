@@ -1,0 +1,10 @@
+{
+  "salesTotal": "Продажа",
+  "salesCash": "Наличные",
+  "salesCard": "Карта",
+  "salesDiscount": "Скидка",
+  "salesNds": "НДС",
+  "salesExcise": "Акциз",
+  "salesCount": "Чеки",
+  "salesReturned": "Возврат"
+}

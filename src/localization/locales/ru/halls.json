@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "halls": {
+      "listOfHalls": "Список залов",
+      "name": "Название зала",
+      "numberOfHalls": "Количество залов",
+      "hallName": "Название зала",
+      "edit": "Редактировать зал",
+      "addHall": "Добавить зал",
+      "delete": "Удалить зал"
+    },
+    "tables": {
+      "tablesCount": "Количество столов",
+      "addTable": "Добавить стол"
+    }
+  },
+  "notifications": {
+    "hallDeleted": "Зал был удален"
+  }
+}

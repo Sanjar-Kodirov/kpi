@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "halls": {
+      "listOfHalls": "Zallar ro`yxati",
+      "name": "Zal nomi",
+      "numberOfHalls": "Zallar soni",
+      "hallName": "Zal nomi",
+      "edit": "Zalni tahrirlash",
+      "addHall": "Zal qo'shish",
+      "delete": "Удалить зал"
+    },
+    "tables": {
+      "tablesCount": "Stollar soni",
+      "addTable": "Stollar qo'shish"
+    }
+  },
+
+  "notifications": {
+    "hallDeleted": "Zal o'chirildi"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "settings": {
+    "tin": "STIR / JShShIR",
+    "phone": "Aloqa uchun raqam",
+    "accounting": "Omborxona hisobi",
+    "requisites": "Bank rekvizitlari",
+    "director": "Kompaniya rahbari",
+    "addressLegal": "Manzil (yuridik)",
+    "deleteAvatar": "Haqiqatan ham rasmni oʻchirib tashlamoqchimisiz?",
+    "eSign": "ERI",
+    "selectKey": "Kalitni tanlang",
+    "durationKey": "Kalitning amal qilish muddati",
+    "getTuronToken": "Turon tokenini olish",
+    "updateTuronToken": "Turon tokenini yangilash",
+    "yourManager": "Sizning menedjeringiz"
+  },
+
+  "settingsEdit": {
+    "logo": "Kompaniya logotipi",
+    "actualAddress": "Amaldagi manzil",
+    "resetWarehouse": "Omborni 0 ga tenglashtirish",
+    "card": "Kompaniya kartasi",
+    "updateActivityType": "Faoliyat sohasini oʻzgartirish"
+  },
+  "branches": {
+    "addBranch": "Filial qoʻshish",
+    "updateBranch": "Filialni oʻzgartirish",
+    "allBranches": "Barcha filiallar",
+    "createGroup": "Guruh ochish",
+    "addGroup": "Guruh qoʻshish"
+  },
+  "branchesList": {
+    "statistics": {
+      "salesTotal": "Tushim",
+      "salesCash": "Kassadagi naqd pul",
+      "averageReceiptCost": "Oʻrtacha chek",
+      "salesCount": "Sotuvlar"
+    },
+    "salesTotal": "Tushim",
+    "address": "Filial manzili",
+    "usersCount": "Xodimlar soni",
+    "createdDate": "Yaratish sanasi",
+    "serialNumber": "№ WEB-KASSA",
+    "groupName": "Guruh nomi",
+    "groups": "Guruhlar"
+  },
+  "branchDetails": {
+    "statistics": {
+      "receipts": "Cheklar",
+      "returns": "Qaytarishlar",
+      "averageReceipt": "Oʻrtacha chek чек",
+      "amountSales": "Sotuvlar summasi"
+    },
+    "bestEmployees": "Eng yaxshi xodimlar",
+    "salesLeaders": "Sotuv yetakchilari",
+    "id": "ID"
+  },
+  "branchNotifications": {
+    "branchAdded": "Filial qoʻshildi",
+    "branchUpdated": "Filial oʻzgartirildi",
+    "branchDeleted": "Filial oʻchirildi",
+    "confirmDeleteBranch": "Haqiqatan ham filialni oʻchirib tashlamoqchimisiz?",
+    "confirmInstallWebCash": "Haqiqatan ham WEB-KASSA’ni ulamoqchimisiz?",
+    "groupAdded": "Guruh qoʻshildi",
+    "groupUpdated": "Guruh oʻzgartirildi",
+    "groupDeleted": "Guruh oʻchirildi",
+    "confirmDeleteGroup": "Haqiqatan ham guruhni oʻchirib tashlamoqchimisiz?"
+  },
+  "employeesList": {
+    "fired": "Boʻshatilganlar"
+  },
+  "employeeEdit": {
+    "employeeDeleted": "Xodim oʻchirildi",
+    "confirmEmployeeDelete": "Haqiqatan ham xodimni oʻchirib tashlamoqchimisiz?",
+    "addEmployee": "Xodimni qoʻshish",
+    "employeeAdded": "Xodimni qoʻshildi",
+    "employeeChanged": "Xodim ma’lumotlari oʻzgartirildi",
+    "changeEmployee": "Xodimning ma’lumotlarini oʻzgartirish",
+    "newEmployee": "Yangi xodim",
+    "fire": "Boʻshatish"
+  },
+  "employeeStatistics": {
+    "dateEmploymentCompany": "Kompaniyada ish boshlagan sana",
+    "numberSales": "Sotuvlar soni",
+    "averageReceipt": "Oʻrtacha chek",
+    "salesAmount": "Sotuvlar summasi"
+  },
+  "receiptTemplateSettings": {
+    "receiptDeleted": "Shablon oʻchirildi",
+    "confirmReceiptDelete": "Haqiqatan ham shablonni oʻchirib tashlamoqchimisiz?",
+    "headerTitle": "Ustki kolontitul",
+    "footerTitle": "Ostki kolontitul",
+    "titleHeader": "Sarlavha matni",
+    "enterTitleHeader": "Sarlavha matnini kiriting",
+    "footer": "Ostki matn",
+    "enterTitleFooter": "Ostki matnni kiriting"
+  },
+  "receiptTemplate": {
+    "kkmNumber": "NKM raqami",
+    "numberInShift": "Chek qaysi smenada",
+    "mark": "Markirovka",
+    "commitmentTin": "Komitent STIRi",
+    "positions": "Pozitsiyalar",
+    "payUp": "Toʻlov uchun",
+    "change": "Qaytim",
+    "fp": "FB",
+    "withVat": "QQS h. bilan",
+    "totalCostWithDiscount": "Jami toʻlov uchun",
+    "uid": "UID",
+    "cash": "Naqd pul",
+    "card": "Karta",
+    "aPay": "A-Pay"
+  },
+  "notifications": {
+    "synchronizeSuccess": "Sinxronlash samarali yakunlandi",
+    "updateWarehouse": "Ombordagi qoldiqlar oʻchirildi",
+    "successConnectedWeb": "WEB-KASSA samarali ulandi",
+    "successGetTuronToken": "Turon tokeni qabul qilindi",
+    "successTuronTokenUpdated": "Turon tokeni samarali yangilandi",
+    "notAuthKeys": "uuid Yo'q"
+  }
+}

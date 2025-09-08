@@ -1,0 +1,102 @@
+{
+  "register": {
+    "statistics": {
+      "quantityProducts": "Tovarlar soni",
+      "totalCostPrice": "Umumiy tannarx",
+      "totalSellingPrice": "Umumiy sotuv narxi",
+      "totalQtyProducts": "Umumiy tovarlar soni",
+      "totalSumIncome": "Umumiy kirim summasi"
+    },
+    "product": {
+      "qtyProduct": "Tovarlar soni",
+      "markingCount": "MK soni",
+      "scan": "Skanerlash",
+      "empty": "Boʻsh"
+    },
+    "costPrice": "Tannarx",
+    "totalCostPrice": "Umumiy tannarx",
+    "totalSalesPrice": "Umumiy sotuv narxi",
+    "profit": "Potensial daromad",
+    "margin": "Marja, %",
+    "correcting": "Toʻgʻrilash",
+    "reason": "Sabab",
+    "selectUnit": "Oʻlchov birligini tanlang",
+    "inStock": "Omborda mavjud",
+    "notAvailable": "Omborda mavjud emas"
+  },
+  "byHistory": {
+    "balanceStart": "Miqdor, kun boshi",
+    "balanceEnd": "Miqdor, kun oxiri",
+    "income": "Kirim",
+    "transferIn": "Transfer ichiga",
+    "transferOut": "Transfer ichidan",
+    "day": "Kun"
+  },
+  "income": {
+    "inventory": "Kirim qilish",
+    "number": "Raqam",
+    "index": "T/R",
+    "priceNoNds": "Yetkazish narxi 1 dona uchun QQSsiz",
+    "sumNoNds": "Yetkazish narxi QQSsiz",
+    "ndsSum": "QQS umumiy Summasi",
+    "markupPercent": "Ustama foizi",
+    "markupSum": "Ustama summasi",
+    "product": "Mahsulot",
+    "selectUnit": "Oʻlchov birligini tanlang",
+    "codesMark": "Markirovka kodlari",
+    "fixMarkings": "Markirovkalarni to'g'irlash",
+    "duplicatedProduct": "Bu mahsulot bir necha marta qaytarilmoqda "
+  },
+  "incomeDetails": {
+    "createdOrder": "Buyurtma yaratildi",
+    "invoiceNumber": "Hisob-faktura raqami",
+    "commentary": "Izoh",
+    "codes": "Kodlar"
+  },
+  "stockAdjustments": {},
+  "transfersList": {
+    "index": "Buyurtma soni",
+    "fromBranchName": "Filialdan",
+    "toBranchName": "Filialga",
+    "transferDate": "Yetkazish sanasi",
+    "move": "Joyini oʻzgartirish",
+    "requestRelocation": "Joyini oʻzgartirishga ariza",
+    "product": "Tovar",
+    "retrieved": "Qabul qilindi",
+    "remaining": "Qoldi",
+    "askedQty": "Umumiy soni",
+    "moving": "Joyini oʻzgartirish",
+    "requestMoving": "Joyini oʻzgartirishga ariza",
+    "applicationDate": "Ariza sanasi"
+  },
+  "transferDetails": {
+    "orderDate": "Buyurtma sanasi",
+    "dateExpectedDelivery": "Kutilayotgan yetkazma sanasi",
+    "changeStatus": "Haqiqatan ham statusni oʻzgartirmoqchimisiz?",
+    "from": "dan"
+  },
+  "modals": {
+    "openCategory": "Toifani ochish",
+    "productCategories": "Tovarlar toifasi",
+    "applyFiltering": "Filtrdan foydalanish",
+    "correctionAdded": "Toʻgʻrilash kiritildi",
+    "correctionProduct": "Tovarni toʻgʻrilash",
+    "addMoreProducts": "Tovar qoʻshish",
+    "scamCodes": "Kodlarni skanerlash",
+    "finishScan": "Skanerlashni yakunlash",
+    "addProduct": "Tovar qoʻshish",
+    "catalog": "Katalog",
+    "selectProduct": "Tovar tanlash"
+  },
+  "notifications": {
+    "attention": "Diqqat!",
+    "codeAggregationAdded": "Agregatsiya kodi qoʻshildi",
+    "waitCodeCheckFinish": "Kod tekshirilishi yakunini kuting",
+    "inventoried": "kirim qilindi",
+    "moveSuccessfullyCancelled": "Joyni oʻzgartirish samarali bekor qilindi",
+    "moveSuccessfullyConfirmed": "Joyni oʻzgartirish samarali tasdiqlandi",
+    "itemSuccessfullyMoved": "Tovarning joyi samarali oʻzgartirildi",
+    "requestRelocationAccepted": "Joyni oʻzgartirishga ariza qabul qilindi",
+    "markingsFixed": "Markirovkalar to'g'irlandi"
+  }
+}

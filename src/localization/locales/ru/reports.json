@@ -1,0 +1,29 @@
+{
+  "products": {
+    "maxSum": "Сумма До",
+    "minSum": "Сумма От",
+    "openCategories": "Открыть категории",
+    "productWithoutVat": "Товары без НДС",
+    "downloadReport": "Скачать отчет"
+  },
+  "product": {
+    "statistics": {
+      "totalAmount": "Общая сумма",
+      "qtyReceipt": "Кол-во чеков",
+      "totalVat": "Общий НДС",
+      "totalDiscount": "Общая скидка",
+      "qtyItem": "шт."
+    }
+  },
+  "fields": {
+    "haveANiceDay": "Прекрасного вам дня!"
+  },
+  "cashiers": {
+    "averageReceiptCost": "Средний чек"
+  },
+  "buttons": {
+    "print": "Распечатать чек",
+    "sendToPrint": "Отправить пречек",
+    "preCheck": "Пречек"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "profile": {
+    "profile": "Профиль",
+    "security": "Безопасность",
+    "changePassword": "Изменить пароль"
+  },
+  "profileInfo": {
+    "password": "Пароль",
+    "telegramBot": "Telegram-бот",
+    "telegramLogin": "Номер телефона в Telegram"
+  },
+  "notifications": {
+    "successfullyChanged": "Успешно изменен"
+  },
+  "modal": {
+    "changeTelegramAccount": "Изменить Telegram-аккаунт",
+    "phoneNumber": "Номер телефона *",
+    "currentPassword": "Текущий пароль",
+    "newPassword": "Новый пароль",
+    "reEnterNewPassword": "Повторите новый пароль",
+    "enterCurrentPassword": "Введите текущий пароль",
+    "enterNewPassword": "Введите новый пароль"
+  }
+}

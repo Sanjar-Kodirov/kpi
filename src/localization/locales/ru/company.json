@@ -1,0 +1,122 @@
+{
+  "settings": {
+    "tin": "ИНН / ПИНФЛ",
+    "phone": "Контактный номер",
+    "accounting": "Складской учет",
+    "requisites": "Банковские реквизиты",
+    "director": "Директор компании",
+    "addressLegal": "Адрес (юридический)",
+    "deleteAvatar": "Вы уверены, что хотите удалить фото?",
+    "eSign": "ЭЦП",
+    "selectKey": "Выберите ключ",
+    "durationKey": "Срок действия ключа",
+    "getTuronToken": "Получить токен Turon",
+    "updateTuronToken": "Обновить токен Turon",
+    "yourManager": "Ваш менеджер"
+  },
+
+  "settingsEdit": {
+    "logo": "Логотип компании",
+    "actualAddress": "Фактический адрес",
+    "resetWarehouse": "Обнулить склад",
+    "card": "Карточка компании",
+    "updateActivityType": "Изменить сферу деятельности"
+  },
+  "branches": {
+    "addBranch": "Добавить филиал",
+    "updateBranch": "Изменить филиал",
+    "allBranches": "Все филиалы",
+    "createGroup": "Создать группу",
+    "addGroup": "Добавить группу"
+  },
+  "branchesList": {
+    "statistics": {
+      "salesTotal": "Выручка",
+      "salesCash": "Наличные в кассах",
+      "averageReceiptCost": "Средний чек",
+      "salesCount": "Продажи"
+    },
+    "salesTotal": "Выручка",
+    "address": "Адрес филиала",
+    "usersCount": "Количество сотрудников",
+    "createdDate": "Дата создания",
+    "serialNumber": "№ WEB-KASSA",
+    "groupName": "Название группы",
+    "groups": "Группы"
+  },
+  "branchDetails": {
+    "statistics": {
+      "receipts": "Чеки",
+      "returns": "Возвраты",
+      "averageReceipt": "Средний чек",
+      "amountSales": "Сумма продаж"
+    },
+    "bestEmployees": "Лучшие сотрудники",
+    "salesLeaders": "Лидеры продаж",
+    "id": "ID"
+  },
+  "branchNotifications": {
+    "branchAdded": "Филиал добавлен",
+    "branchUpdated": "Филиал изменен",
+    "branchDeleted": "Филиал удален",
+    "confirmDeleteBranch": "Вы точно хотите удалить филиал?",
+    "confirmInstallWebCash": "Вы точно хотите подключить WEB-KASSA?",
+    "groupAdded": "Группа добавлен",
+    "groupUpdated": "Группа изменен",
+    "groupDeleted": "Группа удален",
+    "confirmDeleteGroup": "Вы точно хотите удалить группу?"
+  },
+  "employeesList": {
+    "fired": "Уволенные"
+  },
+  "employeeEdit": {
+    "employeeDeleted": "Сотрудник удален",
+    "confirmEmployeeDelete": "Вы точно хотите удалить сотрудника?",
+    "addEmployee": "Добавить сотрудника",
+    "employeeAdded": "Сотрудник добавлен",
+    "employeeChanged": "Данные сотрудника изменены",
+    "changeEmployee": "Изменить данные сотрудника",
+    "newEmployee": "Новый сотрудник",
+    "fire": "Уволить"
+  },
+  "employeeStatistics": {
+    "dateEmploymentCompany": "Дата начала работы в компании",
+    "numberSales": "Количество продаж",
+    "averageReceipt": "Средний чек",
+    "salesAmount": "Сумма продаж"
+  },
+  "receiptTemplateSettings": {
+    "receiptDeleted": "Шаблон удален",
+    "confirmReceiptDelete": "Вы точно хотите удалить шаблон?",
+    "headerTitle": "Верхний колонтитул",
+    "footerTitle": "Нижний колонтитул",
+    "titleHeader": "Текст шапки",
+    "enterTitleHeader": "Введите текст шапки",
+    "footer": "Подвал",
+    "enterTitleFooter": "Введите текст подвала"
+  },
+  "receiptTemplate": {
+    "kkmNumber": "Номер ККМ",
+    "numberInShift": "Чек в смене",
+    "mark": "Маркировка",
+    "commitmentTin": "ИНН Комитента",
+    "positions": "Позиций",
+    "payUp": "К оплате",
+    "change": "Сдача",
+    "fp": "ФП",
+    "withVat": "в т.ч. НДС",
+    "totalCostWithDiscount": "Итого к оплате",
+    "uid": "UID",
+    "cash": "Наличные",
+    "card": "Карта",
+    "aPay": "A-Pay"
+  },
+  "notifications": {
+    "synchronizeSuccess": "Синхронизация прошла успешно",
+    "updateWarehouse": "Склад обнулен",
+    "successConnectedWeb": "WEB-KASSA успешно подключена",
+    "successGetTuronToken": "Токен Turon успешно получен",
+    "successTuronTokenUpdated": "Токен Turon  успешно обновлен",
+    "notAuthKeys": "Нет uuid"
+  }
+}
