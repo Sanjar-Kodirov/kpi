@@ -1,7 +1,7 @@
 import { httpDelete, httpGet, httpPost, httpPut } from "#core/httpClient";
 import { HandlerType } from "#core/store/types/handler";
 
-import { ILoginPayloadType, ILoginResponseType, IUpdateUserModelProfile } from "#businessLogic/models/account";
+import { ICurrentUserResponse, ILoginPayloadType, ILoginResponseType } from "#businessLogic/models/account";
 import { CurrentUserModel, IUploadImageModel } from "../../../models/account";
 
 export const logInWithCode: HandlerType<ILoginPayloadType, ILoginResponseType> = (authCode) =>
@@ -11,14 +11,9 @@ export const logInWithCode: HandlerType<ILoginPayloadType, ILoginResponseType> =
     headers: { stopReaction: "true" },
   });
 
-export const getCurrentUser: HandlerType<void, CurrentUserModel> = () =>
-  httpGet({
-    url: `/api/cabinet/v1/account/profile`,
-  });
-
-export const updateUserProfile: HandlerType<IUpdateUserModelProfile, CurrentUserModel> = (data) =>
-  httpPut({
-    url: `/api/cabinet/v1/account/profile`,
+export const getCurrentUser: HandlerType<ICurrentUserResponse, CurrentUserModel> = (data) =>
+  httpPost({
+    url: `/api/auth/get-user`,
     data,
   });
 

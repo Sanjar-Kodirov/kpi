@@ -14,36 +14,16 @@ export enum E_USER_ROLES {
   ROLE_OWNER = "ROLE_OWNER",
 }
 
+export interface ICurrentUserResponse {
+  token: string;
+}
 export interface CurrentUserModel {
-  birthDate: string;
-  joiningDate: string;
-  branch: TIdNameModel;
-  id: number;
-  firstName: string;
-  lastName: string;
-  patronymic: any;
-
-  company: {
-    id: string;
-    name: string;
-    tin: string;
-  };
-  phone: string;
-  stage: any;
-  companyId: string;
-  profileImage: {
-    id: string;
-    name: string;
-    url: string;
-  };
-  department: {
-    id: string;
-    name: string;
-  };
-  stages: any;
-  role: TCodeNameModel<E_USER_ROLES>;
-  pinfl: any;
-  terminals: string[] | null;
+  id: string;
+  full_name: string;
+  membership_type: string;
+  phone_number: string;
+  region_name: string;
+  role: string;
 }
 
 export interface IUpdateUserModelProfile {

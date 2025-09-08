@@ -23,8 +23,8 @@ export const useAccessToMainScreen = () => {
       navigate(ROUTES.USER_SIGN_IN, { replace: true });
     }
 
-    $currentUser.request();
-    isAppTypeCabinet && $cabinetPermissionUsers.request();
+    $currentUser.request({ token: token || "" });
+    // isAppTypeCabinet && $cabinetPermissionUsers.request();
 
     const runtimeStateFromLocalStorage = localStorage.getItem(RUNTIME_STATE);
     if (runtimeStateFromLocalStorage) {
@@ -36,15 +36,15 @@ export const useAccessToMainScreen = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (currentUser) {
-      if (isAppTypeCabinet) {
-        isAppTypeCabinet && $currentCompany.request();
-      }
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  // if (currentUser) {
+  // if (isAppTypeCabinet) {
+  //   isAppTypeCabinet && $currentCompany.request();
+  // }
+  // }
+  // }, [currentUser]);
 
-  if (!currentUser || isAppTypeCabinet) {
+  if (!currentUser) {
     return (
       <div className="abs-loader main-loader">
         <Spinner />

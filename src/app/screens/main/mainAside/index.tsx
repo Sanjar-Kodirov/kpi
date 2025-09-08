@@ -1,7 +1,6 @@
 import React, { ReactNode, useEffect } from "react";
 import { APP_VERSION, ASIDE_SETTINGS } from "#constants/index";
 import { BurgerArrowSvgIcon } from "#svgIcons/index";
-import { SmartposLogoIconSvg, SmartposLogoLabelSvg } from "#svgIcons/logo";
 import { Layout } from "antd";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
@@ -9,6 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useStyles } from "./styles";
 import { SiderTheme } from "antd/es/layout/Sider";
 import cn from "classnames";
+import { Logo } from "#svgIcons/logo";
 
 const { Sider } = Layout;
 
@@ -63,12 +63,8 @@ export const MainAside: React.FC<TProps> = (props) => {
     >
       <div className={classes.logoWrapper}>
         <Link to="/">
-          <div className={classes.logoIcon}>
-            <SmartposLogoIconSvg />
-          </div>
-          <div className={classes.logoLabel}>
-            <SmartposLogoLabelSvg />
-          </div>
+          <div className={classes.logoIcon}>{/* <Logo /> */}</div>
+          <div className={classes.logoLabel}>{/* <Logo /> */}</div>
         </Link>
       </div>
       <div className={cn(classes.asideInner, asideInnerClassName)}>

@@ -26,10 +26,14 @@ export const useStyles = createUseStyles<string, Props>(() => ({
         display: "none",
       },
       "& $logoIcon": {
+        color: "black",
+        width: "40px",
         transform: "scale(0.9)",
       },
       "& $logoLabel": {
         width: 0,
+        color: "black",
+        padding: "10px 20px",
       },
 
       "& $asideBottom": {
