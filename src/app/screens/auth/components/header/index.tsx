@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
 import { ROUTES } from "#constants/index";
-import { LogoSmartposSvg } from "#svgIcons/logo";
 import { Link } from "react-router-dom";
 
 import { useStyles } from "./styles";
@@ -12,9 +11,7 @@ export const HeaderAuthUI: FC = () => {
   return (
     <div className={classes.headerAuth}>
       <div className={classes.headerAuthLogo}>
-        <Link to={ROUTES.USER_SIGN_IN}>
-          <LogoSmartposSvg />
-        </Link>
+        <Link to={ROUTES.USER_SIGN_IN}></Link>
       </div>
       <div>
         {/* <div>

@@ -42,24 +42,14 @@ const MAIN = "/",
   COMPANY = "/company",
   USER = "/user",
   SIGN_IN = "/sign-in",
-  SIGN_UP = "/sign-up",
-  RESET_PASSWORD = "/reset-password",
-  VERIFICATION_CODE = "/verification-code",
-  FINISH = "/finish",
-  CREATE_COMPANY = "/create-company";
+  EVALUATIONS = "/evaluation";
 export const ROUTES = {
   USER,
   USER_SIGN_IN: USER + SIGN_IN,
-  USER_SIGN_UP_VERIFICATION: USER + SIGN_UP + VERIFICATION_CODE,
-  USER_SIGN_UP_FINISH: USER + SIGN_UP + FINISH,
-  USER_SIGN_UP_CREATE_COMPANY: USER + SIGN_UP + CREATE_COMPANY,
-  USER_RESET_PASSWORD_VERIFICATION: USER + RESET_PASSWORD + VERIFICATION_CODE,
-  USER_RESET_PASSWORD_FINISH: USER + RESET_PASSWORD + FINISH,
 
   MAIN,
 
-  MONITORING: MAIN + MONITORING,
-  MONITORING_COMPANIES: MAIN + "/companies",
+  EVALUATIONS: EVALUATIONS,
 
   MANAGEMENT: MAIN + MANAGEMENT,
   MANAGEMENT_CABINET_DEPARTMENTS: MAIN + "/management/departments",
@@ -69,7 +59,6 @@ export const ROUTES = {
   COMPANY_SETTINGS_EDIT_COMPANY: COMPANY + "/settings/edit",
   COMPANY_BRANCHES: COMPANY + "/branches",
   COMPANY_EMPLOYEES: COMPANY + "/employees",
-  // COMPANY_RECEIPTS: COMPANY + "/receipt",
 
   SETTINGS,
   SETTINGS_PROFILE: SETTINGS + "/profile",
@@ -131,7 +120,6 @@ export const STOCK_STATUSES = {
 
 export const DATE_FORMAT_WITH_TIME = "DD.MM.YYYY, HH:mm";
 
-export const TIN_SIZE = 9;
 export const PINFL_SIZE = 14;
 export const SMS_CODE_SIZE = 6;
 export const UZB_PHONE_LENGTH = 12;

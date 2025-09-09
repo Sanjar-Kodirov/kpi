@@ -25,7 +25,7 @@ export const UserAuthScreen: FC = () => {
         {/*</Switch>*/}
       </div>
       <div className={classes.compInfo}>
-        <div>{`© 2019-${new Date().getFullYear()} OOO "Center for Digital Technology and Innovation"`}</div>
+        <div>{`© 2025-${new Date().getFullYear()}`}</div>
         <div>
           {t("auth.compInfo", { ns: namespaces.auth })} {t("fields.version")} {APP_VERSION}
         </div>

@@ -1,66 +1,62 @@
 import {
-  ICreateDepartmentModel,
-  IUpdateDepartmentModel,
-  IDepartmentDetailsModel,
-  IDepartmentsListItemModel,
-  TDepartmentsListParams,
-  IUpdateDepartmentStatusModel,
-  IDepartmentTypeModel,
-  IDepartmentItemModel,
-} from "#businessLogic/models/department";
+  ICreateEvaluationModel,
+  IUpdateEvaluationModel,
+  IEvaluationDetailsModel,
+  IUpdateEvaluationStatusModel,
+  IEvaluationTypeModel,
+  IEvaluationItemModel,
+  IPendingEvaluationsList,
+  TPendingEvaluationsListParams,
+} from "#businessLogic/models/evaluations";
 import { HandlerType } from "#core/store/types/handler";
 import { httpDelete, httpGet, httpPatch, httpPost, httpPut } from "#core/httpClient";
 import { PaginationListModel } from "#types/api";
 import { appType } from "#constants/index";
 
-const apiTypePrefix = {
-  ADMIN: "admin",
-  CABINET: "cabinet",
-}[appType];
-export const getDepartmentsList: HandlerType<
-  TDepartmentsListParams,
-  PaginationListModel<IDepartmentsListItemModel[]>
+export const getPendingEvaluations: HandlerType<
+  TPendingEvaluationsListParams,
+  PaginationListModel<IPendingEvaluationsList[]>
 > = (params) => {
   return httpGet({
-    url: `/api/${apiTypePrefix}/v1/departments`,
+    url: `/api/pending-evaluations`,
     params,
   });
 };
 
-export const getDepartmentsLookup: HandlerType<TDepartmentsListParams, IDepartmentItemModel[]> = (params) => {
+export const getEvaluationsLookup: HandlerType<TPendingEvaluationsListParams, IEvaluationItemModel[]> = (params) => {
   return httpGet({
-    url: `/api/${apiTypePrefix}/v1/departments/lookup`,
+    url: `/api/public/departments/lookup`,
     params,
   });
 };
 
-export const getDepartmentDetails: HandlerType<number | string, IDepartmentDetailsModel> = (id) => {
+export const getEvaluationDetails: HandlerType<number | string, IEvaluationDetailsModel> = (id) => {
   return httpGet({
-    url: `/api/${apiTypePrefix}/v1/departments/${id}`,
+    url: `/api/public/departments/${id}`,
   });
 };
-export const createDepartment: HandlerType<ICreateDepartmentModel, IDepartmentDetailsModel> = (data) =>
+export const createEvaluation: HandlerType<ICreateEvaluationModel, IEvaluationDetailsModel> = (data) =>
   httpPost({
-    url: `/api/${apiTypePrefix}/v1/departments`,
+    url: `/api/public/departments`,
     data,
   });
-export const updateDepartment: HandlerType<IUpdateDepartmentModel, IDepartmentDetailsModel> = ({ id, ...data }) =>
+export const updateEvaluation: HandlerType<IUpdateEvaluationModel, IEvaluationDetailsModel> = ({ id, ...data }) =>
   httpPut({
-    url: `/api/${apiTypePrefix}/v1/departments/${id}`,
+    url: `/api/public/departments/${id}`,
     data,
   });
-export const deleteDepartment: HandlerType<number | string, any> = (id) => {
+export const deleteEvaluation: HandlerType<number | string, any> = (id) => {
   return httpDelete({
-    url: `/api/${apiTypePrefix}/v1/departments/${id}`,
+    url: `/api/public/departments/${id}`,
   });
 };
-export const updateDepartmentStatus: HandlerType<IUpdateDepartmentStatusModel, any> = ({ id, ...params }) =>
+export const updateEvaluationStatus: HandlerType<IUpdateEvaluationStatusModel, any> = ({ id, ...params }) =>
   httpPatch({
-    url: `/api/${apiTypePrefix}/v1/departments/${id}/status`,
+    url: `/api/public/departments/${id}/status`,
     params,
   });
 
-export const getDepartmentTypes: HandlerType<void, IDepartmentTypeModel[]> = () => {
+export const getEvaluationTypes: HandlerType<void, IEvaluationTypeModel[]> = () => {
   return httpGet({
     url: "/api/public/v1/commons/department/types",
   });

@@ -11,7 +11,7 @@ export const useStyles = createUseStyles({
     alignItems: "center",
     justifyContent: "space-between",
     overflowY: "auto",
-    backgroundImage: `url(${bg})`,
+    // backgroundImage: `url(${bg})`,
     backgroundPosition: "fixed",
     backgroundSize: "cover",
 
@@ -27,7 +27,6 @@ export const useStyles = createUseStyles({
     display: "flex",
     width: "100%",
     alignItems: "center",
-    // height: "100%",
     justifyContent: "center",
   },
   compInfo: {

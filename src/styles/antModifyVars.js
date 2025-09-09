@@ -1,9 +1,8 @@
 let $colors = {
-  // primary: "#FF4405",
-  primary: "#FF721F",
-  purple: "#9E10E0",
+  primary: "#6b6b88",
   primaryBlue: "#155EEF",
-  primaryLight: "#FFF4ED",
+  primaryLight: "#7e7e99",
+  purple: "#7A5AF8",
   secondary: "#F8F9FC",
   aPay: "#00BFDA",
   dark: "#1D1B33",

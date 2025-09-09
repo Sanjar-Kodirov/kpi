@@ -2,17 +2,13 @@ import React, { FC, useEffect, useMemo } from "react";
 
 import {
   DEPARTMENT_STATUS,
-  IDepartmentsListItemModel,
-  TDepartmentsListAdditionalParams,
-  TDepartmentsListParams,
-} from "#businessLogic/models/department";
+  IPendingEvaluationsList,
+  TPendingEvaluationsListAdditionalParams,
+  TPendingEvaluationsListParams,
+} from "#businessLogic/models/evaluations";
 import { useModalControl } from "#hooks/useModalControl";
 import { useQueryParams } from "#hooks/useQueryParams";
-import { AddEditDepartmentDrawer, AddEditDepartmentDrawerModalProps } from "../addEditDrawer";
-import { $departmentsFilterProps, departmentsFilterPropsDefault } from "../model";
-import { DepartmentsListFilter } from "../listFilter";
 import { notificationSuccess } from "#src/app/ui";
-import { $deleteDepartment, $departmentsList, $updateDepartmentStatus } from "#stores/department";
 import { $runtime } from "#stores/index";
 import { ButtonUI } from "#ui/button";
 import { ContentUI } from "#ui/content";
@@ -25,83 +21,67 @@ import { E_APP_TYPE, isAppTypeAdmin } from "#constants/index";
 import { StatusTagUI } from "#ui/statusTag";
 import { WithPermission } from "#src/hocs/withPermission";
 import { PERMISSIONS } from "#src/hocs/withPermission/constants";
+import { $evaluationsFilterProps, evaluationsFilterPropsDefault } from "../model";
+import { $evaluationsList } from "#stores/department";
+import { EvaluationsListFilter } from "../listFilter";
 
-export const DepartmentsList: FC = () => {
-  const addDepartmentModalControl = useModalControl<AddEditDepartmentDrawerModalProps>();
+export const EvaluationsList: FC = () => {
+  // const addEvaluationModalControl = useModalControl<AddEditEvaluationDrawerModalProps>();
 
-  const departmentsFilterState = $departmentsFilterProps.store();
+  const evaluationsFilterState = $evaluationsFilterProps.store();
   const { branchId } = $runtime();
-  const departmentsState = $departmentsList.store();
-  const deleteDepartmentState = $deleteDepartment.store();
-  const updateDepartmentStatusState = $updateDepartmentStatus.store();
+  const evaluationsState = $evaluationsList.store();
+  // const deleteEvaluationState = $deleteEvaluation.store();
+  // const updateEvaluationStatusState = $updateEvaluationStatus.store();
 
   const { t, i18n } = useTranslation();
 
   const { queryParams, updateQueryParams, clearQueryParams } = useQueryParams<
-    TDepartmentsListParams,
-    TDepartmentsListAdditionalParams
+    TPendingEvaluationsListParams,
+    TPendingEvaluationsListAdditionalParams
   >(
-    departmentsFilterPropsDefault,
+    evaluationsFilterPropsDefault,
     {
-      queryParams: departmentsFilterState.queryParams,
-      additionalParams: departmentsFilterState.additionalParams,
+      queryParams: evaluationsFilterState.queryParams,
+      additionalParams: evaluationsFilterState.additionalParams,
     },
-    $departmentsFilterProps.update,
-    $departmentsFilterProps.reset,
+    $evaluationsFilterProps.update,
+    $evaluationsFilterProps.reset,
   );
 
-  const { data: departmentsData, loading: departmentsLoading } = departmentsState;
+  const { data: evaluationsData, loading: evaluationsLoading } = evaluationsState;
   const {
-    content: departments,
-    number: departmentsPage,
-    size: departmentsSize,
-    totalElements: departmentsTotal,
-  } = departmentsData;
+    content: evaluations,
+    number: evaluationsPage,
+    size: evaluationsSize,
+    totalElements: evaluationsTotal,
+  } = evaluationsData;
 
-  const getDepartmentList = () => {
-    if (isAppTypeAdmin) {
-      if (queryParams.branchId) {
-        $departmentsList.request({ ...queryParams });
-      }
-    } else {
-      $departmentsList.request({ ...queryParams, branchId });
-    }
+  const getEvaluationList = () => {
+    $evaluationsList.request({ ...queryParams });
   };
 
   useEffect(() => {
-    getDepartmentList();
+    getEvaluationList();
   }, [branchId, queryParams]);
 
-  useEffect(() => {
-    if (deleteDepartmentState.success) {
-      getDepartmentList();
+  // useEffect(() => {
+  //   if (deleteEvaluationState.success) {
+  //     getEvaluationList();
 
-      notificationSuccess(t("notifications.success"), "Цех удален");
-      $deleteDepartment.reset();
-    }
-  }, [deleteDepartmentState.success]);
+  //     notificationSuccess(t("notifications.success"), "Цех удален");
+  //     $deleteEvaluation.reset();
+  //   }
+  // }, [deleteEvaluationState.success]);
 
-  useEffect(() => {
-    if (updateDepartmentStatusState.success) {
-      getDepartmentList();
-
-      notificationSuccess(t("notifications.success"), "Статус обновлен");
-      $updateDepartmentStatus.reset();
-    }
-  }, [updateDepartmentStatusState.success]);
-
-  const updateStatus = (id: string, status: DEPARTMENT_STATUS) => {
-    $updateDepartmentStatus.request({ id, status });
-  };
-
-  const tableColumns: ColumnsType<IDepartmentsListItemModel> = useMemo(() => {
+  const tableColumns: ColumnsType<IPendingEvaluationsList> = useMemo(() => {
     return [
       {
         width: 80,
         title: "№",
         dataIndex: "num",
         key: "num",
-        render: (_, row, index) => <div className="w-s-n">{departmentsSize * departmentsPage + index + 1}</div>,
+        render: (_, row, index) => <div className="w-s-n">{evaluationsSize * evaluationsPage + index + 1}</div>,
         sorter: false,
       },
       {
@@ -110,13 +90,13 @@ export const DepartmentsList: FC = () => {
         key: "name",
         sorter: false,
       },
-      {
-        title: t("fields.department"),
-        dataIndex: "type",
-        key: "type",
-        render: (_, row) => row.type.name,
-        sorter: false,
-      },
+      // {
+      //   title: t("fields.evaluation"),
+      //   dataIndex: "type",
+      //   key: "type",
+      //   render: (_, row) => row.type.name,
+      //   sorter: false,
+      // },
       {
         title: t("fields.branch"),
         dataIndex: "branchName",
@@ -147,26 +127,26 @@ export const DepartmentsList: FC = () => {
             <ContextPopoverUI
               content={
                 <>
-                  <ContextPopoverUI.Item>
-                    <ButtonUI onClick={() => addDepartmentModalControl.openModal({ departmentId: row.id })}>
+                  {/* <ContextPopoverUI.Item>
+                    <ButtonUI onClick={() => addEvaluationModalControl.openModal({ evaluationId: row.id })}>
                       {t("buttons.edit")}
                     </ButtonUI>
-                  </ContextPopoverUI.Item>
+                  </ContextPopoverUI.Item> */}
                   {/*<ContextPopoverUI.Item>*/}
                   {/*  <ModalConfirmUI*/}
                   {/*    title={"Вы уверены что хотите удалить цех?"}*/}
-                  {/*    onOk={() => $deleteDepartment.request(row.id)}*/}
+                  {/*    onOk={() => $deleteEvaluation.request(row.id)}*/}
                   {/*  >*/}
-                  {/*    <ButtonUI danger loading={deleteDepartmentState.loading}>*/}
+                  {/*    <ButtonUI danger loading={deleteEvaluationState.loading}>*/}
                   {/*      {t("buttons.delete")}*/}
                   {/*    </ButtonUI>*/}
                   {/*  </ModalConfirmUI>*/}
                   {/*</ContextPopoverUI.Item>*/}
 
-                  <ContextPopoverUI.Item>
+                  {/* <ContextPopoverUI.Item>
                     <ButtonUI
                       disabled={row.status.code === DEPARTMENT_STATUS.ACTIVE}
-                      loading={updateDepartmentStatusState.loading}
+                      loading={updateEvaluationStatusState.loading}
                       onClick={() => updateStatus(row.id, DEPARTMENT_STATUS.ACTIVE)}
                     >
                       {t("buttons.activate")}
@@ -175,12 +155,12 @@ export const DepartmentsList: FC = () => {
                   <ContextPopoverUI.Item>
                     <ButtonUI
                       disabled={row.status.code === DEPARTMENT_STATUS.IN_ACTIVE}
-                      loading={updateDepartmentStatusState.loading}
+                      loading={updateEvaluationStatusState.loading}
                       onClick={() => updateStatus(row.id, DEPARTMENT_STATUS.IN_ACTIVE)}
                     >
                       {t("buttons.deactivate")}
                     </ButtonUI>
-                  </ContextPopoverUI.Item>
+                  </ContextPopoverUI.Item> */}
                 </>
               }
             />
@@ -188,9 +168,9 @@ export const DepartmentsList: FC = () => {
         ),
       },
     ];
-  }, [departmentsSize, departmentsPage, i18n.language, t]);
+  }, [evaluationsSize, evaluationsPage, i18n.language, t]);
 
-  const onFilterChange = (params: TDepartmentsListParams) => {
+  const onFilterChange = (params: TPendingEvaluationsListParams) => {
     updateQueryParams({ page: undefined, ...params });
   };
 
@@ -198,8 +178,8 @@ export const DepartmentsList: FC = () => {
     onFilterChange({ page: page - 1, size });
   };
 
-  const onAddDepartment = () => {
-    addDepartmentModalControl.openModal();
+  const onAddEvaluation = () => {
+    // addEvaluationModalControl.openModal();
   };
 
   const onSortChange = (field: string, order?: SortOrderFromAntMap) => {
@@ -208,14 +188,14 @@ export const DepartmentsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title={t("fields.departments")} total={departmentsTotal}>
+      <ContentUI.Header title="My evaluations" total={evaluationsTotal}>
         <WithPermission annotations={{ [E_APP_TYPE.CABINET]: PERMISSIONS.CABINET.MANAGEMENT_DEPARTMENTS_BTN_ADD }}>
-          <ButtonUI type="primary" onClick={onAddDepartment}>
-            {t("buttons.addDepartment")}
+          <ButtonUI type="primary" onClick={onAddEvaluation}>
+            Add evaluation
           </ButtonUI>
         </WithPermission>
       </ContentUI.Header>
-      <DepartmentsListFilter
+      <EvaluationsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}
         clearQueryParams={clearQueryParams}
@@ -223,26 +203,26 @@ export const DepartmentsList: FC = () => {
       />
       <ContentUI.Middle>
         <TableUI
-          dataSource={departments}
-          loading={departmentsLoading}
+          dataSource={evaluations}
+          loading={evaluationsLoading}
           columns={tableColumns}
           onSortChange={onSortChange}
           pagination={{
-            total: departmentsTotal,
-            pageSize: departmentsSize,
-            current: departmentsPage + 1,
+            total: evaluationsTotal,
+            pageSize: evaluationsSize,
+            current: evaluationsPage + 1,
             hideOnSinglePage: true,
             onChange: onChangePagination,
           }}
         />
       </ContentUI.Middle>
-      <DrawerModalUI open={addDepartmentModalControl.modalProps.visible} onClose={addDepartmentModalControl.closeModal}>
-        <AddEditDepartmentDrawer
+      {/* <DrawerModalUI open={addEvaluationModalControl.modalProps.visible} onClose={addEvaluationModalControl.closeModal}>
+        <AddEditEvaluationDrawer
           adminBranchId={String(queryParams.branchId)}
-          modalControl={addDepartmentModalControl}
-          callBack={getDepartmentList}
+          modalControl={addEvaluationModalControl}
+          callBack={getEvaluationList}
         />
-      </DrawerModalUI>
+      </DrawerModalUI> */}
     </ContentUI>
   );
 };

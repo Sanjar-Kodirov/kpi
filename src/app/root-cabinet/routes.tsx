@@ -1,7 +1,6 @@
 import React from "react";
 
 import { ROUTES, E_APP_TYPE } from "#constants/index";
-import { DepartmentsList } from "#src/app/modules/departments/list";
 import { UserAuthScreen } from "#src/app/screens/auth";
 import { SignIn } from "#src/app/screens/auth/pages/signIn";
 import { MainScreen } from "#src/app/screens/main";
@@ -11,6 +10,7 @@ import { useCabinetMenuList } from "#src/app/root-cabinet/menuList";
 import { WithHttpInterceptor } from "#components/withHttpInterceptor";
 import { WithPermission } from "#src/hocs/withPermission";
 import { PERMISSIONS } from "#src/hocs/withPermission/constants";
+import { EvaluationsList } from "../modules/evaluations/list";
 
 export const cabinetRoutes = createBrowserRouter([
   {
@@ -42,9 +42,13 @@ export const cabinetRoutes = createBrowserRouter([
                       [E_APP_TYPE.CABINET]: PERMISSIONS.CABINET.MANAGEMENT_DEPARTMENTS,
                     }}
                   >
-                    <DepartmentsList />
+                    <EvaluationsList />
                   </WithPermission>
                 ),
+              },
+              {
+                path: ROUTES.EVALUATIONS,
+                element: <EvaluationsList />,
               },
             ],
           },

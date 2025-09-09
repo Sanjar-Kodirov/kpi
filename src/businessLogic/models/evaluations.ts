@@ -5,25 +5,24 @@ export enum DEPARTMENT_TYPE {
   BAR = "BAR",
 }
 
-export interface IDepartmentTypeModel {
+export interface IEvaluationTypeModel {
   code: DEPARTMENT_TYPE;
   name: string;
 }
 
-export type TDepartmentsListParams = {
-  branchId?: string | number;
+export type TPendingEvaluationsListParams = {
   search?: string;
   from?: string;
   to?: string;
   status?: string;
 } & TListQueryParams;
 
-export type TDepartmentsListAdditionalParams = {};
+export type TPendingEvaluationsListAdditionalParams = {};
 
-export interface IDepartmentsListItemModel {
+export interface IPendingEvaluationsList {
   id: string;
   name: string;
-  type: IDepartmentTypeModel;
+  type: IEvaluationTypeModel;
   branch: TIdNameModel;
   status: {
     code: string;
@@ -31,14 +30,14 @@ export interface IDepartmentsListItemModel {
   };
 }
 
-export type IDepartmentDetailsModel = IDepartmentsListItemModel;
+export type IEvaluationDetailsModel = IPendingEvaluationsList;
 
-export interface ICreateDepartmentModel {
+export interface ICreateEvaluationModel {
   branchId: string;
   name: string;
 }
 
-export interface IUpdateDepartmentModel extends ICreateDepartmentModel {
+export interface IUpdateEvaluationModel extends ICreateEvaluationModel {
   id: string;
 }
 
@@ -47,9 +46,9 @@ export enum DEPARTMENT_STATUS {
   IN_ACTIVE = "IN_ACTIVE",
 }
 
-export interface IUpdateDepartmentStatusModel {
+export interface IUpdateEvaluationStatusModel {
   id: string;
   status: DEPARTMENT_STATUS;
 }
 
-export type IDepartmentItemModel = TIdNameModel;
+export type IEvaluationItemModel = TIdNameModel;
