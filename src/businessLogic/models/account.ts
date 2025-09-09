@@ -9,6 +9,8 @@ export enum CHECK_USER_STATUSES {
 export enum E_USER_ROLES {
   deputy_member = "deputy_member",
   regional_moderator = "regional_moderator",
+  admin = "admin",
+  super_admin = "super_admin",
 }
 
 export interface ICurrentUserResponse {

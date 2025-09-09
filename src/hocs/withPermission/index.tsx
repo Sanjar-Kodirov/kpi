@@ -3,7 +3,6 @@ import React, { FC, ReactNode } from "react";
 import { StringMapI } from "#businessLogic/models";
 import { E_USER_ROLES } from "#businessLogic/models/account";
 import { $currentUser } from "#stores/account";
-import { PAGE_TYPE } from "./constants";
 import { LockUnlockIconSvg } from "#svgIcons/halls";
 
 import "./styles.scss";
@@ -40,6 +39,8 @@ const mainCN = cn("with-permission");
 //     (annotation && !!authorities && authorities[annotation])
 //   );
 // };
+
+const PAGE_TYPE = "page";
 
 export const WithPermission: FC<TypeProps> = (props) => {
   const { annotations, type, authorities } = props;

@@ -8,18 +8,8 @@ import { HeaderUI } from "./header";
 import { useStyles } from "./styles";
 import { SideNavigation, TMenuList } from "#src/app/screens/main/sideNavigation";
 import { useSiderCollapsed } from "#src/app/screens/main/mainAside/useSiderCollapsed";
-import { E_APP_TYPE, isAppTypeCabinet } from "#constants/index";
-import { AddUserSvgIcon } from "#svgIcons/index";
-import { useModalControl } from "#hooks/useModalControl";
-// import { ICustomerModalProps, AddEditCustomerModal } from "#components/addCustomer/addEditCustomerModal/index";
 import { useTranslation } from "react-i18next";
-import { namespaces } from "#src/localization/i18n.constants";
-import { ModalUI } from "#ui/modal";
-// import { $customersList } from "#stores/customer/index";
 import { useQueryParams } from "#hooks/useQueryParams";
-import cn from "classnames";
-import { WithPermission } from "#src/hocs/withPermission";
-import { PERMISSIONS } from "#src/hocs/withPermission/constants";
 
 const { Content } = Layout;
 

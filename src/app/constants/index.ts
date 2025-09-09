@@ -1,6 +1,4 @@
 import { validatePassword, validateTrimStr } from "#src/app/screens/auth/utils";
-import { MONITORING } from "#src/hocs/withPermission/constants/admin";
-import { MANAGEMENT } from "#src/hocs/withPermission/constants/cabinet";
 import { i18n } from "#src/localization/i18n";
 import * as process from "process";
 
@@ -42,7 +40,8 @@ const MAIN = "/",
   COMPANY = "/company",
   USER = "/user",
   SIGN_IN = "/sign-in",
-  EVALUATIONS = "/evaluation";
+  EVALUATIONS = "/evaluation",
+  STATISTICS = "/statistics";
 export const ROUTES = {
   USER,
   USER_SIGN_IN: USER + SIGN_IN,
@@ -50,9 +49,7 @@ export const ROUTES = {
   MAIN,
 
   EVALUATIONS: EVALUATIONS,
-
-  MANAGEMENT: MAIN + MANAGEMENT,
-  MANAGEMENT_CABINET_DEPARTMENTS: MAIN + "/management/departments",
+  STATISTICS: STATISTICS,
 
   COMPANY,
   COMPANY_SETTINGS: COMPANY + "/settings",

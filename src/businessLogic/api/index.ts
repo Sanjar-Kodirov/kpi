@@ -8,6 +8,7 @@ import * as techCards from "./resources/techCards";
 import * as terminals from "./resources/terminals";
 import * as compensations from "./resources/compensation";
 import * as customer from "./resources/customer";
+import * as statistics from "./resources/statistics";
 export const api = {
   account,
   cabinetCompany,
@@ -19,4 +20,5 @@ export const api = {
   techCards,
   terminals,
   compensations,
+  statistics,
 };

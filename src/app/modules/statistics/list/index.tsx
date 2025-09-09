@@ -12,49 +12,53 @@ import { ContentUI } from "#ui/content";
 import { SortOrderFromAntMap, TableUI } from "#ui/table";
 import { ColumnsType } from "antd/lib/table/interface";
 import { useTranslation } from "react-i18next";
-import { StatusTagUI } from "#ui/statusTag";
-import { $evaluationsFilterProps, evaluationsFilterPropsDefault } from "../model";
-import { $evaluationsList } from "#stores/evaluations";
-import { EvaluationsListFilter } from "../listFilter";
+import { $statisticsFilterProps, statisticsFilterPropsDefault } from "../model";
+import { $statisticsList } from "#stores/statistics";
+import { StatisticsListFilter } from "../listFilter";
+import {
+  IStatisticsList,
+  TStatisticsListParams,
+  TStatisticsListAdditionalParams,
+} from "#businessLogic/models/statistics";
 
-export const EvaluationsList: FC = () => {
+export const StatisticsList: FC = () => {
   // const addEvaluationModalControl = useModalControl<AddEditEvaluationDrawerModalProps>();
 
-  const evaluationsFilterState = $evaluationsFilterProps.store();
+  const statisticsFilterState = $statisticsFilterProps.store();
   const { branchId } = $runtime();
-  const evaluationsState = $evaluationsList.store();
+  const statisticsState = $statisticsList.store();
   // const deleteEvaluationState = $deleteEvaluation.store();
   // const updateEvaluationStatusState = $updateEvaluationStatus.store();
 
   const { t, i18n } = useTranslation();
 
   const { queryParams, updateQueryParams, clearQueryParams } = useQueryParams<
-    TPendingEvaluationsListParams,
-    TPendingEvaluationsListAdditionalParams
+    TStatisticsListParams,
+    TStatisticsListAdditionalParams
   >(
-    evaluationsFilterPropsDefault,
+    statisticsFilterPropsDefault,
     {
-      queryParams: evaluationsFilterState.queryParams,
-      additionalParams: evaluationsFilterState.additionalParams,
+      queryParams: statisticsFilterState.queryParams,
+      additionalParams: statisticsFilterState.additionalParams,
     },
-    $evaluationsFilterProps.update,
-    $evaluationsFilterProps.reset,
+    $statisticsFilterProps.update,
+    $statisticsFilterProps.reset,
   );
 
-  const { data: evaluationsData, loading: evaluationsLoading } = evaluationsState;
+  const { data: statisticsData, loading: statisticsLoading } = statisticsState;
   const {
-    content: evaluations,
-    number: evaluationsPage,
-    size: evaluationsSize,
-    totalElements: evaluationsTotal,
-  } = evaluationsData;
+    content: statistics,
+    number: statisticsPage,
+    size: statisticsSize,
+    totalElements: statisticsTotal,
+  } = statisticsData;
 
-  const getEvaluationList = () => {
-    $evaluationsList.request({ ...queryParams });
+  const getStatisticsList = () => {
+    $statisticsList.request({ ...queryParams });
   };
 
   useEffect(() => {
-    getEvaluationList();
+    getStatisticsList();
   }, [branchId, queryParams]);
 
   // useEffect(() => {
@@ -66,14 +70,14 @@ export const EvaluationsList: FC = () => {
   //   }
   // }, [deleteEvaluationState.success]);
 
-  const tableColumns: ColumnsType<IPendingEvaluationsList> = useMemo(() => {
+  const tableColumns: ColumnsType<IStatisticsList> = useMemo(() => {
     return [
       {
         width: 80,
         title: "№",
         dataIndex: "num",
         key: "num",
-        render: (_, row, index) => <div className="w-s-n">{evaluationsSize * evaluationsPage + index + 1}</div>,
+        render: (_, row, index) => <div className="w-s-n">{statisticsSize * statisticsPage + index + 1}</div>,
         sorter: false,
       },
       {
@@ -89,25 +93,6 @@ export const EvaluationsList: FC = () => {
       //   render: (_, row) => row.type.name,
       //   sorter: false,
       // },
-      {
-        title: t("fields.branch"),
-        dataIndex: "branchName",
-        key: "branchName",
-        render: (_, row) => row.branch.name,
-        sorter: false,
-      },
-      {
-        dataIndex: "status",
-        key: "status",
-        sorter: false,
-        render: (_, row) => {
-          return (
-            <>
-              <StatusTagUI status={row.status.code}>{row.status?.name}</StatusTagUI>
-            </>
-          );
-        },
-      },
       {
         title: "",
         dataIndex: "actions",
@@ -160,7 +145,7 @@ export const EvaluationsList: FC = () => {
         ),
       },
     ];
-  }, [evaluationsSize, evaluationsPage, i18n.language, t]);
+  }, [statisticsSize, statisticsPage, i18n.language, t]);
 
   const onFilterChange = (params: TPendingEvaluationsListParams) => {
     updateQueryParams({ page: undefined, ...params });
@@ -180,12 +165,12 @@ export const EvaluationsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="My evaluations" total={evaluationsTotal}>
+      <ContentUI.Header title="My statistics" total={statisticsTotal}>
         <ButtonUI type="primary" onClick={onAddEvaluation}>
-          Add evaluation
+          Add statistics
         </ButtonUI>
       </ContentUI.Header>
-      <EvaluationsListFilter
+      <StatisticsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}
         clearQueryParams={clearQueryParams}
@@ -193,14 +178,14 @@ export const EvaluationsList: FC = () => {
       />
       <ContentUI.Middle>
         <TableUI
-          dataSource={evaluations}
-          loading={evaluationsLoading}
+          dataSource={statistics}
+          loading={statisticsLoading}
           columns={tableColumns}
           onSortChange={onSortChange}
           pagination={{
-            total: evaluationsTotal,
-            pageSize: evaluationsSize,
-            current: evaluationsPage + 1,
+            total: statisticsTotal,
+            pageSize: statisticsSize,
+            current: statisticsPage + 1,
             hideOnSinglePage: true,
             onChange: onChangePagination,
           }}
