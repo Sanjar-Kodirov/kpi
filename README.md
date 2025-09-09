@@ -1,2 +1,10 @@
-npm i
-npm start
+
+## Installation
+
+Install my-project with npm
+
+```bash
+  npm install 
+  npm start
+```
+    
