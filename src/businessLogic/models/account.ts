@@ -33,11 +33,6 @@ export interface IUpdateUserModelProfile {
   smartposId?: number;
 }
 
-export interface ICurrentUser extends CurrentUserModel {
-  isOwner?: boolean;
-  isCashier?: boolean;
-}
-
 export interface ILoginPayloadType {
   auth_code: string;
 }

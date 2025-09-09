@@ -10,6 +10,7 @@ import { isAppTypeAdmin, isAppTypeCabinet } from "#constants/index";
 import { $currentCompany } from "#stores/cabinetCompany";
 import { useTranslation } from "react-i18next";
 import { namespaces } from "#src/localization/i18n.constants";
+import { CurrentUserDropdown } from "./currentUserDropdown";
 
 export const HeaderUI: FC = () => {
   const classes = useStyles();
@@ -29,12 +30,12 @@ export const HeaderUI: FC = () => {
     <Header className={classes.header}>
       <div className={classes.headerLeftSide}></div>
       <div className={classes.headerRightSide}>
-        {isAppTypeCabinet && (
+        {/* {isAppTypeCabinet && (
           <div className={classes.managerNameWrapper}>
-            <h4 className={classes.managerNameLabel}>{t("settings.yourManager", { ns: namespaces.company })}</h4>
+            <h4 className={classes.managerNameLabel}></h4>
             <div className={classes.branchName}>{currentCompanyState.data?.manager?.name || "-"}</div>
           </div>
-        )}
+        )} */}
 
         {/* {(currentUser.role.code === E_USER_ROLES.BUSINESS_OWNER || currentUser.role.code === E_USER_ROLES.ROLE_OWNER) &&
         isAppTypeCabinet ? (
@@ -45,7 +46,7 @@ export const HeaderUI: FC = () => {
           </div>
         )} */}
 
-        {/* <CurrentUserDropdown /> */}
+        <CurrentUserDropdown />
       </div>
     </Header>
   );

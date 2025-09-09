@@ -1,12 +1,12 @@
-import { ICurrentUser } from "#businessLogic/models/account";
 import { createXHRStore } from "#core/store";
 import { XHRDataStoreState, XHRSuccessStoreState } from "#core/store/constructors";
 import { api } from "src/businessLogic/api";
 
 import { ACCESS_TOKEN_KEY_FOR_COOKIE } from "#constants/index";
+import { CurrentUserModel } from "#businessLogic/models/account";
 export const $currentUser = createXHRStore(
   api.account.getCurrentUser,
-  new XHRDataStoreState<any | ICurrentUser>(null),
+  new XHRDataStoreState<any | CurrentUserModel>(null),
   {},
 );
 
