@@ -3,12 +3,13 @@ import { XHRDataStoreState, XHRSuccessStoreState } from "#core/store/constructor
 import { api } from "src/businessLogic/api";
 
 import { ACCESS_TOKEN_KEY_FOR_COOKIE } from "#constants/index";
-import { CurrentUserModel } from "#businessLogic/models/account";
-export const $currentUser = createXHRStore(
-  api.account.getCurrentUser,
-  new XHRDataStoreState<any | CurrentUserModel>(null),
-  {},
-);
+import { CurrentUserModel, ICurrentUserResponse } from "#businessLogic/models/account";
+import { XHRDataStoreType } from "#core/store/types/store";
+export const $currentUser = createXHRStore<
+  ICurrentUserResponse,
+  CurrentUserModel,
+  XHRDataStoreType<CurrentUserModel | null>
+>(api.account.getCurrentUser, new XHRDataStoreState<CurrentUserModel | null>(null));
 
 export const $loginWithCode = createXHRStore(api.account.logInWithCode, new XHRSuccessStoreState(), {
   doneReducer: (state, response) => {

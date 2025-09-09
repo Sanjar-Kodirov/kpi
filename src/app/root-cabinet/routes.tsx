@@ -8,9 +8,10 @@ import { MainScreenWrapper } from "#src/app/screens/main/mainScreenWrapper";
 import { createBrowserRouter } from "react-router-dom";
 import { useCabinetMenuList } from "#src/app/root-cabinet/menuList";
 import { WithHttpInterceptor } from "#components/withHttpInterceptor";
-import { WithPermission } from "#src/hocs/withPermission";
+import { WithPermission, WithPermissionLocal } from "#src/hocs/withPermission";
 import { PERMISSIONS } from "#src/hocs/withPermission/constants";
 import { EvaluationsList } from "../modules/evaluations/list";
+import { E_USER_ROLES } from "#businessLogic/models/account";
 
 export const cabinetRoutes = createBrowserRouter([
   {
@@ -48,7 +49,11 @@ export const cabinetRoutes = createBrowserRouter([
               },
               {
                 path: ROUTES.EVALUATIONS,
-                element: <EvaluationsList />,
+                element: (
+                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.deputy_member, E_USER_ROLES.regional_moderator]}>
+                    <EvaluationsList />
+                  </WithPermissionLocal>
+                ),
               },
             ],
           },

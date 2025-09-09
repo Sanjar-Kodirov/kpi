@@ -57,8 +57,6 @@ export const ROUTES = {
   COMPANY,
   COMPANY_SETTINGS: COMPANY + "/settings",
   COMPANY_SETTINGS_EDIT_COMPANY: COMPANY + "/settings/edit",
-  COMPANY_BRANCHES: COMPANY + "/branches",
-  COMPANY_EMPLOYEES: COMPANY + "/employees",
 
   SETTINGS,
   SETTINGS_PROFILE: SETTINGS + "/profile",

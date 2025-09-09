@@ -8,13 +8,14 @@ import { LockUnlockIconSvg } from "#svgIcons/halls";
 
 import "./styles.scss";
 import { cn } from "#utils/index";
-import { usePermissions } from "#hooks/usePermissions";
+
 import { useCurrentUser } from "#hooks/useCurrentUser";
 
 type TypeProps = {
   className?: string;
   annotations: StringMapI;
   type?: string | any;
+  authorities?: StringMapI;
   render?: any;
   placement?: string | any;
   children?: ReactNode;
@@ -22,29 +23,28 @@ type TypeProps = {
 
 const mainCN = cn("with-permission");
 
-export const withPermission = (annotations: StringMapI): boolean => {
-  const authorities = usePermissions();
-  const currentUserState = $currentUser.store.getState();
-  const { data: currentUser } = currentUserState;
+// export const withPermission = (annotations: StringMapI): boolean => {
+//   const authorities = usePermissions();
+//   const currentUserState = $currentUser.store.getState();
+//   const { data: currentUser } = currentUserState;
 
-  const annotation = process.env.appType && annotations[process.env.appType];
+//   const annotation = process.env.appType && annotations[process.env.appType];
 
-  if (!currentUser || !annotation) {
-    return false;
-  }
+//   if (!currentUser || !annotation) {
+//     return false;
+//   }
 
-  return (
-    currentUser.role.code === E_USER_ROLES.BUSINESS_OWNER ||
-    currentUser.role.code === E_USER_ROLES.ROLE_OWNER ||
-    (annotation && !!authorities && authorities[annotation])
-  );
-};
+//   return (
+//     currentUser.role === E_USER_ROLES.deputy_member ||
+//     currentUser.role === E_USER_ROLES.regional_moderator ||
+//     (annotation && !!authorities && authorities[annotation])
+//   );
+// };
 
 export const WithPermission: FC<TypeProps> = (props) => {
-  const { annotations, type } = props;
+  const { annotations, type, authorities } = props;
 
   const currentUserState = $currentUser.store();
-  const authorities = usePermissions();
 
   // const permissionsModeState = useStore($permissionsMode);
   // const permissionUsersState = useStore($permissionUsers.store());
@@ -58,9 +58,8 @@ export const WithPermission: FC<TypeProps> = (props) => {
 
   if (currentUser) {
     if (
-      currentUser.role.code === E_USER_ROLES.BUSINESS_OWNER ||
-      currentUser.role.code === E_USER_ROLES.ROLE_OWNER ||
-      currentUser.role.code === E_USER_ROLES.ROLE_SUPER_ADMIN ||
+      currentUser.role === E_USER_ROLES.deputy_member ||
+      currentUser.role === E_USER_ROLES.regional_moderator ||
       (annotation && !!authorities && authorities[annotation])
     ) {
       // return <div className={mainCN("", { [type]: type }, className)}>{render ? render() : props.children}</div>;
@@ -94,19 +93,13 @@ export const WithPermissionLocal: FC<TProps> = (props) => {
   const { rolesWithAccess, children, comparator } = props;
   const currentUser = useCurrentUser();
 
-  const adminRoles = new Set([
-    E_USER_ROLES.ROLE_APAY_INTEGRATION,
-    E_USER_ROLES.ROLE_ADMIN,
-    E_USER_ROLES.ROLE_SUPER_ADMIN,
-    E_USER_ROLES.BUSINESS_OWNER,
-    E_USER_ROLES.ROLE_OWNER,
-  ]);
+  const adminRoles = new Set([E_USER_ROLES.regional_moderator]);
 
-  if (adminRoles.has(currentUser.role?.code)) {
+  if (adminRoles.has(currentUser.role)) {
     return children;
   }
 
-  if (comparator && comparator(currentUser.role?.code)) {
+  if (comparator && comparator(currentUser.role)) {
     return children;
   }
 
@@ -114,7 +107,7 @@ export const WithPermissionLocal: FC<TProps> = (props) => {
     return null;
   }
 
-  if (rolesWithAccess?.some((role) => role === currentUser.role?.code)) {
+  if (rolesWithAccess?.some((role) => role === currentUser.role)) {
     return children;
   }
 

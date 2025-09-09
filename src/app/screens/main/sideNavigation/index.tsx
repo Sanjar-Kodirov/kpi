@@ -4,8 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import { useStyles } from "./styles";
 import { E_USER_ROLES } from "#businessLogic/models/account";
-import { E_APP_TYPE, isAppTypeAdmin } from "#constants/index";
-import { withPermission } from "#src/hocs/withPermission";
+import { useCurrentUser } from "#hooks/useCurrentUser";
 
 const findOpenKeysInTree = (tree: any, path: string, parents: any) => {
   if (!tree || !tree.length) {
@@ -37,7 +36,7 @@ export type TMenuList = {
   path?: string;
   key?: string;
   icon?: ReactNode;
-  roles?: E_USER_ROLES[];
+  rolesWithAccess?: E_USER_ROLES[];
   annotations?: Record<string, any>; // For permission-based access control
   sub?: TMenuList[];
 };
@@ -122,16 +121,12 @@ export const SideNavigation = (props: SideNavigationPropsType) => {
   const getMenu = (menu: any, level = 1) => {
     const className = level === 1 ? classes.item : classes.subItem;
 
+    const currentUser = useCurrentUser();
+
     return menu
       .filter((item: any) => {
         const hasPermission =
-          !item.annotations ||
-          isAppTypeAdmin ||
-          withPermission({
-            [E_APP_TYPE.ADMIN]: item.annotations?.ADMIN,
-            [E_APP_TYPE.CABINET]: item.annotations?.CABINET,
-          });
-
+          !item.rolesWithAccess || item.rolesWithAccess.some((role: E_USER_ROLES) => currentUser.role === role);
         return hasPermission;
       })
       .map((item: any) => {

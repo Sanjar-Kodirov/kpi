@@ -1,16 +1,9 @@
 import { Header } from "antd/lib/layout/layout";
-import React, { FC, useEffect } from "react";
-import { GeneralBranchSelect } from "./branchSelect";
-// import { CurrentUserDropdown } from "./currentUserDropdown";
+import React, { FC } from "react";
+import { CurrentUserDropdown } from "./currentUserDropdown";
 import { useStyles } from "./styles";
 import { $currentUser } from "#stores/account";
-import { E_USER_ROLES } from "#businessLogic/models/account";
-import { updateRuntimeState } from "#stores/index";
-import { isAppTypeAdmin, isAppTypeCabinet } from "#constants/index";
-import { $currentCompany } from "#stores/cabinetCompany";
 import { useTranslation } from "react-i18next";
-import { namespaces } from "#src/localization/i18n.constants";
-import { CurrentUserDropdown } from "./currentUserDropdown";
 
 export const HeaderUI: FC = () => {
   const classes = useStyles();
@@ -18,13 +11,6 @@ export const HeaderUI: FC = () => {
   const { t } = useTranslation();
 
   const { data: currentUser } = $currentUser.store();
-  const currentCompanyState = $currentCompany.store();
-
-  useEffect(() => {
-    if (currentUser?.branch) {
-      updateRuntimeState({ branchId: currentUser.branch.id });
-    }
-  }, [currentUser]);
 
   return (
     <Header className={classes.header}>

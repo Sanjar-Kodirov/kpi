@@ -1,5 +1,6 @@
+import { CurrentUserModel } from "#businessLogic/models/account";
 import { $currentUser } from "#stores/account";
-export const useCurrentUser = () => {
+export const useCurrentUser: () => CurrentUserModel = () => {
   const currentUserState = $currentUser.store();
 
   if (!currentUserState.data) {

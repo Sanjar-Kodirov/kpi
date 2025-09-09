@@ -7,11 +7,8 @@ export enum CHECK_USER_STATUSES {
 }
 
 export enum E_USER_ROLES {
-  ROLE_APAY_INTEGRATION = "ROLE_APAY_INTEGRATION",
-  ROLE_ADMIN = "ROLE_ADMIN",
-  ROLE_SUPER_ADMIN = "ROLE_SUPER_ADMIN",
-  BUSINESS_OWNER = "BUSINESS_OWNER",
-  ROLE_OWNER = "ROLE_OWNER",
+  deputy_member = "deputy_member",
+  regional_moderator = "regional_moderator",
 }
 
 export interface ICurrentUserResponse {
@@ -23,7 +20,7 @@ export interface CurrentUserModel {
   membership_type: string;
   phone_number: string;
   region_name: string;
-  role: string;
+  role: E_USER_ROLES;
 }
 
 export interface IUpdateUserModelProfile {

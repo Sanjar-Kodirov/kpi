@@ -32,17 +32,7 @@ export const SignIn: FC = () => {
   const { t } = useTranslation();
 
   const logInState = $loginWithCode.store();
-  const currentUserState = $currentUser.store();
-
-  const { data: currentUser } = currentUserState;
-
   const [form] = Form.useForm();
-
-  useEffect(() => {
-    if (currentUser?.isCashier) {
-      notificationWarning(t("auth.youTryingEnterCashier", { ns: namespaces.auth }), "");
-    }
-  }, [currentUser]);
 
   useEffect(() => {
     sessionStorage.removeItem(ACCESS_TOKEN_KEY_FOR_COOKIE);
