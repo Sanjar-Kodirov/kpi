@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect } from "react";
-import { APP_VERSION, ASIDE_SETTINGS } from "#constants/index";
+import { ASIDE_SETTINGS } from "#constants/index";
 import { BurgerArrowSvgIcon } from "#svgIcons/index";
 import { Layout } from "antd";
 import { useTranslation } from "react-i18next";
@@ -8,7 +8,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useStyles } from "./styles";
 import { SiderTheme } from "antd/es/layout/Sider";
 import cn from "classnames";
-import { Logo } from "#svgIcons/logo";
 
 const { Sider } = Layout;
 
@@ -72,10 +71,7 @@ export const MainAside: React.FC<TProps> = (props) => {
         {drawBottomInfo ? (
           <div className={classes.asideBottom}>
             <div className={classes.layoutAsideTriggerWr}>
-              <div className={classes.versionBlock}>
-                <span>{t("fields.version")}: </span>
-                {APP_VERSION}
-              </div>
+              <div></div>
               <div className={classes.layoutAsideTrigger} onClick={onSiderToggle}>
                 <span className={classes.layoutAsideTriggerText}>{t("fields.hide")}</span>
                 <BurgerArrowSvgIcon />

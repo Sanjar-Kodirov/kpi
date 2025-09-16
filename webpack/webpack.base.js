@@ -32,7 +32,15 @@ module.exports = ({ apiUrl, ...options }, appType) => {
 
   const getPlugins = () => {
     const plugins = [
-      new CopyWebpackPlugin({patterns: [{ from: 'public/js', to: 'js' }]}),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, '..', 'public/js'),
+            to: 'js',
+            noErrorOnMissing: true,
+          },
+        ],
+      }),
       new webpack.DefinePlugin({
         process: {
           env: {

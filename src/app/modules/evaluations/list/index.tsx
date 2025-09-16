@@ -1,12 +1,11 @@
 import React, { FC, useEffect, useMemo } from "react";
 
 import {
-  IPendingEvaluationsList,
+  IEvaluationItem,
   TPendingEvaluationsListAdditionalParams,
   TPendingEvaluationsListParams,
 } from "#businessLogic/models/evaluations";
 import { useQueryParams } from "#hooks/useQueryParams";
-import { $runtime } from "#stores/index";
 import { ButtonUI } from "#ui/button";
 import { ContentUI } from "#ui/content";
 import { SortOrderFromAntMap, TableUI } from "#ui/table";
@@ -14,17 +13,25 @@ import { ColumnsType } from "antd/lib/table/interface";
 import { useTranslation } from "react-i18next";
 import { StatusTagUI } from "#ui/statusTag";
 import { $evaluationsFilterProps, evaluationsFilterPropsDefault } from "../model";
-import { $evaluationsList } from "#stores/evaluations";
+import { $evaluationsList, $rejectEvaluation } from "#stores/evaluations";
 import { EvaluationsListFilter } from "../listFilter";
+import { formatDate } from "#utils/formatters";
+import { useModalControl } from "#hooks/useModalControl";
+import { AddEditEvaluationDrawer, AddEditEvaluationDrawerModalProps } from "../addEditDrawer";
+import { ModalUI } from "#ui/modal";
+import { Col, Row } from "antd";
+import { useStyles } from "./styles";
+import { ModalConfirmUI } from "#ui/modalConfirm";
+import { notificationSuccess } from "#ui/notifications";
 
 export const EvaluationsList: FC = () => {
-  // const addEvaluationModalControl = useModalControl<AddEditEvaluationDrawerModalProps>();
+  const addEvaluationModalControl = useModalControl<AddEditEvaluationDrawerModalProps>();
+
+  const classes = useStyles();
 
   const evaluationsFilterState = $evaluationsFilterProps.store();
-  const { branchId } = $runtime();
   const evaluationsState = $evaluationsList.store();
-  // const deleteEvaluationState = $deleteEvaluation.store();
-  // const updateEvaluationStatusState = $updateEvaluationStatus.store();
+  const rejectEvaluationState = $rejectEvaluation.store();
 
   const { t, i18n } = useTranslation();
 
@@ -42,12 +49,16 @@ export const EvaluationsList: FC = () => {
   );
 
   const { data: evaluationsData, loading: evaluationsLoading } = evaluationsState;
-  const {
-    content: evaluations,
-    number: evaluationsPage,
-    size: evaluationsSize,
-    totalElements: evaluationsTotal,
-  } = evaluationsData;
+
+  useEffect(() => {
+    if (rejectEvaluationState.success) {
+      notificationSuccess(t("notifications.success"), "Оценка отклонена");
+      getEvaluationList();
+    }
+    return () => {
+      $rejectEvaluation.reset();
+    };
+  }, [rejectEvaluationState.success]);
 
   const getEvaluationList = () => {
     $evaluationsList.request({ ...queryParams });
@@ -55,123 +66,104 @@ export const EvaluationsList: FC = () => {
 
   useEffect(() => {
     getEvaluationList();
-  }, [branchId, queryParams]);
+  }, [queryParams]);
 
-  // useEffect(() => {
-  //   if (deleteEvaluationState.success) {
-  //     getEvaluationList();
-
-  //     notificationSuccess(t("notifications.success"), "Цех удален");
-  //     $deleteEvaluation.reset();
-  //   }
-  // }, [deleteEvaluationState.success]);
-
-  const tableColumns: ColumnsType<IPendingEvaluationsList> = useMemo(() => {
+  const tableColumns: ColumnsType<IEvaluationItem> = useMemo(() => {
     return [
       {
         width: 80,
         title: "№",
         dataIndex: "num",
         key: "num",
-        render: (_, row, index) => <div className="w-s-n">{evaluationsSize * evaluationsPage + index + 1}</div>,
+        render: (_, row, index) => <div className="w-s-n">{index + 1}</div>,
         sorter: false,
       },
       {
-        title: t("fields.title"),
+        title: "Название",
         dataIndex: "name",
         key: "name",
+        render: (_, row) => row.user_name,
+        sorter: false,
+      },
+      {
+        title: "Регион",
+        dataIndex: "region_name",
+        key: "region_name",
+        render: (_, row) => row.region_name,
+        sorter: false,
+      },
+      {
+        title: "Тема оценки",
+        dataIndex: "evaluation_text",
+        key: "evaluation_text",
+        render: (_, row) => row.evaluation_text,
+        sorter: false,
+      },
+      {
+        title: "Критерий оценки",
+        dataIndex: "criteria_title",
+        key: "criteria_title",
+        render: (_, row) => row.criteria_title,
+        sorter: false,
+      },
+
+      {
+        title: "Дата оценки",
+        dataIndex: "evaluated_date",
+        key: "evaluated_date",
+        render: (_, row) => <div>{formatDate(row.evaluated_date)}</div>,
         sorter: false,
       },
       // {
-      //   title: t("fields.evaluation"),
-      //   dataIndex: "type",
-      //   key: "type",
-      //   render: (_, row) => row.type.name,
+      //   title: "Статус",
+      //   dataIndex: "status",
+      //   key: "status",
       //   sorter: false,
+      //   render: (_, row) => {
+      //     return (
+      //       <>
+      //         <StatusTagUI status={row.status}>{row.status}</StatusTagUI>
+      //       </>
+      //     );
+      //   },
       // },
       {
-        title: t("fields.branch"),
-        dataIndex: "branchName",
-        key: "branchName",
-        render: (_, row) => row.branch.name,
-        sorter: false,
-      },
-      {
-        dataIndex: "status",
-        key: "status",
+        title: "Действие",
+        dataIndex: "action",
+        key: "action",
         sorter: false,
         render: (_, row) => {
           return (
-            <>
-              <StatusTagUI status={row.status.code}>{row.status?.name}</StatusTagUI>
-            </>
+            <div className={classes.flex}>
+              <div>
+                <ButtonUI onClick={() => onAddEvaluation(row.id)} size="extra-small" type="primary">
+                  Принять
+                </ButtonUI>
+              </div>
+              <div>
+                <ModalConfirmUI title="Отклонить оценку" onOk={() => onRejectEvaluation(row.id)}>
+                  <ButtonUI onClick={() => onRejectEvaluation(row.id)} size="extra-small" type="secondary">
+                    Отклонить
+                  </ButtonUI>
+                </ModalConfirmUI>
+              </div>
+            </div>
           );
         },
       },
-      {
-        title: "",
-        dataIndex: "actions",
-        key: "actions",
-        fixed: "right",
-        width: 60,
-        render: (_, row) => (
-          // <WithPermission annotations={{ [E_APP_TYPE.CABINET]: PERMISSIONS.CABINET.MANAGEMENT_DEPARTMENTS_BTN_EDIT }}>
-          // <ContextPopoverUI
-          // content={
-          <>
-            {/* <ContextPopoverUI.Item>
-                    <ButtonUI onClick={() => addEvaluationModalControl.openModal({ evaluationId: row.id })}>
-                      {t("buttons.edit")}
-                    </ButtonUI>
-                  </ContextPopoverUI.Item> */}
-            {/*<ContextPopoverUI.Item>*/}
-            {/*  <ModalConfirmUI*/}
-            {/*    title={"Вы уверены что хотите удалить цех?"}*/}
-            {/*    onOk={() => $deleteEvaluation.request(row.id)}*/}
-            {/*  >*/}
-            {/*    <ButtonUI danger loading={deleteEvaluationState.loading}>*/}
-            {/*      {t("buttons.delete")}*/}
-            {/*    </ButtonUI>*/}
-            {/*  </ModalConfirmUI>*/}
-            {/*</ContextPopoverUI.Item>*/}
-
-            {/* <ContextPopoverUI.Item>
-                    <ButtonUI
-                      disabled={row.status.code === DEPARTMENT_STATUS.ACTIVE}
-                      loading={updateEvaluationStatusState.loading}
-                      onClick={() => updateStatus(row.id, DEPARTMENT_STATUS.ACTIVE)}
-                    >
-                      {t("buttons.activate")}
-                    </ButtonUI>
-                  </ContextPopoverUI.Item>
-                  <ContextPopoverUI.Item>
-                    <ButtonUI
-                      disabled={row.status.code === DEPARTMENT_STATUS.IN_ACTIVE}
-                      loading={updateEvaluationStatusState.loading}
-                      onClick={() => updateStatus(row.id, DEPARTMENT_STATUS.IN_ACTIVE)}
-                    >
-                      {t("buttons.deactivate")}
-                    </ButtonUI>
-                  </ContextPopoverUI.Item> */}
-          </>
-          // }
-          // />
-          // </WithPermission>
-        ),
-      },
     ];
-  }, [evaluationsSize, evaluationsPage, i18n.language, t]);
+  }, [i18n.language, t]);
 
   const onFilterChange = (params: TPendingEvaluationsListParams) => {
     updateQueryParams({ page: undefined, ...params });
   };
 
-  const onChangePagination = (page: number, size: number) => {
-    onFilterChange({ page: page - 1, size });
+  const onAddEvaluation = (evaluationId: string) => {
+    addEvaluationModalControl.openModal({ evaluationId });
   };
 
-  const onAddEvaluation = () => {
-    // addEvaluationModalControl.openModal();
+  const onRejectEvaluation = (evaluationId: string) => {
+    $rejectEvaluation.request({ evaluation_id: evaluationId });
   };
 
   const onSortChange = (field: string, order?: SortOrderFromAntMap) => {
@@ -180,11 +172,7 @@ export const EvaluationsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="My evaluations" total={evaluationsTotal}>
-        <ButtonUI type="primary" onClick={onAddEvaluation}>
-          Add evaluation
-        </ButtonUI>
-      </ContentUI.Header>
+      <ContentUI.Header title="My evaluations" total={evaluationsData?.count}></ContentUI.Header>
       <EvaluationsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}
@@ -193,26 +181,15 @@ export const EvaluationsList: FC = () => {
       />
       <ContentUI.Middle>
         <TableUI
-          dataSource={evaluations}
+          dataSource={evaluationsData?.evaluations}
           loading={evaluationsLoading}
           columns={tableColumns}
           onSortChange={onSortChange}
-          pagination={{
-            total: evaluationsTotal,
-            pageSize: evaluationsSize,
-            current: evaluationsPage + 1,
-            hideOnSinglePage: true,
-            onChange: onChangePagination,
-          }}
         />
       </ContentUI.Middle>
-      {/* <DrawerModalUI open={addEvaluationModalControl.modalProps.visible} onClose={addEvaluationModalControl.closeModal}>
-        <AddEditEvaluationDrawer
-          adminBranchId={String(queryParams.branchId)}
-          modalControl={addEvaluationModalControl}
-          callBack={getEvaluationList}
-        />
-      </DrawerModalUI> */}
+      <ModalUI open={addEvaluationModalControl.modalProps.visible} onCancel={addEvaluationModalControl.closeModal}>
+        <AddEditEvaluationDrawer modalControl={addEvaluationModalControl} callBack={getEvaluationList} />
+      </ModalUI>
     </ContentUI>
   );
 };

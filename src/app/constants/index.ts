@@ -2,8 +2,6 @@ import { validatePassword, validateTrimStr } from "#src/app/screens/auth/utils";
 import { i18n } from "#src/localization/i18n";
 import * as process from "process";
 
-export const APP_VERSION = "1.0.0";
-
 export const ASIDE_SETTINGS = {
   LOCAL_COLLAPSED_NAME: "siderCollapsed",
   EXPANDED: 260,
@@ -21,7 +19,6 @@ export const MEDIA_WIDTH = {
   TABLET: `@media (max-width: ${DEVICES_WIDTH.TABLET}px)`,
 };
 
-export const RUNTIME_STATE = "RUNTIME_STATE";
 export const REQUIRED_DATA = i18n.t("fields.enterData");
 export const WRONG_FORMAT = i18n.t("fields.incorrectFormat");
 

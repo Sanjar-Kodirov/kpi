@@ -11,6 +11,8 @@ const getLinkSizeClass = (size?: string) => {
     return "ant-btn-lg";
   } else if (size === "small") {
     return "ant-btn-sm";
+  } else if (size === "extra-small") {
+    return "ant-btn-xs";
   }
 
   return "";
@@ -29,7 +31,7 @@ export const CodeScan: FC<TCodeScanProps> = ({ count = 0, showZero, ...restProps
   );
 };
 
-export interface ButtonUIPropsType extends Omit<ButtonProps, "type"> {
+export interface ButtonUIPropsType extends Omit<ButtonProps, "type" | "size"> {
   type?:
     | "primary"
     | "primary-light"
@@ -48,6 +50,7 @@ export interface ButtonUIPropsType extends Omit<ButtonProps, "type"> {
   withIcon?: boolean;
   link?: string;
   noBorder?: boolean;
+  size?: ButtonProps["size"] | "extra-small";
 }
 
 type TButtonUI = FC<ButtonUIPropsType> & {
@@ -55,7 +58,7 @@ type TButtonUI = FC<ButtonUIPropsType> & {
 };
 
 const ButtonUI: TButtonUI = (props) => {
-  const { className = "", withIcon, fullWidth, link, noBorder, type, ...restProps } = props;
+  const { className = "", withIcon, fullWidth, link, noBorder, type, size, ...restProps } = props;
 
   const classes = useStyles();
 
@@ -84,13 +87,24 @@ const ButtonUI: TButtonUI = (props) => {
     classesCompose = `${classesCompose} ${classes.noBorder}`;
   }
 
+  // Handle custom extra-small size by applying a class instead of passing to AntD
+  if (size === "extra-small") {
+    classesCompose = `${classesCompose} ant-btn-xs`;
+  }
+
   if (link && !restProps.disabled) {
-    classesCompose = `ant-btn ${classesCompose} ${getLinkSizeClass(props.size)}`;
+    classesCompose = `ant-btn ${classesCompose} ${getLinkSizeClass(size)}`;
 
     return <Link {...restProps} to={link} className={classesCompose} />;
   }
 
-  return <Button {...restProps} className={classesCompose} />;
+  return (
+    <Button
+      {...restProps}
+      className={classesCompose}
+      {...(size && size !== "extra-small" ? { size } : {})}
+    />
+  );
 };
 
 ButtonUI.CodeScan = CodeScan;

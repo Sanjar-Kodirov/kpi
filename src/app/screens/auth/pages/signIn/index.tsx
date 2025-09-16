@@ -8,9 +8,8 @@ import {
   SMS_CODE_SIZE,
 } from "#constants/index";
 import { namespaces } from "#src/localization/i18n.constants";
-import { $currentUser, $loginWithCode } from "#stores/account";
+import { $loginWithCode } from "#stores/account";
 import { ButtonUI } from "#ui/button";
-import { notificationWarning } from "#ui/notifications";
 import { Form } from "antd";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";

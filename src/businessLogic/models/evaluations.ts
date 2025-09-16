@@ -1,14 +1,4 @@
-import { TIdNameModel, TListQueryParams } from "#businessLogic/models";
-
-export enum DEPARTMENT_TYPE {
-  KITCHEN = "KITCHEN",
-  BAR = "BAR",
-}
-
-export interface IEvaluationTypeModel {
-  code: DEPARTMENT_TYPE;
-  name: string;
-}
+import { TListQueryParams } from "#businessLogic/models";
 
 export type TPendingEvaluationsListParams = {
   search?: string;
@@ -19,36 +9,42 @@ export type TPendingEvaluationsListParams = {
 
 export type TPendingEvaluationsListAdditionalParams = {};
 
-export interface IPendingEvaluationsList {
+export interface IAcceptEvaluationModel {
+  evaluation_id: string;
+  score: number;
+}
+
+export interface IRejectEvaluationModel {
+  evaluation_id: string;
+}
+
+export interface IEvaluationDetailsModel {
+  success: boolean;
+  message: string;
+  evaluation: IEvaluationItem;
+}
+
+export interface IEvaluationItemModel {
+  evaluations: IEvaluationItem[];
+  count: number;
+}
+
+export interface IEvaluationItem {
   id: string;
-  name: string;
-  type: IEvaluationTypeModel;
-  branch: TIdNameModel;
-  status: {
-    code: string;
-    name: string;
-  };
+  user_id: string;
+  criteria_id: string;
+  evaluation_text: string;
+  photo_file_id: string | null;
+  photo_file_unique_id: string | null;
+  status: string;
+  evaluated_date: string;
+  reviewed_by: string | null;
+  reviewed_at: string | null;
+  created_at: string;
+  updated_at: string;
+  score: number;
+  user_name: string;
+  user_role: string;
+  criteria_title: string;
+  region_name: string;
 }
-
-export type IEvaluationDetailsModel = IPendingEvaluationsList;
-
-export interface ICreateEvaluationModel {
-  branchId: string;
-  name: string;
-}
-
-export interface IUpdateEvaluationModel extends ICreateEvaluationModel {
-  id: string;
-}
-
-export enum DEPARTMENT_STATUS {
-  ACTIVE = "ACTIVE",
-  IN_ACTIVE = "IN_ACTIVE",
-}
-
-export interface IUpdateEvaluationStatusModel {
-  id: string;
-  status: DEPARTMENT_STATUS;
-}
-
-export type IEvaluationItemModel = TIdNameModel;

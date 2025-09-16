@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN_KEY_FOR_COOKIE, REFRESH_TOKEN_KEY_FOR_COOKIE, ROUTES, RUNTIME_STATE } from "#constants/index";
+import { ACCESS_TOKEN_KEY_FOR_COOKIE, REFRESH_TOKEN_KEY_FOR_COOKIE, ROUTES } from "#constants/index";
 import { globalReset } from "#core/store";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,5 @@ export const useLogOut = () => {
     });
 
     globalReset();
-
-    localStorage.removeItem(RUNTIME_STATE);
   };
 };

@@ -9,5 +9,5 @@ export const handleChangeSearchFilter = (e: React.ChangeEvent<HTMLInputElement>,
 };
 
 export const handleChangeDatePeriodFilter = (param: any) => {
-  return [{ from: param.from, to: param.to }];
+  return [{ start_date: param.from, end_date: param.to }];
 };

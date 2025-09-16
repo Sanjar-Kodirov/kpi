@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 
-import { ROUTES, RUNTIME_STATE } from "#constants/index";
+import { ROUTES } from "#constants/index";
 import { $currentUser } from "#stores/account";
-import { updateRuntimeState } from "#stores/index";
 
 import { useNavigate } from "react-router-dom";
 
@@ -20,11 +19,12 @@ export const useAccessToMainScreen = () => {
       navigate(ROUTES.USER_SIGN_IN, { replace: true });
     }
 
-    $currentUser.request({ token: token || "" });
+    if (token) {
+      $currentUser.request({ token: token || "" });
+    }
 
-    const runtimeStateFromLocalStorage = localStorage.getItem(RUNTIME_STATE);
-    if (runtimeStateFromLocalStorage) {
-      updateRuntimeState(JSON.parse(runtimeStateFromLocalStorage));
+    if (window.location.pathname === "/") {
+      navigate(ROUTES.EVALUATIONS, { replace: true });
     }
 
     return () => {

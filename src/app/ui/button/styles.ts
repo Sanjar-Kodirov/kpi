@@ -34,11 +34,19 @@ export const useStyles = createUseStyles({
         paddingTop: "5px",
         paddingBottom: "5px",
       },
+      "&.ant-btn-xs": {
+        fontSize: "12px",
+        lineHeight: 1,
+        padding: "3px 8px",
+      },
       "&.ant-btn-icon-only": {
         padding: "5px",
 
         "&.ant-btn-sm": {
           padding: "3px 0",
+        },
+        "&.ant-btn-xs": {
+          padding: "2px 0",
         },
         // "&.ant-btn-default:not(.ant-btn-dangerous):not(.ant-btn-primary)": {
         //   color: "#8F92A8",

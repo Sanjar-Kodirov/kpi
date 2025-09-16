@@ -4,8 +4,9 @@ import { FilterOnChangeType } from "#types/common";
 import { InputUI } from "#ui/input";
 import { EFieldType, FilterBlockUI } from "#ui/filterBlock";
 import { useTranslation } from "react-i18next";
-import { handleChangeSearchFilter } from "#utils/filter";
+import { handleChangeDatePeriodFilter, handleChangeSearchFilter } from "#utils/filter";
 import { TStatisticsListParams } from "#businessLogic/models/statistics";
+import { DatepickerPeriodUI } from "#ui/datePickerPeriod";
 
 type PropsType = {
   queryParams: TStatisticsListParams;
@@ -37,17 +38,15 @@ export const StatisticsListFilter: FC<PropsType> = (props) => {
       >
         <InputUI.Search />
       </FilterBlockUI.Item>
-      {/* <FilterBlockUI.Item
+      <FilterBlockUI.Item
+        getFilterParams={handleChangeDatePeriodFilter}
         forwardProps={{
-          value: "status",
-        }}
-        label={t("statuses.status")}
-        getFilterParams={(e: string | undefined) => {
-          return [{ status: e }];
+          fromValue: "start_date",
+          toValue: "end_date",
         }}
       >
-        <EvaluationStatusSelect />
-      </FilterBlockUI.Item> */}
+        <DatepickerPeriodUI withoutTime />
+      </FilterBlockUI.Item>
     </FilterBlockUI>
   );
 };

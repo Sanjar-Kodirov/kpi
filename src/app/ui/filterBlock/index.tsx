@@ -92,7 +92,7 @@ const FilterBlockUI = <P extends {}, R = undefined>(props: PropsTypes<P, R>) => 
             </ButtonUI>
           )}
           {updateQueryParams && (
-            <ButtonUI type="primary-light" onClick={() => updateQueryParams({} as P)} size="small">
+            <ButtonUI type="primary" onClick={() => updateQueryParams({} as P)} size="small">
               {t("buttons.update")}
             </ButtonUI>
           )}

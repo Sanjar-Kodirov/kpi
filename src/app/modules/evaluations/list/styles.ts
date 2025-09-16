@@ -1,10 +1,10 @@
+import { $colors, $variables } from "#styles/variables";
 import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles({
-  cont: {
+  flex: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
-    height: "100%",
+    gap: 8,
   },
 });

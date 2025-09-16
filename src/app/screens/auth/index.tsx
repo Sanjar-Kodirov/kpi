@@ -1,7 +1,5 @@
 import React, { FC } from "react";
 
-import { APP_VERSION } from "#constants/index";
-import { namespaces } from "#src/localization/i18n.constants";
 import { useTranslation } from "react-i18next";
 
 import { HeaderAuthUI } from "./components/header";
@@ -26,9 +24,6 @@ export const UserAuthScreen: FC = () => {
       </div>
       <div className={classes.compInfo}>
         <div>{`© 2025-${new Date().getFullYear()}`}</div>
-        <div>
-          {t("auth.compInfo", { ns: namespaces.auth })} {t("fields.version")} {APP_VERSION}
-        </div>
       </div>
     </div>
   );
