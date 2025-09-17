@@ -9,6 +9,7 @@ export const getAccessToken = () => sessionStorage.getItem(ACCESS_TOKEN_KEY_FOR_
 let lastPathName = "";
 
 const httpClient = axios.create({
+  // baseURL: "https://kpi-dep.qitmir.uz",
   withCredentials: true,
   headers: { "Content-Type": "application/json", "Accept-Language": i18n.language },
 });

@@ -35,7 +35,8 @@ const MAIN = "/",
   USER = "/user",
   SIGN_IN = "/sign-in",
   EVALUATIONS = "/evaluation",
-  STATISTICS = "/statistics";
+  STATISTICS = "/statistics",
+  MANAGE_MODERATOR = "/manage-moderator";
 export const ROUTES = {
   USER,
   USER_SIGN_IN: USER + SIGN_IN,
@@ -45,6 +46,8 @@ export const ROUTES = {
   EVALUATIONS: EVALUATIONS,
 
   STATISTICS: STATISTICS,
+
+  MANAGE_MODERATOR: MANAGE_MODERATOR,
 
   COMPANY,
   COMPANY_SETTINGS: COMPANY + "/settings",

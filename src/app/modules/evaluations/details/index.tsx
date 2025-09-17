@@ -84,7 +84,7 @@ export const EvaluationDetails: React.FC = () => {
             </Descriptions.Item>
           </Descriptions>
 
-          {/* {evaluationData.photo_file_ids && evaluationData.photo_file_ids.length > 0 && (
+          {evaluationData.photo_file_ids && evaluationData.photo_file_ids.length > 0 && (
             <div style={{ marginTop: 24 }}>
               <Divider orientation="left">Фотографии</Divider>
               <Space wrap>
@@ -92,14 +92,19 @@ export const EvaluationDetails: React.FC = () => {
                   <Image
                     key={index}
                     width={200}
-                    src={`/api/files/${photoId}`}
+                    style={{
+                      borderRadius: 4,
+                      height: "auto",
+                      maxWidth: "100%",
+                      aspectRatio: "1/1",
+                    }}
+                    src={`https://kpi-dep.qitmir.uz/api/photos/${photoId}`}
                     alt={`Приложение ${index + 1}`}
-                    style={{ borderRadius: 4 }}
                   />
                 ))}
               </Space>
             </div>
-          )} */}
+          )}
         </Card>
       </ContentUI.Middle>
     </ContentUI>

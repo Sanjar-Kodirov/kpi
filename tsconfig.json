@@ -32,7 +32,7 @@
       "#images/*": ["src/assets/images/*"],
       "#svgIcons/*": ["src/assets/svg/*"],
 
-      "#src/*": ["src/*"],
+      "#src/*": ["src/*"]
     }
   }
 }

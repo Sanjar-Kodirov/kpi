@@ -13,6 +13,7 @@ import { EvaluationsList } from "../modules/evaluations/list";
 import { E_USER_ROLES } from "#businessLogic/models/account";
 import { StatisticsList } from "../modules/statistics/list";
 import { EvaluationDetails } from "../modules/evaluations/details";
+import { UsersModeratorsAdminsList } from "../modules/moderatorsAdmins/list";
 
 export const cabinetRoutes = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ export const cabinetRoutes = createBrowserRouter([
               {
                 path: ROUTES.EVALUATIONS,
                 element: (
-                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.deputy_member, E_USER_ROLES.regional_moderator]}>
+                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.regional_moderator]}>
                     <EvaluationsList />
                   </WithPermissionLocal>
                 ),
@@ -47,7 +48,7 @@ export const cabinetRoutes = createBrowserRouter([
               {
                 path: `${ROUTES.EVALUATIONS}/:id`,
                 element: (
-                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.deputy_member, E_USER_ROLES.regional_moderator]}>
+                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.regional_moderator]}>
                     <EvaluationDetails />
                   </WithPermissionLocal>
                 ),
@@ -55,8 +56,16 @@ export const cabinetRoutes = createBrowserRouter([
               {
                 path: ROUTES.STATISTICS,
                 element: (
-                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.deputy_member, E_USER_ROLES.regional_moderator]}>
+                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.regional_moderator]}>
                     <StatisticsList />
+                  </WithPermissionLocal>
+                ),
+              },
+              {
+                path: ROUTES.MANAGE_MODERATOR,
+                element: (
+                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.regional_moderator]}>
+                    <UsersModeratorsAdminsList />
                   </WithPermissionLocal>
                 ),
               },
