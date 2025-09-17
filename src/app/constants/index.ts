@@ -28,10 +28,6 @@ export const E_APP_TYPE = {
 } as const;
 
 // Environment variable access through webpack DefinePlugin
-export const appType = (process.env.appType || 'CABINET') as keyof typeof E_APP_TYPE;
-export const getAppType = () => (process.env.appType || 'CABINET') as keyof typeof E_APP_TYPE;
-export const isAppTypeCabinet = (process.env.appType || 'CABINET') === E_APP_TYPE.CABINET;
-export const isAppTypeAdmin = (process.env.appType || 'CABINET') === E_APP_TYPE.ADMIN;
 
 const MAIN = "/",
   SETTINGS = "/settings",

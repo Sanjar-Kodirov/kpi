@@ -56,15 +56,8 @@ export const WithPermission: FC<TypeProps> = (props) => {
 
   // const isPermissionMode = !!appRoutes.length && !!permissionUsersState.data;
 
-  const currentAppType = process.env.appType || 'CABINET';
-  const annotation = annotations[currentAppType as keyof typeof annotations];
-
   if (currentUser) {
-    if (
-      currentUser.role === E_USER_ROLES.deputy_member ||
-      currentUser.role === E_USER_ROLES.regional_moderator ||
-      (annotation && !!authorities && authorities[annotation])
-    ) {
+    if (currentUser.role === E_USER_ROLES.deputy_member || currentUser.role === E_USER_ROLES.regional_moderator) {
       // return <div className={mainCN("", { [type]: type }, className)}>{render ? render() : props.children}</div>;
       return props.children;
     } else {
