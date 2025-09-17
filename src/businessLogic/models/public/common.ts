@@ -27,3 +27,7 @@ export type DistrictListType = Array<
     regionId: number;
   }
 >;
+
+export interface IRegion {
+  id: string;
+}
