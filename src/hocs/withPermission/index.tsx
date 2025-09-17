@@ -27,7 +27,8 @@ const mainCN = cn("with-permission");
 //   const currentUserState = $currentUser.store.getState();
 //   const { data: currentUser } = currentUserState;
 
-//   const annotation = process.env.appType && annotations[process.env.appType];
+//   const currentAppType = process.env.appType || 'CABINET';
+//   const annotation = annotations[currentAppType as keyof typeof annotations];
 
 //   if (!currentUser || !annotation) {
 //     return false;
@@ -55,7 +56,8 @@ export const WithPermission: FC<TypeProps> = (props) => {
 
   // const isPermissionMode = !!appRoutes.length && !!permissionUsersState.data;
 
-  const annotation = process.env.appType && annotations[process.env.appType];
+  const currentAppType = process.env.appType || 'CABINET';
+  const annotation = annotations[currentAppType as keyof typeof annotations];
 
   if (currentUser) {
     if (

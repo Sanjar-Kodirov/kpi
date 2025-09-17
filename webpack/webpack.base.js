@@ -42,14 +42,12 @@ module.exports = ({ apiUrl, ...options }, appType) => {
         ],
       }),
       new webpack.DefinePlugin({
-        process: {
-          env: {
-            mode: JSON.stringify(options.mode),
-            appType: JSON.stringify(appType),
-            apiUrl: JSON.stringify(apiUrl),
-            publicPath: JSON.stringify("/")
-          },
-        },
+        'process.env': JSON.stringify({
+          NODE_ENV: JSON.stringify(options.mode),
+          appType: JSON.stringify(appType),
+          apiUrl: JSON.stringify(apiUrl || ''),
+          publicPath: JSON.stringify("/")
+        })
       }),
       new HtmlWebpackPlugin({
         filename: 'index.html',
