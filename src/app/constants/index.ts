@@ -22,16 +22,6 @@ export const MEDIA_WIDTH = {
 export const REQUIRED_DATA = i18n.t("fields.enterData");
 export const WRONG_FORMAT = i18n.t("fields.incorrectFormat");
 
-export const E_APP_TYPE = {
-  CABINET: "CABINET",
-  ADMIN: "ADMIN",
-} as const;
-
-export const appType = process.env.appType as keyof typeof E_APP_TYPE;
-export const getAppType = () => process.env.appType as keyof typeof E_APP_TYPE;
-export const isAppTypeCabinet = (process.env.appType as keyof typeof E_APP_TYPE) === E_APP_TYPE.CABINET;
-export const isAppTypeAdmin = (process.env.appType as keyof typeof E_APP_TYPE) === E_APP_TYPE.ADMIN;
-
 const MAIN = "/",
   SETTINGS = "/settings",
   COMPANY = "/company",

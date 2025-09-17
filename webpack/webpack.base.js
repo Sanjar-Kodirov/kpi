@@ -4,30 +4,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const { modifyVars } = require("../src/styles/antModifyVars");
 
-const appEntryPoints = {
-  ADMIN: {
-    entry: "index-admin.tsx",
-    output: "build-admin",
-  },
-  CABINET: {
-    entry: "index-cabinet.tsx",
-    output: "dist",
-  },
-};
-
-module.exports = ({ apiUrl, ...options }, appType) => {
+module.exports = ({ apiUrl, ...options }) => {
   const { mode = "development" } = options;
 
   const isProd = mode === "production";
 
   const getStyleLoaders = () => {
-    return [
-      isProd ? MiniCssExtractPlugin.loader : "style-loader",
-      "css-loader",
-    ];
+    return [isProd ? MiniCssExtractPlugin.loader : "style-loader", "css-loader"];
   };
 
   const getPlugins = () => {
@@ -35,8 +21,8 @@ module.exports = ({ apiUrl, ...options }, appType) => {
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: path.resolve(__dirname, '..', 'public/js'),
-            to: 'js',
+            from: path.resolve(__dirname, "..", "public/js"),
+            to: "js",
             noErrorOnMissing: true,
           },
         ],
@@ -45,16 +31,15 @@ module.exports = ({ apiUrl, ...options }, appType) => {
         process: {
           env: {
             mode: JSON.stringify(options.mode),
-            appType: JSON.stringify(appType),
             apiUrl: JSON.stringify(apiUrl),
-            publicPath: JSON.stringify("/")
+            publicPath: JSON.stringify("/"),
           },
         },
       }),
       new HtmlWebpackPlugin({
-        filename: 'index.html',
-        title: appType === 'ADMIN' ? 'KPI Admin' : 'KPI Cabinet',
-        template: path.resolve(__dirname, '..', 'public/index.html'),
+        filename: "index.html",
+        title: "KPI Cabinet",
+        template: path.resolve(__dirname, "..", "public/index.html"),
         favicon: "src/assets/images/favicon.png",
         buildTime: new Date().toString().slice(0, 24),
       }),
@@ -66,7 +51,7 @@ module.exports = ({ apiUrl, ...options }, appType) => {
         new MiniCssExtractPlugin({
           filename: "main.[hash:8].css",
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
       );
     }
 
@@ -75,12 +60,12 @@ module.exports = ({ apiUrl, ...options }, appType) => {
 
   return {
     ...options,
-    entry: path.resolve(`${__dirname}/../`, "src", appEntryPoints[appType].entry),
+    entry: path.resolve(__dirname, "../src/index-cabinet.tsx"),
 
     output: {
       filename: isProd ? "main-[hash:8].js" : undefined, // название файла. undefined - название по умолчанию
       publicPath: "/",
-      path: path.resolve(`${__dirname}/../`, appEntryPoints[appType].output),
+      path: path.resolve(__dirname, "../dist"),
     },
 
     module: {
@@ -92,7 +77,7 @@ module.exports = ({ apiUrl, ...options }, appType) => {
         },
         {
           test: /\.(ts|tsx)$/,
-          use: 'ts-loader',
+          use: "ts-loader",
           exclude: /node_modules/,
         },
         // loading images
@@ -110,7 +95,7 @@ module.exports = ({ apiUrl, ...options }, appType) => {
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
-          type: 'asset/resource',
+          type: "asset/resource",
         },
 
         // loading css
@@ -123,7 +108,7 @@ module.exports = ({ apiUrl, ...options }, appType) => {
               loader: "postcss-loader",
               options: {
                 postcssOptions: {
-                  config: path.resolve(`${__dirname}/../`, 'postcss.config.js'),
+                  config: path.resolve(`${__dirname}/../`, "postcss.config.js"),
                 },
                 sourceMap: true,
               },
@@ -141,7 +126,7 @@ module.exports = ({ apiUrl, ...options }, appType) => {
               loader: "postcss-loader",
               options: {
                 postcssOptions: {
-                  config: path.resolve(`${__dirname}/../`, 'postcss.config.js'),
+                  config: path.resolve(`${__dirname}/../`, "postcss.config.js"),
                 },
                 sourceMap: true,
               },
@@ -159,7 +144,7 @@ module.exports = ({ apiUrl, ...options }, appType) => {
               loader: "postcss-loader",
               options: {
                 postcssOptions: {
-                  config: path.resolve(`${__dirname}/../`, 'postcss.config.js'),
+                  config: path.resolve(`${__dirname}/../`, "postcss.config.js"),
                 },
                 sourceMap: true,
               },
@@ -202,8 +187,8 @@ module.exports = ({ apiUrl, ...options }, appType) => {
       },
       extensions: [".js", ".jsx", ".ts", ".tsx", ".svg", ".scss", ".sass"],
       fallback: {
-        process: false
-      }
+        process: false,
+      },
     },
 
     plugins: getPlugins(),

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ROUTES, E_APP_TYPE } from "#constants/index";
+import { ROUTES } from "#constants/index";
 import { UserAuthScreen } from "#src/app/screens/auth";
 import { SignIn } from "#src/app/screens/auth/pages/signIn";
 import { MainScreen } from "#src/app/screens/main";

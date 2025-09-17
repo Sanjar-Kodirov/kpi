@@ -1,5 +1,4 @@
 module.exports = (env = {}) => {
-
   return require('./webpack.base')({
     mode: "production",
     optimization: {
@@ -7,5 +6,5 @@ module.exports = (env = {}) => {
     },
     apiUrl: env.apiUrl,
     target: "browserslist",
-  }, env.appType);
+  });
 };

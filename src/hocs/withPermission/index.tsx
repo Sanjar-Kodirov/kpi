@@ -22,66 +22,37 @@ type TypeProps = {
 
 const mainCN = cn("with-permission");
 
-// export const withPermission = (annotations: StringMapI): boolean => {
-//   const authorities = usePermissions();
-//   const currentUserState = $currentUser.store.getState();
-//   const { data: currentUser } = currentUserState;
-
-//   const annotation = process.env.appType && annotations[process.env.appType];
-
-//   if (!currentUser || !annotation) {
-//     return false;
-//   }
-
-//   return (
-//     currentUser.role === E_USER_ROLES.deputy_member ||
-//     currentUser.role === E_USER_ROLES.regional_moderator ||
-//     (annotation && !!authorities && authorities[annotation])
-//   );
-// };
-
 const PAGE_TYPE = "page";
 
 export const WithPermission: FC<TypeProps> = (props) => {
-  const { annotations, type, authorities } = props;
+  const { annotations, type, authorities, children } = props;
+  const { data: currentUser } = $currentUser.store();
 
-  const currentUserState = $currentUser.store();
-
-  // const permissionsModeState = useStore($permissionsMode);
-  // const permissionUsersState = useStore($permissionUsers.store());
-
-  // const { user, authorities } = permissionsModeState;
-  const { data: currentUser } = currentUserState;
-
-  // const isPermissionMode = !!appRoutes.length && !!permissionUsersState.data;
-
-  const annotation = process.env.appType && annotations[process.env.appType];
-
-  if (currentUser) {
-    if (
-      currentUser.role === E_USER_ROLES.deputy_member ||
-      currentUser.role === E_USER_ROLES.regional_moderator ||
-      (annotation && !!authorities && authorities[annotation])
-    ) {
-      // return <div className={mainCN("", { [type]: type }, className)}>{render ? render() : props.children}</div>;
-      return props.children;
-    } else {
-      if (type === PAGE_TYPE) {
-        return (
-          <div>
-            <div className={mainCN("no-access")}>
-              <LockUnlockIconSvg />
-              <div>Доступ ограничен</div>
-            </div>
-          </div>
-        );
-      }
-      return null;
-    }
-  } else {
+  // Check if the user has the required role or authority
+  if (!currentUser) {
     return null;
   }
-  // }
+
+  const hasAccess =
+    currentUser.role === E_USER_ROLES.deputy_member ||
+    currentUser.role === E_USER_ROLES.regional_moderator ||
+    (annotations.CABINET && !!authorities && authorities[annotations.CABINET]);
+
+  if (!hasAccess) {
+    if (type === PAGE_TYPE) {
+      return (
+        <div>
+          <div className={mainCN("no-access")}>
+            <LockUnlockIconSvg />
+            <div>Доступ ограничен</div>
+          </div>
+        </div>
+      );
+    }
+    return null;
+  }
+
+  return <>{children}</>;
 };
 
 type TProps = {

@@ -2,10 +2,8 @@ import { TCodeNameModel } from "#businessLogic/models";
 
 import { httpGet } from "#core/httpClient";
 import { HandlerType } from "#core/store/types/handler";
-import { IBusinessType } from "#businessLogic/models/cabinetCompany";
 import { IVatListType } from "#businessLogic/models/vat";
-import { DistrictListType, RegionListType, IProductOriginItem } from "#businessLogic/models/public/common";
-import { IProductTypeModel } from "#businessLogic/models/productTypes";
+import { DistrictListType, RegionListType } from "#businessLogic/models/public/common";
 
 export const getRegions: HandlerType<void, RegionListType> = () =>
   httpGet({
