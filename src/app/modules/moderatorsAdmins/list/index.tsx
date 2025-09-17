@@ -62,39 +62,10 @@ export const UsersModeratorsAdminsList: FC = () => {
       },
 
       {
-        title: "Регион",
-        dataIndex: "region",
-        key: "region",
-        render: (_, row) => row.region,
-        sorter: false,
-      },
-      {
         title: "Роль",
         dataIndex: "type",
         key: "type",
         render: (_, row) => row.role,
-        sorter: false,
-      },
-
-      {
-        title: "Количество оценок",
-        dataIndex: "count",
-        key: "count",
-        render: (_, row) => row.approved_count,
-        sorter: false,
-      },
-      {
-        title: "Оценка",
-        dataIndex: "score",
-        key: "score",
-        render: (_, row) => row.average_score,
-        sorter: false,
-      },
-      {
-        title: "Общий балл",
-        dataIndex: "total_score",
-        key: "total_score",
-        render: (_, row) => row.total_score,
         sorter: false,
       },
     ];
@@ -110,7 +81,7 @@ export const UsersModeratorsAdminsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Users" total={usersModeratorsAdminsData?.total_users}></ContentUI.Header>
+      <ContentUI.Header title="Users" total={usersModeratorsAdminsData?.count}></ContentUI.Header>
       <UsersModeratorsAdminsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}

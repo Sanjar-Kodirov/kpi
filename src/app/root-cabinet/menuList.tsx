@@ -37,19 +37,19 @@ export const useCabinetMenuList = () => {
         name: "My evaluations",
         icon: <ServicesMenuSvgIcon />,
         path: ROUTES.EVALUATIONS,
-        rolesWithAccess: [E_USER_ROLES.regional_moderator],
+        rolesWithAccess: [E_USER_ROLES.regional_moderator, E_USER_ROLES.admin, E_USER_ROLES.super_admin],
       },
       {
         name: "Statistics",
         icon: <ReportsMenuSvgIcon />,
         path: ROUTES.STATISTICS,
-        rolesWithAccess: [E_USER_ROLES.regional_moderator],
+        rolesWithAccess: [E_USER_ROLES.regional_moderator, E_USER_ROLES.admin, E_USER_ROLES.super_admin],
       },
       {
         name: "Manage moderator",
         icon: <CatalogMenuSvgIcon />,
         path: ROUTES.MANAGE_MODERATOR,
-        rolesWithAccess: [E_USER_ROLES.regional_moderator],
+        rolesWithAccess: [E_USER_ROLES.admin, E_USER_ROLES.super_admin],
       },
     ] as TMenuList[];
   }, [i18n.language]);
