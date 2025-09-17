@@ -20,7 +20,7 @@ export const useAccessToMainScreen = () => {
     }
 
     if (token) {
-      $currentUser.request({ token: token || "" });
+      $currentUser.request({ token });
     }
 
     if (window.location.pathname === "/") {

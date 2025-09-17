@@ -23,6 +23,8 @@ import { Col, Row } from "antd";
 import { useStyles } from "./styles";
 import { ModalConfirmUI } from "#ui/modalConfirm";
 import { notificationSuccess } from "#ui/notifications";
+import { Link } from "react-router-dom";
+import { ROUTES } from "#constants/index";
 
 export const EvaluationsList: FC = () => {
   const addEvaluationModalControl = useModalControl<AddEditEvaluationDrawerModalProps>();
@@ -82,7 +84,11 @@ export const EvaluationsList: FC = () => {
         title: "Название",
         dataIndex: "name",
         key: "name",
-        render: (_, row) => row.user_name,
+        render: (_, row) => (
+          <Link to={`${ROUTES.EVALUATIONS}/${row.id}`} state={{ ...row }}>
+            {row.user_name}
+          </Link>
+        ),
         sorter: false,
       },
       {

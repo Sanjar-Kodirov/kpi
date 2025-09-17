@@ -12,6 +12,7 @@ import { WithPermissionLocal } from "#src/hocs/withPermission";
 import { EvaluationsList } from "../modules/evaluations/list";
 import { E_USER_ROLES } from "#businessLogic/models/account";
 import { StatisticsList } from "../modules/statistics/list";
+import { EvaluationDetails } from "../modules/evaluations/details";
 
 export const cabinetRoutes = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ export const cabinetRoutes = createBrowserRouter([
                 element: (
                   <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.deputy_member, E_USER_ROLES.regional_moderator]}>
                     <EvaluationsList />
+                  </WithPermissionLocal>
+                ),
+              },
+              {
+                path: `${ROUTES.EVALUATIONS}/:id`,
+                element: (
+                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.deputy_member, E_USER_ROLES.regional_moderator]}>
+                    <EvaluationDetails />
                   </WithPermissionLocal>
                 ),
               },
