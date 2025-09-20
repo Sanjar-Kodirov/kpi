@@ -1,5 +1,5 @@
 import { HandlerType } from "#core/store/types/handler";
-import { httpGet } from "#core/httpClient";
+import { httpGet, httpPost } from "#core/httpClient";
 import { TUsersModeratorsAdminsListParams, IUsersModeratorsAdminsList } from "#businessLogic/models/users";
 
 export const getUsersModeratorsAdmins: HandlerType<TUsersModeratorsAdminsListParams, IUsersModeratorsAdminsList> = (
@@ -8,5 +8,20 @@ export const getUsersModeratorsAdmins: HandlerType<TUsersModeratorsAdminsListPar
   return httpGet({
     url: `/api/users/moderators-admins`,
     params,
+  });
+};
+
+export const deleteModeratorAdmin: HandlerType<
+  {
+    user_id: string;
+  },
+  {
+    success: true;
+    message: "User deleted successfully";
+  }
+> = (data) => {
+  return httpPost({
+    url: `/api/users/delete`,
+    data,
   });
 };

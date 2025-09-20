@@ -110,7 +110,7 @@ export const StatisticsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="My statistics" total={statisticsData?.total_users}></ContentUI.Header>
+      <ContentUI.Header title="Статистика" total={statisticsData?.total_users}></ContentUI.Header>
       <StatisticsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}

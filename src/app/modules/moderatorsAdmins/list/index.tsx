@@ -7,17 +7,23 @@ import { SortOrderFromAntMap, TableUI } from "#ui/table";
 import { ColumnsType } from "antd/lib/table/interface";
 import { useTranslation } from "react-i18next";
 import { $usersModeratorsAdminsFilterProps, usersModeratorsAdminsFilterPropsDefault } from "../model";
-import { $usersModeratorsAdminsList } from "#stores/users";
+import { $deleteModeratorAdmin, $usersModeratorsAdminsList } from "#stores/users";
 import { UsersModeratorsAdminsListFilter } from "../listFilter";
 import {
   TUsersModeratorsAdminsListParams,
   TUsersModeratorsAdminsListAdditionalParams,
   IUsersModeratorsAdminsUser,
 } from "#businessLogic/models/users";
+import { ContextPopoverUI } from "#ui/contextPopover";
+import { ButtonUI } from "#ui/button";
+import { ModalConfirmUI } from "#ui/modalConfirm";
+import { StatusTagUI } from "#ui/statusTag";
+import { formatDate } from "#utils/formatters";
 
 export const UsersModeratorsAdminsList: FC = () => {
   const usersModeratorsAdminsFilterState = $usersModeratorsAdminsFilterProps.store();
   const usersModeratorsAdminsState = $usersModeratorsAdminsList.store();
+  const deleteModeratorAdminState = $deleteModeratorAdmin.store();
 
   const { t, i18n } = useTranslation();
 
@@ -68,6 +74,65 @@ export const UsersModeratorsAdminsList: FC = () => {
         render: (_, row) => row.role,
         sorter: false,
       },
+      {
+        title: "Телеграм ID",
+        dataIndex: "telegram_id",
+        key: "telegram_id",
+        render: (_, row) => row.telegram_id,
+        sorter: false,
+      },
+      {
+        title: "Телефон",
+        dataIndex: "phone_number",
+        key: "phone_number",
+        render: (_, row) => row.phone_number,
+        sorter: false,
+      },
+      {
+        title: "Дата создания",
+        dataIndex: "created_at",
+        key: "created_at",
+        render: (_, row) => formatDate(row.created_at),
+        sorter: false,
+      },
+      {
+        title: "Статус",
+        dataIndex: "status",
+        key: "status",
+        render: (_, row) => (row.is_active ? <StatusTagUI status="ACTIVE">Активный</StatusTagUI> : "Неактивный"),
+        sorter: false,
+      },
+
+      {
+        title: "",
+        dataIndex: "actions",
+        key: "action",
+        fixed: "right",
+        width: 60,
+        render: (_, row) => (
+          <ContextPopoverUI
+            content={
+              <>
+                <ContextPopoverUI.Item>
+                  <ModalConfirmUI
+                    title={t("branchNotifications.confirmDeleteBranch", "Вы уверены, что хотите удалить?")}
+                    onOk={() => $deleteModeratorAdmin.request({ user_id: row.id })}
+                    okText={undefined}
+                  >
+                    <ButtonUI
+                      onClick={() => $deleteModeratorAdmin.request({ user_id: row.id })}
+                      danger
+                      loading={deleteModeratorAdminState.loading}
+                    >
+                      {t("buttons.delete")}
+                    </ButtonUI>
+                  </ModalConfirmUI>
+                </ContextPopoverUI.Item>
+              </>
+            }
+          />
+        ),
+      },
     ];
   }, [usersModeratorsAdminsState, i18n.language, t]);
 
@@ -81,7 +146,7 @@ export const UsersModeratorsAdminsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Users" total={usersModeratorsAdminsData?.count}></ContentUI.Header>
+      <ContentUI.Header title="Модераторы" total={usersModeratorsAdminsData?.count}></ContentUI.Header>
       <UsersModeratorsAdminsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}

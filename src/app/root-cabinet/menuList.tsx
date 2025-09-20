@@ -34,19 +34,19 @@ export const useCabinetMenuList = () => {
       // },
 
       {
-        name: "My evaluations",
+        name: "Мои оценки",
         icon: <ServicesMenuSvgIcon />,
         path: ROUTES.EVALUATIONS,
         rolesWithAccess: [E_USER_ROLES.regional_moderator, E_USER_ROLES.admin, E_USER_ROLES.super_admin],
       },
       {
-        name: "Statistics",
+        name: "Статистика",
         icon: <ReportsMenuSvgIcon />,
         path: ROUTES.STATISTICS,
         rolesWithAccess: [E_USER_ROLES.regional_moderator, E_USER_ROLES.admin, E_USER_ROLES.super_admin],
       },
       {
-        name: "Manage moderator",
+        name: "Модераторы",
         icon: <CatalogMenuSvgIcon />,
         path: ROUTES.MANAGE_MODERATOR,
         rolesWithAccess: [E_USER_ROLES.admin, E_USER_ROLES.super_admin],

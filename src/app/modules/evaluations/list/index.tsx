@@ -178,7 +178,7 @@ export const EvaluationsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="My evaluations" total={evaluationsData?.count}></ContentUI.Header>
+      <ContentUI.Header title="Мои оценки" total={evaluationsData?.count}></ContentUI.Header>
       <EvaluationsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}
