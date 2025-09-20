@@ -19,6 +19,7 @@ import { ButtonUI } from "#ui/button";
 import { ModalConfirmUI } from "#ui/modalConfirm";
 import { StatusTagUI } from "#ui/statusTag";
 import { formatDate } from "#utils/formatters";
+import { notificationSuccess } from "#ui/notifications";
 
 export const UsersModeratorsAdminsList: FC = () => {
   const usersModeratorsAdminsFilterState = $usersModeratorsAdminsFilterProps.store();
@@ -44,6 +45,14 @@ export const UsersModeratorsAdminsList: FC = () => {
   const getUsersModeratorsAdminsList = () => {
     $usersModeratorsAdminsList.request({ ...queryParams });
   };
+
+  useEffect(() => {
+    if (deleteModeratorAdminState.data?.success) {
+      notificationSuccess(t("notifications.userDeletedSuccessfully", "Пользователь успешно удален"), "");
+      $deleteModeratorAdmin.reset();
+      getUsersModeratorsAdminsList();
+    }
+  }, [deleteModeratorAdminState.data?.success]);
 
   useEffect(() => {
     getUsersModeratorsAdminsList();

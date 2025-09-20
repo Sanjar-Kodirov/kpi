@@ -14,6 +14,7 @@ import { E_USER_ROLES } from "#businessLogic/models/account";
 import { StatisticsList } from "../modules/statistics/list";
 import { EvaluationDetails } from "../modules/evaluations/details";
 import { UsersModeratorsAdminsList } from "../modules/moderatorsAdmins/list";
+import { ProfilePage } from "../screens/settings";
 
 export const cabinetRoutes = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const cabinetRoutes = createBrowserRouter([
                     <UsersModeratorsAdminsList />
                   </WithPermissionLocal>
                 ),
+              },
+              {
+                path: ROUTES.SETTINGS_PROFILE,
+                element: <ProfilePage />,
               },
             ],
           },

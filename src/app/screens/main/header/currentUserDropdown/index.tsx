@@ -5,7 +5,6 @@ import { ROUTES } from "#constants/index";
 import { useLogOut } from "#hooks/useLogOut";
 import { ArrowBackSvgIcon, LogoutSvgIcon, ProfileSvgIcon, UserDropdownArrowSvgIcon } from "#src/assets/svg";
 import * as accountEffector from "#stores/account";
-import { $currentUser } from "#stores/account";
 import { Popover, Spin } from "antd";
 
 import { useTranslation } from "react-i18next";
@@ -24,10 +23,6 @@ const DropdownMenu: FC<DropdownMenuPropsType> = memo((props) => {
   const logOut = useLogOut();
 
   const [isOpenLangOptions, setIsOpenLangOptions] = useState(false);
-
-  const onPauseShiftClick = () => {
-    logOut();
-  };
 
   return (
     <div className={classes.dropdown}>

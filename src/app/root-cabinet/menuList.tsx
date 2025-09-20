@@ -1,5 +1,6 @@
 import { ROUTES } from "#constants/index";
 import { CatalogMenuSvgIcon, ReportsMenuSvgIcon, ServicesMenuSvgIcon } from "#svgIcons/navigation";
+import { ProfileSvgIcon } from "#src/assets/svg";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { TMenuList } from "#src/app/screens/main/sideNavigation";
@@ -50,6 +51,12 @@ export const useCabinetMenuList = () => {
         icon: <CatalogMenuSvgIcon />,
         path: ROUTES.MANAGE_MODERATOR,
         rolesWithAccess: [E_USER_ROLES.admin, E_USER_ROLES.super_admin],
+      },
+      {
+        name: t("sideNavigation.settings.profile"),
+        icon: <ProfileSvgIcon />,
+        path: ROUTES.SETTINGS_PROFILE,
+        rolesWithAccess: [E_USER_ROLES.regional_moderator, E_USER_ROLES.admin, E_USER_ROLES.super_admin],
       },
     ] as TMenuList[];
   }, [i18n.language]);
