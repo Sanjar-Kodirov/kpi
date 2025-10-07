@@ -7,13 +7,16 @@ import { SortOrderFromAntMap, TableUI } from "#ui/table";
 import { ColumnsType } from "antd/lib/table/interface";
 import { useTranslation } from "react-i18next";
 import { $statisticsFilterProps, statisticsFilterPropsDefault } from "../model";
-import { $statisticsList } from "#stores/statistics";
+import { $statisticsList, $exportStatistics } from "#stores/statistics";
 import { StatisticsListFilter } from "../listFilter";
 import {
   TStatisticsListParams,
   TStatisticsListAdditionalParams,
   IStatisticsUser,
 } from "#businessLogic/models/statistics";
+import { ButtonUI } from "#ui/button";
+import { downloadBlobResponse } from "#src/app/utils/download";
+import { notificationError } from "#ui/notifications";
 
 export const StatisticsList: FC = () => {
   const statisticsFilterState = $statisticsFilterProps.store();
@@ -108,9 +111,28 @@ export const StatisticsList: FC = () => {
     onFilterChange({ orderBy: field, sortOrder: order });
   };
 
+  const onExportStatistics = async () => {
+    const res = await $exportStatistics.request({
+      ...queryParams,
+    });
+
+    try {
+      await downloadBlobResponse(
+        { data: (res as any).data, headers: (res as any).headers },
+        `statistics_${new Date().toISOString().slice(0, 10)}`,
+      );
+    } catch (e) {
+      notificationError(t("notifications.error"), e instanceof Error ? e.message : "Failed to export file");
+    }
+  };
+
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Статистика" total={statisticsData?.total_users}></ContentUI.Header>
+      <ContentUI.Header title="Статистика" total={statisticsData?.total_users}>
+        <ButtonUI type="primary" onClick={onExportStatistics}>
+          Экспорт
+        </ButtonUI>
+      </ContentUI.Header>
       <StatisticsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}

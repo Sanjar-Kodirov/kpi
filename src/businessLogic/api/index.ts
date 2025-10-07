@@ -4,6 +4,7 @@ import * as evaluations from "./resources/department";
 import * as units from "./resources/units";
 import * as statistics from "./resources/statistics";
 import * as users from "./resources/users";
+import * as supervisorEvaluations from "./resources/supervisorEvaluations";
 export const api = {
   account,
   common,
@@ -11,4 +12,5 @@ export const api = {
   units,
   statistics,
   users,
+  supervisorEvaluations,
 };

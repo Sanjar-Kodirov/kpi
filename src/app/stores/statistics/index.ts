@@ -9,3 +9,8 @@ export const $statisticsList = createXHRStore<
   IStatisticsList,
   XHRDataStoreType<IStatisticsList | null>
 >(api.statistics.getStatistics, new XHRDataStoreState(null));
+
+export const $exportStatistics = createXHRStore<TStatisticsListParams, Blob, any>(
+  api.statistics.exportStatistics,
+  new XHRDataStoreState(null) as any,
+);

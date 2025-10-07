@@ -48,3 +48,11 @@ export interface IEvaluationItem {
   criteria_title: string;
   region_name: string;
 }
+
+export interface IExportEvaluationsModel {
+  from_date?: string;
+  to_date?: string;
+  role?: string;
+  evaluation_type?: string;
+  region_id?: string;
+}

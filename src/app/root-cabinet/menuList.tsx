@@ -47,6 +47,12 @@ export const useCabinetMenuList = () => {
         rolesWithAccess: [E_USER_ROLES.regional_moderator, E_USER_ROLES.admin, E_USER_ROLES.super_admin],
       },
       {
+        name: "Пользователи для оценки",
+        icon: <CatalogMenuSvgIcon />,
+        path: "/supervisor-evaluations/users-to-evalute",
+        rolesWithAccess: [E_USER_ROLES.admin, E_USER_ROLES.super_admin, E_USER_ROLES.regional_moderator],
+      },
+      {
         name: "Модераторы",
         icon: <CatalogMenuSvgIcon />,
         path: ROUTES.MANAGE_MODERATOR,

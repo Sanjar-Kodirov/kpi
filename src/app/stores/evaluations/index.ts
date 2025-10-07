@@ -4,6 +4,7 @@ import {
   IEvaluationDetailsModel,
   IRejectEvaluationModel,
   IAcceptEvaluationModel,
+  IExportEvaluationsModel,
 } from "#businessLogic/models/evaluations";
 import { createXHRStore } from "#core/store";
 import { XHRDataStoreState, XHRSuccessStoreState } from "#core/store/constructors";
@@ -26,5 +27,10 @@ export const $acceptEvaluation = createXHRStore<IAcceptEvaluationModel, IEvaluat
 );
 export const $rejectEvaluation = createXHRStore<IRejectEvaluationModel, IEvaluationDetailsModel, XHRSuccessStoreType>(
   api.evaluations.rejectEvaluation,
+  new XHRSuccessStoreState(),
+);
+
+export const $exportEvaluations = createXHRStore<IExportEvaluationsModel, Blob, XHRSuccessStoreType>(
+  api.evaluations.exportEvaluations,
   new XHRSuccessStoreState(),
 );

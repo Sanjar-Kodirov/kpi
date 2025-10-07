@@ -13,7 +13,7 @@ import { ColumnsType } from "antd/lib/table/interface";
 import { useTranslation } from "react-i18next";
 import { StatusTagUI } from "#ui/statusTag";
 import { $evaluationsFilterProps, evaluationsFilterPropsDefault } from "../model";
-import { $evaluationsList, $rejectEvaluation } from "#stores/evaluations";
+import { $evaluationsList, $exportEvaluations, $rejectEvaluation } from "#stores/evaluations";
 import { EvaluationsListFilter } from "../listFilter";
 import { formatDate } from "#utils/formatters";
 import { useModalControl } from "#hooks/useModalControl";
@@ -22,7 +22,8 @@ import { ModalUI } from "#ui/modal";
 import { Col, Row } from "antd";
 import { useStyles } from "./styles";
 import { ModalConfirmUI } from "#ui/modalConfirm";
-import { notificationSuccess } from "#ui/notifications";
+import { notificationError, notificationSuccess } from "#ui/notifications";
+import { downloadBlobResponse } from "#src/app/utils/download";
 import { Link } from "react-router-dom";
 import { ROUTES } from "#constants/index";
 
@@ -176,9 +177,29 @@ export const EvaluationsList: FC = () => {
     onFilterChange({ orderBy: field, sortOrder: order });
   };
 
+  const onExportEvaluations = async () => {
+    const res = await $exportEvaluations.request({
+      from_date: queryParams.from,
+      to_date: queryParams.to,
+    });
+
+    try {
+      await downloadBlobResponse(
+        { data: (res as any).data, headers: (res as any).headers },
+        `evaluations_${new Date().toISOString().slice(0, 10)}`,
+      );
+    } catch (e) {
+      notificationError(t("notifications.error"), e instanceof Error ? e.message : "Failed to export file");
+    }
+  };
+
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Мои оценки" total={evaluationsData?.count}></ContentUI.Header>
+      <ContentUI.Header title="Мои оценки" total={evaluationsData?.count}>
+        <ButtonUI type="primary" onClick={onExportEvaluations}>
+          Экспорт
+        </ButtonUI>
+      </ContentUI.Header>
       <EvaluationsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}

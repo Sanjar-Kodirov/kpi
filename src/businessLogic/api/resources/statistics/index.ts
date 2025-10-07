@@ -9,3 +9,12 @@ export const getStatistics: HandlerType<TStatisticsListParams, IStatisticsList> 
     params,
   });
 };
+
+export const exportStatistics: HandlerType<TStatisticsListParams, Blob> = (params) => {
+  return httpGet({
+    url: `/api/export/statistics`,
+    params,
+    responseType: "blob",
+    headers: { Accept: "*/*" },
+  });
+};

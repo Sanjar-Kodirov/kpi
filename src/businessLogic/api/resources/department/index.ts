@@ -4,6 +4,7 @@ import {
   TPendingEvaluationsListParams,
   IAcceptEvaluationModel,
   IRejectEvaluationModel,
+  IExportEvaluationsModel,
 } from "#businessLogic/models/evaluations";
 import { HandlerType } from "#core/store/types/handler";
 import { httpGet, httpPost } from "#core/httpClient";
@@ -30,4 +31,12 @@ export const rejectEvaluation: HandlerType<IRejectEvaluationModel, IEvaluationDe
   httpPost({
     url: `/api/reject-evaluation`,
     data,
+  });
+
+export const exportEvaluations: HandlerType<IExportEvaluationsModel, Blob> = (params) =>
+  httpGet({
+    url: `/api/export/evaluations`,
+    params,
+    responseType: "blob",
+    headers: { Accept: "*/*" },
   });

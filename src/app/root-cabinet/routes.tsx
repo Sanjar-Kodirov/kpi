@@ -14,6 +14,7 @@ import { E_USER_ROLES } from "#businessLogic/models/account";
 import { StatisticsList } from "../modules/statistics/list";
 import { EvaluationDetails } from "../modules/evaluations/details";
 import { UsersModeratorsAdminsList } from "../modules/moderatorsAdmins/list";
+import { SupervisorUsersToEvaluateList } from "#src/app/modules/supervisorEvaluations/usersToEvaluate/list";
 import { ProfilePage } from "../screens/settings";
 
 export const cabinetRoutes = createBrowserRouter([
@@ -75,6 +76,14 @@ export const cabinetRoutes = createBrowserRouter([
                     rolesWithAccess={[E_USER_ROLES.regional_moderator, E_USER_ROLES.admin, E_USER_ROLES.super_admin]}
                   >
                     <UsersModeratorsAdminsList />
+                  </WithPermissionLocal>
+                ),
+              },
+              {
+                path: "/supervisor-evaluations/users-to-evalute",
+                element: (
+                  <WithPermissionLocal rolesWithAccess={[E_USER_ROLES.admin, E_USER_ROLES.super_admin]}>
+                    <SupervisorUsersToEvaluateList />
                   </WithPermissionLocal>
                 ),
               },
