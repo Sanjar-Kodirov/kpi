@@ -30,7 +30,7 @@ export const SupervisorUsersToEvaluateList: FC = () => {
 
   const { data: listData, loading } = supervisorUsersToEvaluateState;
   const getList = () => {
-    $supervisorUsersToEvaluateList.request({ ...queryParams });
+    $supervisorUsersToEvaluateList.request({});
   };
 
   useEffect(() => {
