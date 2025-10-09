@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { ASIDE_SETTINGS } from "#constants/index";
 import { BurgerArrowSvgIcon } from "#svgIcons/index";
 import { Layout } from "antd";
@@ -8,6 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useStyles } from "./styles";
 import { SiderTheme } from "antd/es/layout/Sider";
 import cn from "classnames";
+import { Logo } from "#svgIcons/logo";
 
 const { Sider } = Layout;
 
@@ -35,6 +36,7 @@ export const MainAside: React.FC<TProps> = (props) => {
     sideInnerBg: siderTheme || "dark",
   });
   const { t } = useTranslation();
+  const [showLogoLabel, setShowLogoLabel] = useState(false);
 
   const location = useLocation();
 
@@ -44,11 +46,26 @@ export const MainAside: React.FC<TProps> = (props) => {
     }
   }, [location, windowWidth]);
 
+  useEffect(() => {
+    if (siderCollapsed) {
+      setShowLogoLabel(false);
+    } else {
+      // Задержка появления текста после анимации открытия sidebar
+      const timer = setTimeout(() => {
+        setShowLogoLabel(true);
+      }, 200); // 200ms - время анимации sidebar + небольшая задержка
+
+      return () => clearTimeout(timer);
+    }
+  }, [siderCollapsed]);
+
   const onSiderToggle = () => {
     const value = !siderCollapsed;
     setSiderCollapsed(value);
     localStorage.setItem(ASIDE_SETTINGS.LOCAL_COLLAPSED_NAME, value ? "1" : "0");
   };
+
+  console.log("siderCollapsed", siderCollapsed);
 
   return (
     <Sider
@@ -62,8 +79,11 @@ export const MainAside: React.FC<TProps> = (props) => {
     >
       <div className={classes.logoWrapper}>
         <Link to="/">
-          <div className={classes.logoIcon}>{/* <Logo /> */}</div>
-          <div className={classes.logoLabel}>{/* <Logo /> */}</div>
+          {siderCollapsed ? (
+            <div className={classes.logoIcon}>KPI</div>
+          ) : (
+            <div className={classes.logoLabel}>{showLogoLabel ? "Deputy KPI" : ""}</div>
+          )}
         </Link>
       </div>
       <div className={cn(classes.asideInner, asideInnerClassName)}>
@@ -71,7 +91,9 @@ export const MainAside: React.FC<TProps> = (props) => {
         {drawBottomInfo ? (
           <div className={classes.asideBottom}>
             <div className={classes.layoutAsideTriggerWr}>
-              <div></div>
+              <div className={classes.versionBlock}>
+                <span>{t("fields.version")}: </span>
+              </div>
               <div className={classes.layoutAsideTrigger} onClick={onSiderToggle}>
                 <span className={classes.layoutAsideTriggerText}>{t("fields.hide")}</span>
                 <BurgerArrowSvgIcon />

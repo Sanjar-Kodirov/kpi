@@ -11,7 +11,10 @@ import {
   TSupervisorUsersToEvaluateParams,
   TSupervisorUsersToEvaluateAdditionalParams,
 } from "#businessLogic/models/supervisorEvaluations";
-import { formatDate } from "#utils/formatters";
+import { useModalControl } from "#hooks/useModalControl";
+import { DrawerModalUI } from "#ui/drawerModal";
+import { AcceptUsersDrawer } from "../addEditDrawer";
+import { ButtonUI } from "#ui/button";
 
 const supervisorUsersToEvaluateFilterDefault: TSupervisorUsersToEvaluateParams = {
   page: 1,
@@ -23,10 +26,12 @@ export const SupervisorUsersToEvaluateList: FC = () => {
 
   const { t, i18n } = useTranslation();
 
-  const { queryParams, updateQueryParams, clearQueryParams } = useQueryParams<
+  const { queryParams, updateQueryParams } = useQueryParams<
     TSupervisorUsersToEvaluateParams,
     TSupervisorUsersToEvaluateAdditionalParams
   >({ queryParams: supervisorUsersToEvaluateFilterDefault });
+
+  const acceptUser = useModalControl<AcceptUsersDrawer>();
 
   const { data: listData, loading } = supervisorUsersToEvaluateState;
   const getList = () => {
@@ -55,13 +60,6 @@ export const SupervisorUsersToEvaluateList: FC = () => {
         sorter: false,
       },
       {
-        title: "Регион",
-        dataIndex: "region",
-        key: "region",
-        render: (_, row) => row.region,
-        sorter: false,
-      },
-      {
         title: "Роль",
         dataIndex: "role",
         key: "role",
@@ -69,18 +67,45 @@ export const SupervisorUsersToEvaluateList: FC = () => {
         sorter: false,
       },
       {
-        title: "Телефон",
-        dataIndex: "phone_number",
-        key: "phone_number",
-        render: (_, row) => row.phone_number,
+        title: "Доступ",
+        dataIndex: "membership_type",
+        key: "membership_type",
+        render: (_, row) => row.membership_type,
         sorter: false,
       },
       {
-        title: "Дата создания",
-        dataIndex: "created_at",
-        key: "created_at",
-        render: (_, row) => (row.created_at ? formatDate(row.created_at) : "-"),
+        title: "Закреплённый регион",
+        dataIndex: "assigned_region",
+        key: "assigned_region",
+        render: (_, row) => row.assigned_region.name,
         sorter: false,
+      },
+      {
+        title: "Количество оценочных критериев",
+        dataIndex: "pending_criteria_count",
+        key: "pending_criteria_count",
+        render: (_, row) => row.pending_criteria_count,
+        sorter: false,
+      },
+      {
+        title: "Общее количество критериев",
+        dataIndex: "total_criteria_count",
+        key: "total_criteria_count",
+        render: (_, row) => row.total_criteria_count,
+        sorter: false,
+      },
+      {
+        title: "",
+        dataIndex: "action",
+        key: "action",
+        render: (_, row) => {
+          console.log("row", row);
+          return (
+            <ButtonUI type="primary" onClick={() => acceptUser.openModal({ userId: row.id })}>
+              Принять
+            </ButtonUI>
+          );
+        },
       },
     ];
   }, [i18n.language, t]);
@@ -95,10 +120,18 @@ export const SupervisorUsersToEvaluateList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Пользователи для оценки" total={listData?.count}></ContentUI.Header>
+      <ContentUI.Header title="Пользователи для оценки" total={listData?.users.length}></ContentUI.Header>
       <ContentUI.Middle>
         <TableUI dataSource={listData?.users} loading={loading} columns={tableColumns} onSortChange={onSortChange} />
       </ContentUI.Middle>
+
+      <DrawerModalUI
+        open={acceptUser.modalProps.visible}
+        onClose={acceptUser.closeModal}
+        afterClose={acceptUser.resetModal}
+      >
+        <AcceptUsersDrawer modalControl={acceptUser} />
+      </DrawerModalUI>
     </ContentUI>
   );
 };
