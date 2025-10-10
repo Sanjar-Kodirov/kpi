@@ -134,30 +134,30 @@ export const EvaluationsList: FC = () => {
       //     );
       //   },
       // },
-      {
-        title: "Действие",
-        dataIndex: "action",
-        key: "action",
-        sorter: false,
-        render: (_, row) => {
-          return (
-            <div className={classes.flex}>
-              <div>
-                <ButtonUI onClick={() => onAddEvaluation(row.id)} size="extra-small" type="primary">
-                  Принять
-                </ButtonUI>
-              </div>
-              <div>
-                <ModalConfirmUI title="Отклонить оценку" onOk={() => onRejectEvaluation(row.id)}>
-                  <ButtonUI onClick={() => onRejectEvaluation(row.id)} size="extra-small" type="secondary">
-                    Отклонить
-                  </ButtonUI>
-                </ModalConfirmUI>
-              </div>
-            </div>
-          );
-        },
-      },
+      // {
+      //   title: "Действие",
+      //   dataIndex: "action",
+      //   key: "action",
+      //   sorter: false,
+      //   render: (_, row) => {
+      //     return (
+      //       <div className={classes.flex}>
+      //         <div>
+      //           <ButtonUI onClick={() => onAddEvaluation(row.id)} size="extra-small" type="primary">
+      //             Принять
+      //           </ButtonUI>
+      //         </div>
+      //         <div>
+      //           <ModalConfirmUI title="Отклонить оценку" onOk={() => onRejectEvaluation(row.id)}>
+      //             <ButtonUI onClick={() => onRejectEvaluation(row.id)} size="extra-small" type="secondary">
+      //               Отклонить
+      //             </ButtonUI>
+      //           </ModalConfirmUI>
+      //         </div>
+      //       </div>
+      //     );
+      //   },
+      // },
     ];
   }, [i18n.language, t]);
 

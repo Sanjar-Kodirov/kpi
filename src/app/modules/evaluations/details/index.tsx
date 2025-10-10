@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Card, Descriptions, Tag, Space, Divider, Image, Typography } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { ContentUI } from "#ui/content";
 import { ROUTES } from "#constants/index";
 import { $downloadFile } from "#stores/common";
 import { downloadBlobResponse } from "#utils/download";
+import { ButtonUI } from "#ui/button";
+import { ModalConfirmUI } from "#ui/modalConfirm";
+import { $acceptEvaluation, $rejectEvaluation } from "#stores/evaluations";
+import { notificationSuccess } from "#ui/notifications";
+import { useTranslation } from "react-i18next";
+import { useModalControl } from "#hooks/useModalControl";
+import { AddEditEvaluationDrawer, AddEditEvaluationDrawerModalProps } from "../addEditDrawer";
+import { ModalUI } from "#ui/modal";
 
 interface EvaluationData {
   id: string;
@@ -32,12 +40,36 @@ interface EvaluationData {
 
 export const EvaluationDetails: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const addEvaluationModalControl = useModalControl<AddEditEvaluationDrawerModalProps>();
 
   const evaluationData = location.state as EvaluationData;
   const downloadFileState = $downloadFile.store();
+  const acceptEvaluationState = $acceptEvaluation.store();
+  const rejectEvaluationState = $rejectEvaluation.store();
 
   const handleFileDownload = (fileId: string, fileName: string) => {
     $downloadFile.request(fileId);
+  };
+
+  const handleAcceptEvaluation = () => {
+    if (!evaluationData.id) return;
+
+    addEvaluationModalControl.openModal({ evaluationId: evaluationData.id });
+  };
+
+  const handleEvaluationCallback = () => {
+    // Navigate back to evaluations list after successful action
+    navigate(ROUTES.EVALUATIONS);
+  };
+
+  const handleRejectEvaluation = () => {
+    if (!evaluationData.id) return;
+
+    $rejectEvaluation.request({
+      evaluation_id: evaluationData.id,
+    });
   };
 
   useEffect(() => {
@@ -52,6 +84,17 @@ export const EvaluationDetails: React.FC = () => {
       $downloadFile.reset();
     }
   }, [downloadFileState.data]);
+
+  useEffect(() => {
+    if (rejectEvaluationState.success) {
+      notificationSuccess(t("notifications.success"), "Оценка отклонена");
+      navigate(ROUTES.EVALUATIONS);
+      $rejectEvaluation.reset();
+    }
+    return () => {
+      $rejectEvaluation.reset();
+    };
+  }, [rejectEvaluationState.success, navigate, t]);
 
   if (!evaluationData) {
     return (
@@ -171,8 +214,28 @@ export const EvaluationDetails: React.FC = () => {
               </Space>
             </div>
           )}
+
+          {/* Action Buttons */}
+          <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "flex-end" }}>
+            <ButtonUI onClick={handleAcceptEvaluation} size="small" type="primary">
+              Принять
+            </ButtonUI>
+            <ModalConfirmUI title="Отклонить оценку" onOk={handleRejectEvaluation}>
+              <ButtonUI
+                onClick={handleRejectEvaluation}
+                size="small"
+                type="secondary"
+                loading={rejectEvaluationState.loading}
+              >
+                Отклонить
+              </ButtonUI>
+            </ModalConfirmUI>
+          </div>
         </Card>
       </ContentUI.Middle>
+      <ModalUI open={addEvaluationModalControl.modalProps.visible} onCancel={addEvaluationModalControl.closeModal}>
+        <AddEditEvaluationDrawer modalControl={addEvaluationModalControl} callBack={handleEvaluationCallback} />
+      </ModalUI>
     </ContentUI>
   );
 };
