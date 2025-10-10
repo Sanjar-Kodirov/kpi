@@ -31,3 +31,10 @@ export const getGender: HandlerType<any, TCodeNameModel[]> = () =>
   httpGet({
     url: `/api/public/v1/commons/genders`,
   });
+
+export const downloadFile: HandlerType<string, Blob> = (fileId) =>
+  httpGet({
+    url: `/api/files/${fileId}`,
+    responseType: "blob",
+    headers: { Accept: "*/*" },
+  });

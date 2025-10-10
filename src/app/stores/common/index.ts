@@ -27,3 +27,8 @@ export const $gender = createXHRStore<any, TCodeNameModel[], XHRDataStoreType<TC
   api.common.getGender,
   new XHRDataStoreState([]),
 );
+
+export const $downloadFile = createXHRStore<string, Blob, XHRDataStoreType<Blob | null>>(
+  api.common.downloadFile,
+  new XHRDataStoreState(null),
+);
