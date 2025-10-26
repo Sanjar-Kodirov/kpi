@@ -99,7 +99,7 @@ export const EvaluationDetails: React.FC = () => {
   if (!evaluationData) {
     return (
       <ContentUI>
-        <div>Информация об оценке не найдена</div>
+        <div>Baholash haqida ma'lumot topilmadi</div>
       </ContentUI>
     );
   }
@@ -107,11 +107,11 @@ export const EvaluationDetails: React.FC = () => {
   const getStatusInfo = (status: string) => {
     switch (status) {
       case "pending":
-        return { color: "orange", text: "На рассмотрении" };
+        return { color: "orange", text: "Ko'rib chiqilmoqda" };
       case "approved":
-        return { color: "green", text: "Одобрено" };
+        return { color: "green", text: "Tasdiqlangan" };
       case "rejected":
-        return { color: "red", text: "Отклонено" };
+        return { color: "red", text: "Rad etilgan" };
       default:
         return { color: "default", text: status };
     }
@@ -124,7 +124,7 @@ export const EvaluationDetails: React.FC = () => {
 
   return (
     <ContentUI>
-      <ContentUI.Header backPath={ROUTES.EVALUATIONS} title="Оценка" />
+      <ContentUI.Header backPath={ROUTES.EVALUATIONS} title="Baholash" />
       <ContentUI.Middle>
         <Card>
           <Descriptions
@@ -136,27 +136,25 @@ export const EvaluationDetails: React.FC = () => {
               backgroundColor: "#fafafa",
             }}
           >
-            <Descriptions.Item label="ФИО">{evaluationData.user_name}</Descriptions.Item>
-            <Descriptions.Item label="Должность">
-              {evaluationData.user_role === "deputy_member" ? "Депутат" : "Модератор"}
+            <Descriptions.Item label="F.I.O.">{evaluationData.user_name}</Descriptions.Item>
+            <Descriptions.Item label="Lavozim">
+              {evaluationData.user_role === "deputy_member" ? "Deputat" : "Moderator"}
             </Descriptions.Item>
-            <Descriptions.Item label="Регион">{evaluationData.region_name}</Descriptions.Item>
-            <Descriptions.Item label="Критерий">{evaluationData.criteria_title}</Descriptions.Item>
-            <Descriptions.Item label="Дата оценки">{formattedDate}</Descriptions.Item>
-            <Descriptions.Item label="Оценка">
-              <Tag color="blue">{evaluationData.score} баллов</Tag>
+            <Descriptions.Item label="Viloyat">{evaluationData.region_name}</Descriptions.Item>
+            <Descriptions.Item label="Kriteriy">{evaluationData.criteria_title}</Descriptions.Item>
+            <Descriptions.Item label="Baholash sanasi">{formattedDate}</Descriptions.Item>
+            <Descriptions.Item label="Baholash">
+              <Tag color="blue">{evaluationData.score} ball</Tag>
             </Descriptions.Item>
-            <Descriptions.Item label="Статус">
+            <Descriptions.Item label="Holat">
               <Tag color={statusInfo.color}>{statusInfo.text}</Tag>
             </Descriptions.Item>
-            <Descriptions.Item label="Комментарий">
-              {evaluationData.evaluation_text || "Нет комментария"}
-            </Descriptions.Item>
+            <Descriptions.Item label="Izoh">{evaluationData.evaluation_text || "Izoh yo'q"}</Descriptions.Item>
           </Descriptions>
 
           {evaluationData.photo_file_ids && evaluationData.photo_file_ids.length > 0 && (
             <div style={{ marginTop: 24 }}>
-              <Divider orientation="left">Фотографии</Divider>
+              <Divider orientation="left">Rasmlar</Divider>
               <Space wrap>
                 {evaluationData.photo_file_ids.map((photoId, index) => (
                   <Image
@@ -169,7 +167,7 @@ export const EvaluationDetails: React.FC = () => {
                       aspectRatio: "1/1",
                     }}
                     src={`https://kpi-dep.qitmir.uz/api/photos/${photoId}`}
-                    alt={`Приложение ${index + 1}`}
+                    alt={`Ilova ${index + 1}`}
                   />
                 ))}
               </Space>
@@ -178,7 +176,7 @@ export const EvaluationDetails: React.FC = () => {
 
           {evaluationData.files && evaluationData.files.length > 0 && (
             <div style={{ marginTop: 24 }}>
-              <Divider orientation="left">Файлы</Divider>
+              <Divider orientation="left">Fayllar</Divider>
               <Space direction="vertical" style={{ width: "100%" }}>
                 {evaluationData.files.map((file, index) => (
                   <div
@@ -218,16 +216,16 @@ export const EvaluationDetails: React.FC = () => {
           {/* Action Buttons */}
           <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "flex-end" }}>
             <ButtonUI onClick={handleAcceptEvaluation} size="small" type="primary">
-              Принять
+              Qabul qilish
             </ButtonUI>
-            <ModalConfirmUI title="Отклонить оценку" onOk={handleRejectEvaluation}>
+            <ModalConfirmUI title="Baholashni rad etish" onOk={handleRejectEvaluation}>
               <ButtonUI
                 onClick={handleRejectEvaluation}
                 size="small"
                 type="secondary"
                 loading={rejectEvaluationState.loading}
               >
-                Отклонить
+                Rad etish
               </ButtonUI>
             </ModalConfirmUI>
           </div>

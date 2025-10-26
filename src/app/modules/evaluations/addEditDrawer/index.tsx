@@ -42,7 +42,7 @@ export const AddEditEvaluationDrawer: FC<TProps> = (props) => {
     if (acceptEvaluationState.success) {
       callBack && callBack();
 
-      notificationSuccess(t("notifications.success"), "Оценка принята");
+      notificationSuccess(t("notifications.success"), "Baholash qabul qilindi");
       modalControl.closeModal();
       $acceptEvaluation.reset();
     }
@@ -70,7 +70,7 @@ export const AddEditEvaluationDrawer: FC<TProps> = (props) => {
       <ModalUI.Error error={acceptEvaluationState.error} />
       <ModalUI.Middle>
         <FormUI form={form} onFinish={onSubmit} phantomSubmit>
-          <FormUI.Item label="Укажите оценку" name="score" rules={requiredRules}>
+          <FormUI.Item label="Baholashni ko'rsating" name="score" rules={requiredRules}>
             <InputNumber style={{ width: "100%" }} min={1} max={10} placeholder="Оценка от 1 до 10" />
           </FormUI.Item>
         </FormUI>

@@ -48,7 +48,7 @@ export const UsersModeratorsAdminsList: FC = () => {
 
   useEffect(() => {
     if (deleteModeratorAdminState.data?.success) {
-      notificationSuccess(t("notifications.userDeletedSuccessfully", "Пользователь успешно удален"), "");
+      notificationSuccess(t("notifications.userDeletedSuccessfully", "Foydalanuvchi muvaffaqiyatli o'chirildi"), "");
       $deleteModeratorAdmin.reset();
       getUsersModeratorsAdminsList();
     }
@@ -69,7 +69,7 @@ export const UsersModeratorsAdminsList: FC = () => {
         sorter: false,
       },
       {
-        title: "ФИО",
+        title: "F.I.O.",
         dataIndex: "name",
         key: "name",
         render: (_, row) => row.full_name,
@@ -77,7 +77,7 @@ export const UsersModeratorsAdminsList: FC = () => {
       },
 
       {
-        title: "Роль",
+        title: "Rol",
         dataIndex: "type",
         key: "type",
         render: (_, row) => row.role,
@@ -91,24 +91,24 @@ export const UsersModeratorsAdminsList: FC = () => {
         sorter: false,
       },
       {
-        title: "Телефон",
+        title: "Telefon",
         dataIndex: "phone_number",
         key: "phone_number",
         render: (_, row) => row.phone_number,
         sorter: false,
       },
       {
-        title: "Дата создания",
+        title: "Yaratilgan sana",
         dataIndex: "created_at",
         key: "created_at",
         render: (_, row) => formatDate(row.created_at),
         sorter: false,
       },
       {
-        title: "Статус",
+        title: "Holat",
         dataIndex: "status",
         key: "status",
-        render: (_, row) => (row.is_active ? <StatusTagUI status="ACTIVE">Активный</StatusTagUI> : "Неактивный"),
+        render: (_, row) => (row.is_active ? <StatusTagUI status="ACTIVE">Faol</StatusTagUI> : "Faol emas"),
         sorter: false,
       },
 
@@ -155,7 +155,7 @@ export const UsersModeratorsAdminsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Модераторы" total={usersModeratorsAdminsData?.count}></ContentUI.Header>
+      <ContentUI.Header title="Moderatorlar" total={usersModeratorsAdminsData?.count}></ContentUI.Header>
       <UsersModeratorsAdminsListFilter
         queryParams={queryParams}
         updateQueryParams={updateQueryParams}

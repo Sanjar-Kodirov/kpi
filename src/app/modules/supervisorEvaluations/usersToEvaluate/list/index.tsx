@@ -53,42 +53,42 @@ export const SupervisorUsersToEvaluateList: FC = () => {
         sorter: false,
       },
       {
-        title: "ФИО",
+        title: "F.I.O.",
         dataIndex: "full_name",
         key: "full_name",
         render: (_, row) => row.full_name,
         sorter: false,
       },
       {
-        title: "Роль",
+        title: "Rol",
         dataIndex: "role",
         key: "role",
         render: (_, row) => row.role,
         sorter: false,
       },
       {
-        title: "Доступ",
+        title: "Kirish",
         dataIndex: "membership_type",
         key: "membership_type",
         render: (_, row) => row.membership_type,
         sorter: false,
       },
       {
-        title: "Закреплённый регион",
+        title: "Biriktirilgan viloyat",
         dataIndex: "assigned_region",
         key: "assigned_region",
         render: (_, row) => row.assigned_region.name,
         sorter: false,
       },
       {
-        title: "Количество оценочных критериев",
+        title: "Baholash kriteriyalari soni",
         dataIndex: "pending_criteria_count",
         key: "pending_criteria_count",
         render: (_, row) => row.pending_criteria_count,
         sorter: false,
       },
       {
-        title: "Общее количество критериев",
+        title: "Umumiy kriteriyalar soni",
         dataIndex: "total_criteria_count",
         key: "total_criteria_count",
         render: (_, row) => row.total_criteria_count,
@@ -120,7 +120,7 @@ export const SupervisorUsersToEvaluateList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Пользователи для оценки" total={listData?.users.length}></ContentUI.Header>
+      <ContentUI.Header title="Baholash uchun foydalanuvchilar" total={listData?.users.length}></ContentUI.Header>
       <ContentUI.Middle>
         <TableUI dataSource={listData?.users} loading={loading} columns={tableColumns} onSortChange={onSortChange} />
       </ContentUI.Middle>

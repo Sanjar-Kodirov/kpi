@@ -55,7 +55,7 @@ export const EvaluationsList: FC = () => {
 
   useEffect(() => {
     if (rejectEvaluationState.success) {
-      notificationSuccess(t("notifications.success"), "Оценка отклонена");
+      notificationSuccess(t("notifications.success"), "Baholash rad etildi");
       getEvaluationList();
     }
     return () => {
@@ -82,7 +82,7 @@ export const EvaluationsList: FC = () => {
         sorter: false,
       },
       {
-        title: "Название",
+        title: "Ism",
         dataIndex: "name",
         key: "name",
         render: (_, row) => (
@@ -93,21 +93,21 @@ export const EvaluationsList: FC = () => {
         sorter: false,
       },
       {
-        title: "Регион",
+        title: "Viloyat",
         dataIndex: "region_name",
         key: "region_name",
         render: (_, row) => row.region_name,
         sorter: false,
       },
       {
-        title: "Тема оценки",
+        title: "Baholash mavzusi",
         dataIndex: "evaluation_text",
         key: "evaluation_text",
         render: (_, row) => row.evaluation_text,
         sorter: false,
       },
       {
-        title: "Критерий оценки",
+        title: "Baholash kriteriyi",
         dataIndex: "criteria_title",
         key: "criteria_title",
         render: (_, row) => row.criteria_title,
@@ -115,7 +115,7 @@ export const EvaluationsList: FC = () => {
       },
 
       {
-        title: "Дата оценки",
+        title: "Baholash sanasi",
         dataIndex: "evaluated_date",
         key: "evaluated_date",
         render: (_, row) => <div>{formatDate(row.evaluated_date)}</div>,
@@ -195,7 +195,7 @@ export const EvaluationsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Мои оценки" total={evaluationsData?.count}>
+      <ContentUI.Header title="Mening baholashlarim" total={evaluationsData?.count}>
         <ButtonUI type="primary" onClick={onExportEvaluations}>
           Экспорт
         </ButtonUI>

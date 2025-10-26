@@ -57,7 +57,7 @@ export const StatisticsList: FC = () => {
         sorter: false,
       },
       {
-        title: "ФИО",
+        title: "F.I.O.",
         dataIndex: "name",
         key: "name",
         render: (_, row) => row.full_name,
@@ -65,14 +65,14 @@ export const StatisticsList: FC = () => {
       },
 
       {
-        title: "Регион",
+        title: "Viloyat",
         dataIndex: "region",
         key: "region",
         render: (_, row) => row.region,
         sorter: false,
       },
       {
-        title: "Роль",
+        title: "Rol",
         dataIndex: "type",
         key: "type",
         render: (_, row) => row.role,
@@ -80,21 +80,21 @@ export const StatisticsList: FC = () => {
       },
 
       {
-        title: "Количество оценок",
+        title: "Baholashlar soni",
         dataIndex: "count",
         key: "count",
         render: (_, row) => row.approved_count,
         sorter: false,
       },
       {
-        title: "Оценка",
+        title: "Baholash",
         dataIndex: "score",
         key: "score",
         render: (_, row) => row.average_score,
         sorter: false,
       },
       {
-        title: "Общий балл",
+        title: "Umumiy ball",
         dataIndex: "total_score",
         key: "total_score",
         render: (_, row) => row.total_score,
@@ -128,7 +128,7 @@ export const StatisticsList: FC = () => {
 
   return (
     <ContentUI fixed>
-      <ContentUI.Header title="Статистика" total={statisticsData?.total_users}>
+      <ContentUI.Header title="Statistika" total={statisticsData?.total_users}>
         <ButtonUI type="primary" onClick={onExportStatistics}>
           Экспорт
         </ButtonUI>
