@@ -130,7 +130,7 @@ export const StatisticsList: FC = () => {
     <ContentUI fixed>
       <ContentUI.Header title="Statistika" total={statisticsData?.total_users}>
         <ButtonUI type="primary" onClick={onExportStatistics}>
-          Экспорт
+          Yuklab olish
         </ButtonUI>
       </ContentUI.Header>
       <StatisticsListFilter

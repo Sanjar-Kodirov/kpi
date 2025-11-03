@@ -65,13 +65,13 @@ export const AddEditEvaluationDrawer: FC<TProps> = (props) => {
     <>
       <ModalUI.Loading show={acceptEvaluationState.loading} />
       <ModalUI.Header>
-        <ModalUI.Title>Укажите данные оценки</ModalUI.Title>
+        <ModalUI.Title>Baholash ma'lumotlarini kiriting</ModalUI.Title>
       </ModalUI.Header>
       <ModalUI.Error error={acceptEvaluationState.error} />
       <ModalUI.Middle>
         <FormUI form={form} onFinish={onSubmit} phantomSubmit>
           <FormUI.Item label="Baholashni ko'rsating" name="score" rules={requiredRules}>
-            <InputNumber style={{ width: "100%" }} min={1} max={10} placeholder="Оценка от 1 до 10" />
+            <InputNumber style={{ width: "100%" }} min={1} max={10} placeholder="1 dan 10 gacha baho" />
           </FormUI.Item>
         </FormUI>
       </ModalUI.Middle>
@@ -79,12 +79,12 @@ export const AddEditEvaluationDrawer: FC<TProps> = (props) => {
         <ModalUI.Buttons>
           <ModalUI.Buttons.Col>
             <ButtonUI type="secondary" onClick={() => modalControl.closeModal()} fullWidth>
-              Отмена
+              Bekor qilish
             </ButtonUI>
           </ModalUI.Buttons.Col>
           <ModalUI.Buttons.Col>
             <ButtonUI type="primary" onClick={() => form.submit()} fullWidth>
-              Сохранить
+              Saqlash
             </ButtonUI>
           </ModalUI.Buttons.Col>
         </ModalUI.Buttons>

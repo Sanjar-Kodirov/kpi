@@ -86,7 +86,7 @@ export const EvaluationsList: FC = () => {
         dataIndex: "name",
         key: "name",
         render: (_, row) => (
-          <Link to={`${ROUTES.EVALUATIONS}/${row.id}`} state={{ ...row }}>
+          <Link style={{ color: "#3B82F6" }} to={`${ROUTES.EVALUATIONS}/${row.id}`} state={{ ...row }}>
             {row.user_name}
           </Link>
         ),
@@ -197,7 +197,7 @@ export const EvaluationsList: FC = () => {
     <ContentUI fixed>
       <ContentUI.Header title="Mening baholashlarim" total={evaluationsData?.count}>
         <ButtonUI type="primary" onClick={onExportEvaluations}>
-          Экспорт
+          Yuklab olish
         </ButtonUI>
       </ContentUI.Header>
       <EvaluationsListFilter

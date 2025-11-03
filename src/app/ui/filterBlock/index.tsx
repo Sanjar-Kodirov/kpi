@@ -78,7 +78,7 @@ const FilterBlockUI = <P extends {}, R = undefined>(props: PropsTypes<P, R>) => 
 
       {queryParams && childrenElements.length > numberOfFilterItemsToRender ? (
         <ButtonUI onClick={() => extendedFilterDrawerController.openModal()} type="primary">
-          {t("fields.advancedFilter")}
+          Qo'shimcha filter
         </ButtonUI>
       ) : (
         ""
@@ -88,12 +88,12 @@ const FilterBlockUI = <P extends {}, R = undefined>(props: PropsTypes<P, R>) => 
         <div className="filterBlock__buttons">
           {clearQueryParams && (
             <ButtonUI type="secondary" onClick={() => clearQueryParams()} size="small">
-              {t("buttons.drop")}
+              Tozalash
             </ButtonUI>
           )}
           {updateQueryParams && (
             <ButtonUI type="primary" onClick={() => updateQueryParams({} as P)} size="small">
-              {t("buttons.update")}
+              Yangilash
             </ButtonUI>
           )}
         </div>

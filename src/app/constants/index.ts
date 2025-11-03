@@ -68,28 +68,28 @@ export const passwordRules = [{ required: true, message: i18n.t("notifications.p
 export const validatePasswordForOnlyNumbers = [
   {
     required: true,
-    message: "Поле обязательно для заполнения",
+    message: "Maydon to'ldirilishi shart",
   },
   {
     pattern: /^[0-9]*$/,
-    message: "Пароль должен содержать только цифры",
+    message: "Parolda faqat raqamlar bo'lishi kerak",
   },
   {
     validator: (_, value) =>
       value && value.length >= 6
         ? Promise.resolve()
-        : Promise.reject(new Error("Пароль должен содержать минимум 6 символов")),
+        : Promise.reject(new Error("Parol kamida 6 ta belgidan iborat bo'lishi kerak")),
   },
 ];
 
 export const validateForNumbers = [
   {
     required: true,
-    message: "Поле обязательно для заполнения",
+    message: "Maydon to'ldirilishi shart",
   },
   {
     pattern: /^[0-9]*$/,
-    message: "Поле должно содержать только цифры",
+    message: "Maydonda faqat raqamlar bo'lishi kerak",
   },
 ];
 

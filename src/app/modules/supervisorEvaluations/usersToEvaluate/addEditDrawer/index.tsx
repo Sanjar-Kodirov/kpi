@@ -68,7 +68,7 @@ export const AcceptUsersDrawer: FC<TProps> = (props) => {
     if (createSuperVisorEvaluationState.success) {
       callBack && callBack();
 
-      notificationSuccess(t("notifications.success"), "Критерий оценки принят");
+      notificationSuccess(t("notifications.success"), "Baholash mezoni qabul qilindi");
       modalControl.closeModal();
       resetState();
     }
@@ -99,17 +99,17 @@ export const AcceptUsersDrawer: FC<TProps> = (props) => {
     <>
       <ModalUI.Loading show={supervisorUsersToEvaluateCriteriaState.loading} />
       <ModalUI.Header>
-        <ModalUI.Title>Укажите данные оценки</ModalUI.Title>
+        <ModalUI.Title>Baholash ma'lumotlarini kiriting</ModalUI.Title>
       </ModalUI.Header>
       <ModalUI.Error error={supervisorUsersToEvaluateCriteriaState.error} />
       <ModalUI.Middle>
         <FormUI form={form} onFinish={onSubmit} phantomSubmit>
-          <FormUI.Item name="criteria" label="Критерий оценки">
+          <FormUI.Item name="criteria" label="Baholash mezonlari">
             <SelectUI
               style={{ width: "100%" }}
               allowClear={true}
               loading={supervisorUsersToEvaluateCriteriaState.loading}
-              placeholder="Выберите критерию"
+              placeholder="Me'yorni tanlang"
             >
               {supervisorUsersToEvaluateCriteriaState.data?.criteria.map((item) => {
                 return (
@@ -121,11 +121,11 @@ export const AcceptUsersDrawer: FC<TProps> = (props) => {
             </SelectUI>
           </FormUI.Item>
 
-          <FormUI.Item name="evaluation_text" label="Комментарий" rules={requiredRules}>
-            <InputUI style={{ width: "100%" }} placeholder="Введите оценку" />
+          <FormUI.Item name="evaluation_text" label="Izoh" rules={requiredRules}>
+            <InputUI style={{ width: "100%" }} placeholder="Bahoni kiriting" />
           </FormUI.Item>
 
-          <FormUI.Item label="Файлы (опционально)">
+          <FormUI.Item label="Fayllar (ixtiyoriy)">
             <Upload.Dragger
               multiple
               fileList={fileList}
@@ -144,9 +144,9 @@ export const AcceptUsersDrawer: FC<TProps> = (props) => {
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />
               </p>
-              <p className="ant-upload-text">Перетащите файлы сюда или кликните для выбора</p>
+              <p className="ant-upload-text">Fayllarni shu yerga tortib keltiring yoki tanlash uchun bosing</p>
               <p className="ant-upload-hint">
-                Допустимые типы: изображения, PDF, DOC/X, XLS/X, TXT. До {MAX_FILE_SIZE_MB}MB каждый.
+                Qabul qilinadigan turlari: rasm, PDF, DOC/X, XLS/X, TXT. Har biri uchun {MAX_FILE_SIZE_MB}MB gacha.
               </p>
             </Upload.Dragger>
           </FormUI.Item>
@@ -156,12 +156,12 @@ export const AcceptUsersDrawer: FC<TProps> = (props) => {
         <ModalUI.Buttons>
           <ModalUI.Buttons.Col>
             <ButtonUI type="secondary" onClick={() => modalControl.closeModal()} fullWidth>
-              Отмена
+              Bekor qilish
             </ButtonUI>
           </ModalUI.Buttons.Col>
           <ModalUI.Buttons.Col>
             <ButtonUI type="primary" onClick={() => form.submit()} fullWidth>
-              Сохранить
+              Saqlash
             </ButtonUI>
           </ModalUI.Buttons.Col>
         </ModalUI.Buttons>

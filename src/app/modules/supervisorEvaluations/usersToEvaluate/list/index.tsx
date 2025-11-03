@@ -102,7 +102,7 @@ export const SupervisorUsersToEvaluateList: FC = () => {
           console.log("row", row);
           return (
             <ButtonUI type="primary" onClick={() => acceptUser.openModal({ userId: row.id })}>
-              Принять
+              Qabul qilish
             </ButtonUI>
           );
         },

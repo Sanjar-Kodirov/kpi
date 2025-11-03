@@ -84,7 +84,7 @@ export const UsersModeratorsAdminsList: FC = () => {
         sorter: false,
       },
       {
-        title: "Телеграм ID",
+        title: "Telegram ID",
         dataIndex: "telegram_id",
         key: "telegram_id",
         render: (_, row) => row.telegram_id,
@@ -124,7 +124,7 @@ export const UsersModeratorsAdminsList: FC = () => {
               <>
                 <ContextPopoverUI.Item>
                   <ModalConfirmUI
-                    title={t("branchNotifications.confirmDeleteBranch", "Вы уверены, что хотите удалить?")}
+                    title={t("branchNotifications.confirmDeleteBranch", "Ishonchingiz komilmi, o'chirmoqchimisiz?")}
                     onOk={() => $deleteModeratorAdmin.request({ user_id: row.id })}
                     okText={undefined}
                   >

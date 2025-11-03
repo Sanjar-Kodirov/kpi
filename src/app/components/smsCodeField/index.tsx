@@ -91,7 +91,7 @@ export const SmsCodeField = (props) => {
               {deadline.time !== null && (
                 <Countdown
                   className={classes.pinCodeTime}
-                  title="Срок действия кода"
+                  title="Kod amal qilish muddati"
                   value={deadline.time}
                   format="mm:ss"
                   onFinish={onTimerFinish}

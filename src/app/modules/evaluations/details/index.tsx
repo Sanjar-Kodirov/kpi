@@ -6,6 +6,7 @@ import { ContentUI } from "#ui/content";
 import { ROUTES } from "#constants/index";
 import { $downloadFile } from "#stores/common";
 import { downloadBlobResponse } from "#utils/download";
+
 import { ButtonUI } from "#ui/button";
 import { ModalConfirmUI } from "#ui/modalConfirm";
 import { $acceptEvaluation, $rejectEvaluation } from "#stores/evaluations";
@@ -14,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { useModalControl } from "#hooks/useModalControl";
 import { AddEditEvaluationDrawer, AddEditEvaluationDrawerModalProps } from "../addEditDrawer";
 import { ModalUI } from "#ui/modal";
+import { api } from "#businessLogic/api";
 
 interface EvaluationData {
   id: string;
@@ -49,8 +51,21 @@ export const EvaluationDetails: React.FC = () => {
   const acceptEvaluationState = $acceptEvaluation.store();
   const rejectEvaluationState = $rejectEvaluation.store();
 
-  const handleFileDownload = (fileId: string, fileName: string) => {
-    $downloadFile.request(fileId);
+  const handleFileDownload = async (fileId: string, fileName: string) => {
+    try {
+      const response = await api.common.downloadFile(fileId);
+      if (response) {
+        downloadBlobResponse(
+          {
+            data: response.data,
+            headers: { "content-disposition": `attachment; filename="${fileName}"` },
+          },
+          fileName,
+        );
+      }
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
   };
 
   const handleAcceptEvaluation = () => {
@@ -87,7 +102,7 @@ export const EvaluationDetails: React.FC = () => {
 
   useEffect(() => {
     if (rejectEvaluationState.success) {
-      notificationSuccess(t("notifications.success"), "Оценка отклонена");
+      notificationSuccess(t("notifications.success"), "Baholash rad etildi");
       navigate(ROUTES.EVALUATIONS);
       $rejectEvaluation.reset();
     }

@@ -40,9 +40,9 @@ export const ProfilePage: FC = memo(() => {
 
   const getMembershipTypeDisplayName = (membershipType: string) => {
     const membershipMap: Record<string, string> = {
-      city: "Городской",
-      regional: "Региональный",
-      national: "Национальный",
+      city: "Shaharlik",
+      regional: "Hududiy",
+      national: "Milliy",
     };
     return membershipMap[membershipType] || membershipType;
   };
@@ -50,23 +50,23 @@ export const ProfilePage: FC = memo(() => {
   const profileData = currentUser
     ? [
         {
-          title: t("fields.fullNameShort"),
+          title: "F.I.O.",
           value: currentUser.full_name,
         },
         {
-          title: t("fields.phoneNumber"),
+          title: "Telefon raqami",
           value: currentUser.phone_number,
         },
         {
-          title: t("fields.region"),
+          title: "Viloyat",
           value: currentUser.region_name,
         },
         {
-          title: "Роль",
+          title: "Rol",
           value: getRoleDisplayName(currentUser.role),
         },
         {
-          title: "Тип членства",
+          title: "A'zolik turi",
           value: getMembershipTypeDisplayName(currentUser.membership_type),
         },
       ]
@@ -83,8 +83,8 @@ export const ProfilePage: FC = memo(() => {
   if (!currentUser) {
     return (
       <div className={classes.errorContainer}>
-        <h2>{t("notifications.error")}</h2>
-        <p>{t("notifications.userNotFound")}</p>
+        <h2>Xatolik</h2>
+        <p>To'liq ma'lumot topilmadi</p>
       </div>
     );
   }
@@ -111,7 +111,7 @@ export const ProfilePage: FC = memo(() => {
           </div>
 
           <div className={classes.infoSection}>
-            <h3 className={classes.sectionTitle}>{t("fields.general")}</h3>
+            <h3 className={classes.sectionTitle}>Umumiy</h3>
             <InfoCardListUI data={profileData} className={classes.infoCards} />
           </div>
         </div>

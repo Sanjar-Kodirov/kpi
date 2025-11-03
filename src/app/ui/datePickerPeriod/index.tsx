@@ -149,7 +149,7 @@ export const DatepickerPeriodUI = (props: TProps) => {
       <div className={classes.datePickerPeriodItem}>
         <SelectUI
           allowClear={allowClear}
-          placeholder={t("placeholders.periodName")}
+          placeholder="Vaqt oralig'ini tanlang"
           value={fromValue && getDataOption(fromValue, toValue)}
           onChange={onDataOptionChange}
         >

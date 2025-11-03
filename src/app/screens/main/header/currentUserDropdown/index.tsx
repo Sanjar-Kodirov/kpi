@@ -30,12 +30,12 @@ const DropdownMenu: FC<DropdownMenuPropsType> = memo((props) => {
         <Link to={ROUTES.SETTINGS_PROFILE} onClick={() => setPopoverOpen(false)}>
           <div className={classes.dropdownItem}>
             <ProfileSvgIcon />
-            {i18n.t("fields.profile")}
+            Pro'fil
           </div>
         </Link>
 
         <div className={classes.dropdownItem} onClick={() => logOut()}>
-          <LogoutSvgIcon /> {i18n.t("fields.logout")}
+          <LogoutSvgIcon /> Chiqish
         </div>
       </div>
 

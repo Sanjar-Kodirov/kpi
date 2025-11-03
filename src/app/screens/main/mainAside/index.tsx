@@ -50,10 +50,10 @@ export const MainAside: React.FC<TProps> = (props) => {
     if (siderCollapsed) {
       setShowLogoLabel(false);
     } else {
-      // Задержка появления текста после анимации открытия sidebar
+      // Delay showing text after sidebar animation completes
       const timer = setTimeout(() => {
         setShowLogoLabel(true);
-      }, 200); // 200ms - время анимации sidebar + небольшая задержка
+      }, 200); // 200ms - sidebar animation time + small delay
 
       return () => clearTimeout(timer);
     }
@@ -92,10 +92,11 @@ export const MainAside: React.FC<TProps> = (props) => {
           <div className={classes.asideBottom}>
             <div className={classes.layoutAsideTriggerWr}>
               <div className={classes.versionBlock}>
-                <span>{t("fields.version")}: </span>
+                <span>Versiyasi: </span>
+                <span>1.0.0</span>
               </div>
               <div className={classes.layoutAsideTrigger} onClick={onSiderToggle}>
-                <span className={classes.layoutAsideTriggerText}>{t("fields.hide")}</span>
+                <span className={classes.layoutAsideTriggerText}>Yashirish</span>
                 <BurgerArrowSvgIcon />
               </div>
             </div>
